@@ -1,0 +1,2817 @@
+---
+# README.md
+
+<div align="center">
+
+# catalog-kit
+
+**The entire Shopify product catalog, in your app, in ~2 minutes after install. No API key. MIT licensed.**
+
+[![CI](https://github.com/DevCreate-Studio/catalog-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/DevCreate-Studio/catalog-kit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-c6f24e.svg)](./CONTRIBUTING.md)
+
+</div>
+
+Building on Shopify's **Global Catalog** (UCP) today means reading the spec, learning JSON‑RPC‑over‑MCP, hosting an agent profile, exchanging a JWT, and hand‑writing filter payloads before you see a single product. `catalog-kit` deletes that day of yak‑shaving. Clone it and you get a typed client, a visual configurator, a live playground, and a working demo storefront — searching **millions of products across every merchant on the network, keyless**, in about two minutes. One portable `CatalogConfig` JSON is the contract that drives all of it and the code you export.
+
+---
+
+## 60‑second quickstart
+
+```bash
+git clone https://github.com/DevCreate-Studio/catalog-kit
+cd catalog-kit
+pnpm install
+pnpm dev
+# → open http://localhost:3000
+```
+
+> **No API key needed.** The kit defaults to the anonymous keyless tier — it works against the real Global Catalog on first run, no signup, no credentials. Add Dev Dashboard credentials later only to raise rate limits (see [getting‑started](./docs/getting-started.md)).
+
+Requirements: **Node 20.19+ / 22.12+ / 24 (24 recommended)**, **pnpm 11** (`corepack enable`).
+
+---
+
+## Configure it visually
+
+Toggle scope, search mode, filters, and buyer context; watch the `CatalogConfig` JSON and the exact JSON‑RPC arguments update live; then **Copy code**, **Download preset**, or **Run in playground**.
+
+![The three-panel configurator: scope & query, filters, and live CatalogConfig output](./assets/configurator.png)
+
+---
+
+## What you can build
+
+Four presets ship in [`examples/`](./examples), each a portable config you can open in the [configurator](http://localhost:3000/configure), run in the [playground](http://localhost:3000/playground), or load in the [demo](http://localhost:3000/demo).
+
+| Preset | What it shows | Config highlight | Try it |
+| --- | --- | --- | --- |
+| **Gift finder** | Well‑reviewed, in‑budget ideas driven by buyer intent | `context.intent` + `price.max` + `rating.variant.min` | [config](./examples/gift-finder.config.json) · [demo](http://localhost:3000/demo) |
+| **Comparison shopper** | The same product across many sellers, ranked as offers | `view: "offer"` + `ships_to` | [config](./examples/comparison-shopper.config.json) · [demo](http://localhost:3000/demo) |
+| **Niche marketplace** | A category‑scoped storefront within one taxonomy branch | `filters.categories` (GID) + `price_tier` | [config](./examples/niche-marketplace.config.json) · [demo](http://localhost:3000/demo) |
+| **Dupe finder** | Visually similar products from one reference image | `like: [{ image_url }]` — image search | [config](./examples/dupe-finder.config.json) · [demo](http://localhost:3000/demo) |
+
+![The demo storefront rendering the gift-finder preset: a live product grid with images, prices, ratings, and seller domains](./assets/demo.png)
+
+---
+
+## What's in the box
+
+| | |
+| --- | --- |
+| **Typed client** (`packages/catalog-client`) | `searchCatalog`, `lookupCatalog`, `getProduct` — profile injection, retry/backoff, 12s timeout, anonymous ↔ token auth ladder. Fetch‑native, runs on Node, Vercel, and Workers. |
+| **Configurator** | Three‑panel visual builder: every filter and search mode as a control, live `CatalogConfig` + wire‑argument output, shareable via URL hash. |
+| **Playground** | Raw config → response inspector across all three tools, with Products / Raw JSON / Messages / Request tabs. |
+| **Demo storefront** | Preset‑driven product grid with more‑like‑this, load‑more, and a live "powered by this config" panel. |
+| **Agent‑ready** | `AGENTS.md` source of truth, a Claude Code skill, JSON Schema for configs, `llms.txt`, and recorded fixtures so agents build and test offline. |
+| **Compliance‑safe** | No results caching, images rendered hot‑linked (never re‑hosted), rate‑limit‑aware transport, endpoint URLs pinned in one file — by design. See [compliance](./docs/compliance.md). |
+
+---
+
+## Build it with an agent
+
+The repo is a first‑class agent workspace. Hand your coding agent one line:
+
+```text
+Clone github.com/DevCreate-Studio/catalog-kit and read AGENTS.md,
+then build me a <your idea> on the Global Catalog.
+```
+
+[`AGENTS.md`](./AGENTS.md) is the single source of truth (repo map, commands, API gotchas, playbooks). The config JSON has a generated [JSON Schema](./packages/catalog-client/schema/catalog-config.schema.json), and recorded fixtures let the test suite run with no keys and no network.
+
+---
+
+## Documentation
+
+The README sells; the docs teach.
+
+| Doc | What it covers |
+| --- | --- |
+| [Getting started](./docs/getting-started.md) | Clone → dev keyless path, agent profiles, optional credentials, first query |
+| [Configuration](./docs/configuration.md) | Every filter and param — shape, real payload, gotchas; validated behavior table |
+| [API reference](./docs/api-reference.md) | Auth tier ladder, the three tools, `CatalogError` codes, `messages[]` contract |
+| [Recipes](./docs/recipes.md) | Full runnable app patterns — gift finder, query‑variant union, dupe finder, price watcher |
+| [Agent guide](./docs/agent-guide.md) | Building with AI agents — why the repo is agent‑ready, copy‑paste prompts, wrapping the client in your own agent |
+| [Compliance](./docs/compliance.md) | How to not get cut off: no caching, hot‑linked images, rate limits per tier |
+| [Deployment](./docs/deployment.md) | One‑click Vercel deploy, Cloudflare Workers, hosting your agent profile |
+| [Troubleshooting](./docs/troubleshooting.md) | Empty results, 429s, profile fetch failures, "works local, fails deployed" |
+| [Architecture](./docs/architecture.md) | The repo tree annotated, the config‑contract data flow, why lenient schemas, why no cache |
+| [AGENTS.md](./AGENTS.md) | The agent source of truth — commands, conventions, gotchas, playbooks |
+
+---
+
+## Showcase
+
+Built something on the Global Catalog with this kit? Add it to [`SHOWCASE.md`](./SHOWCASE.md) via PR — presets are the easiest contribution.
+
+## Contributing
+
+Contributors never need API keys — tests run against recorded fixtures. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for setup, the Changesets flow, and the rule that keeps `AGENTS.md` current.
+
+## License
+
+[MIT](./LICENSE) © 2026 DevCreate Studio.
+
+Created by [Alex ElChehimi](https://x.com/alex_chehimi) · [DevCreate.Studio](https://devcreate.studio)
+
+---
+
+<sub>Not affiliated with, endorsed by, or sponsored by Shopify. "Shopify" is a trademark of Shopify Inc. This project uses Shopify's public Universal Commerce Protocol (UCP) catalog surface under its published usage guidelines.</sub>
+
+---
+# AGENTS.md
+
+# AGENTS.md
+
+Single source of truth for working in this repo. Editor pointer files (`CLAUDE.md`,
+`.cursor/rules/catalog-kit.mdc`, `.github/copilot-instructions.md`) point here and
+duplicate nothing. Keep this file current — see [The rule](#the-rule).
+
+## What this repo is
+
+`catalog-kit` is an MIT-licensed, agent-ready starter kit for the **Shopify Global
+Catalog (UCP)** — clone to live cross-merchant product search in ~2 minutes, no API
+key required. It is a pnpm monorepo: a framework-agnostic typed client
+(`packages/catalog-client`, the `catalog-kit` workspace package — **not published to npm;
+this is a clone-and-build starter**) plus a Next.js demo
+app (`apps/web`) with landing page, configurator, playground, and demo storefront.
+
+**Core principle — one config is the contract.** A single `CatalogConfig` JSON is
+the portable contract that everything shares. The configurator *emits* it; the
+playground, demo, and exported code *consume* it; and `buildSearchArguments()` in
+`packages/catalog-client` turns it into the exact JSON-RPC wire payload. Change the
+shape in one place and it must flow through all of them.
+
+## Commands
+
+Run from the repo root. Node 24 recommended (20.19+ / 22.12+ / 24 minimum), pnpm 11.
+
+| Command | What it does | Network |
+|---|---|---|
+| `pnpm dev` | Runs the Next.js app (`apps/web`) on http://localhost:3000. | No (until you search) |
+| `pnpm test` | Vitest across all packages — `catalog-kit` against **recorded fixtures**, `apps/web` unit tests for the config store/hash (pure logic + jsdom, no network). No network, no keys. Must pass in CI with no secrets. | **Never** |
+| `pnpm lint` | `catalog-kit` type-checks (`tsc --noEmit`); `apps/web` runs `eslint`. | **Never** |
+| `pnpm build` | Builds all packages (tsup → dist) and regenerates `catalog-config.schema.json` from zod. | **Never** |
+| `pnpm --filter catalog-kit check:types` | Runs `attw --pack . --profile node16` against the built `catalog-kit` package — verifies the dual ESM/CJS `exports` map (incl. `.d.cts`) resolves correctly under node16 and bundler resolution. Run after `build`. Not run automatically by `pnpm build`. | **Never** |
+| `pnpm probe` | Live API probes against the real Catalog endpoint; verifies request/response shapes. Add `--json` for a machine-readable report object. | **Yes** |
+| `pnpm fixtures` | Re-records the test fixtures from the live API (overwrites `packages/catalog-client/fixtures/*.json`). | **Yes** |
+| `pnpm llms` | Regenerates `llms.txt` + `llms-full.txt` from `docs/` and README. | No |
+| `pnpm taxonomy` | Regenerates the category-picker dataset from Shopify's Standard Product Taxonomy (pinned tag `TAXONOMY_TAG` in the script): `apps/web/public/taxonomy.json` (+ `lib/taxonomy-meta.json`, `lib/attribute-values.json`). `--check` fails on drift; run after bumping the pin. | **Yes** (downloads the taxonomy dist; committed output means CI runs `--check` offline) |
+| `node packages/catalog-client/test/live-smoke.mjs` | **Pre-release gate.** Runs the three tools (search → lookup → get_product) keyless against the built dist and the live endpoint. Build first (`pnpm --filter catalog-kit build`); prints one line per call, exits non-zero on any failure. Not in vitest/CI. | **Yes** |
+
+`probe`, `fixtures`, and the live-smoke gate need `AGENT_PROFILE_URL` set (the smoke
+script falls back to Shopify's published sample profile) and reach the network. Everything
+in CI (`test`, `lint`, `build`) runs fully offline against fixtures.
+
+## Repo map
+
+Legend: **[now]** exists today · **[P2]** created in Phase 2 (client src) ·
+**[P3+]** created in Phase 3 or later (apps/web, docs, presets).
+
+```
+catalog-kit/
+├── AGENTS.md                          # this file — agent source of truth [now]
+├── CLAUDE.md                          # pointer → AGENTS.md [now]
+├── README.md                          # the sell [P6]
+├── LICENSE                            # MIT [now]
+├── CHANGELOG.md · CONTRIBUTING.md · CODE_OF_CONDUCT.md · SECURITY.md · SHOWCASE.md [now]
+├── llms.txt · llms-full.txt           # generated from docs/ (pnpm llms) [now]
+├── .env.example                       # AGENT_PROFILE_URL + optional token creds [now]
+├── package.json · pnpm-workspace.yaml · tsconfig.base.json [now]
+├── .github/
+│   ├── workflows/ci.yml [now]
+│   ├── ISSUE_TEMPLATE/bug.yml · feature.yml · preset.yml [now]
+│   ├── PULL_REQUEST_TEMPLATE.md · FUNDING.yml [now]
+│   └── copilot-instructions.md        # pointer → AGENTS.md [now]
+├── .cursor/rules/catalog-kit.mdc      # pointer → AGENTS.md [now]
+├── .claude/skills/build-catalog-app/SKILL.md   # Claude Code skill: idea → CatalogConfig → page [now]
+├── packages/catalog-client/
+│   ├── src/
+│   │   ├── index.ts                   # public exports only [P2]
+│   │   ├── endpoints.ts               # ALL URLs (they change) + UCP_SPEC_VERSION pin [P2]
+│   │   ├── auth.ts                    # tier ladder: anonymous | token (cache+refresh) [P2]
+│   │   ├── transport.ts               # JSON-RPC tools/call, profile injection, retry/backoff [P2]
+│   │   ├── config.ts                  # CatalogConfig type + buildSearchArguments() [P2]
+│   │   ├── tools/search.ts · lookup.ts · get-product.ts [P2]
+│   │   ├── schemas/requests.ts · responses.ts   # zod; responses lenient [P2]
+│   │   └── errors.ts                  # CatalogError with jsonrpc error + messages[] [P2]
+│   ├── test/*.test.ts                 # Vitest against fixtures [P2]
+│   ├── fixtures/*.json                # recorded live responses [now]
+│   ├── schema/catalog-config.schema.json  # generated from zod [P2]
+│   └── package.json                   # the `catalog-kit` workspace package (private, not published) [now]
+├── apps/web/                          # Next.js App Router + shadcn/ui [now]
+│   ├── app/
+│   │   ├── page.tsx                   # landing: pitch, live teaser, 5-step strip [now]
+│   │   ├── (tools)/layout.tsx         # shared SiteHeader for the tool pages (route group, no URL change) [now]
+│   │   ├── (tools)/configure/page.tsx # 3-panel configurator [P4]
+│   │   ├── (tools)/playground/page.tsx # raw config → response inspector [P3]
+│   │   ├── (tools)/demo/page.tsx      # preset-driven results storefront [P5]
+│   │   ├── agent-profile.json/route.ts  # serves the UCP profile publicly [P3]
+│   │   └── api/catalog/route.ts       # server proxy — secrets stay server-side [P3]
+│   ├── components/ui/                 # shadcn/ui primitives (button, card, input, select, switch, slider, badge, tabs, tooltip, sonner, textarea, label, separator, popover) [now]
+│   ├── components/configurator/category-picker.tsx  # searchable + browsable taxonomy category picker [now]
+│   ├── components/configurator/attribute-values.tsx # canonical Color/Size/Target-gender value multi-select [now]
+│   ├── lib/taxonomy.ts                # taxonomy lazy-load + cache + pure search/rank helpers [now]
+│   ├── lib/taxonomy-meta.json · lib/attribute-values.json  # generated by pnpm taxonomy [now]
+│   ├── public/taxonomy.json           # generated compact category dataset (pnpm taxonomy) [now]
+│   ├── components.json                # shadcn/ui config (base-nova preset) [now]
+│   └── .env.example                   # copy of root .env.example; app reads apps/web/.env.local [now]
+├── examples/*.config.json             # gift-finder, comparison-shopper, niche-marketplace, dupe-finder [P5]
+├── profile/agent-profile.json         # sample UCP profile + hosting notes [now]
+├── docs/
+│   ├── getting-started.md · configuration.md · api-reference.md [now]
+│   ├── recipes.md · deployment.md · compliance.md [now]
+│   ├── agent-guide.md · architecture.md · troubleshooting.md [now]
+│   └── probe-findings.md              # live-verified API behavior [now]
+├── internal/                          # git-ignored working docs (plans, launch drafts) — never shipped
+└── scripts/
+    ├── probe.mjs                      # live probes (--json) [now]
+    ├── record-fixtures.mjs            # refresh test fixtures [now]
+    ├── build-llms-txt.mjs             # docs/ → llms.txt + llms-full.txt (--json, --check) [now]
+    └── build-taxonomy.mjs             # Shopify taxonomy dist → picker dataset (--json, --check) [now]
+```
+
+## API gotchas (live-verified 2026-07-04)
+
+All verified against the live endpoint; source of truth is `docs/probe-findings.md`.
+Do not relitigate these without re-probing (`pnpm probe --json`).
+
+**Endpoint & envelope**
+- Endpoint: `POST https://catalog.shopify.com/api/ucp/mcp` (JSON-RPC 2.0, MCP binding).
+- Every request is a `tools/call`. Tool payload goes under **`params.arguments.catalog`**
+  (the `catalog` wrapper is required — args are NOT placed directly under `arguments`).
+- The agent profile URL is injected into **`params.arguments.meta['ucp-agent'].profile`**
+  and is **required on every request**.
+
+**Auth**
+- **Keyless anonymous works and is the default** — no `Authorization` header, catalog
+  tools at the lowest rate-limit tier. Token tier (Dev Dashboard `client_credentials`
+  JWT, 60-min TTL, higher limits) is **optional, opt-in via env vars**. Keyless cannot
+  get rate-limit increases.
+
+**Profile hosting**
+- The profile URL **must be served with `Content-Type: application/json`**. A GitHub
+  gist raw URL serves `text/plain` and is **rejected** (`profile_malformed` /
+  "Invalid content type"). Host on your own deploy (`apps/web` serves
+  `/agent-profile.json`), a CDN, or an object store.
+
+**Filters & fields**
+- Prices are in **minor units**: `{"amount":2500,"currency":"USD"}` = $25.00.
+- `pagination.limit` **clamps at 50 silently** (`limit:51` → HTTP 200, 50 products,
+  no error, no message).
+- `categories` accept **string GIDs only** (`"gid://shopify/TaxonomyCategory/…"`). The
+  object `{id}` form is now a **hard tool error** (was previously a silent 0-results).
+- `categories` (and filters generally) do **not stand alone**: a search with filters but
+  no `query`/`like` errors with "A query is required" (live-verified 2026-07-04 while
+  building the niche-marketplace preset — it pairs categories with a query).
+- `rating` shape is `{variant:{min,min_count}}`. Product ratings come back as
+  `{value, scale_min, scale_max, count}`.
+- `ships_to` is an **object** `{country:"US"}`; `ships_from` is an **array**
+  `[{country:"CA"}]`.
+- Supported attribute names are exactly **Color, Size, Target gender**. Unsupported
+  names are ignored and surface in `messages[]` (not an error).
+
+**`like` (similarity / multimodal)**
+- `like` is **always an array**; each element is one of two mutually exclusive shapes:
+  `{id}` (item ref) **XOR** `{image:{content_type, data}}` (inline base64). Bare
+  strings, non-array objects, and public image URLs are all **rejected** by the API.
+- The kit's client resolves a config `image_url` → base64 at request time (fetch,
+  size-capped ~2 MB) and passes `{id}` / already-base64 shapes through untouched. This
+  transient encode for one search request is a sanctioned exception to the no-image-download
+  rule (see Compliance).
+- Multimodal (`query` + `like`) works with either `like` shape; neither input is silently dropped.
+
+**Results & errors**
+- Nonsense text queries return **fuzzy fallbacks (~5 results), never empty**. To test a
+  true empty state, use an **impossible filter** (e.g. `price.max:1`), not a bad query.
+- **Two error shapes:** (1) transport/discovery — top-level JSON-RPC `error` at **HTTP 422**
+  (e.g. `-32001 "UCP discovery failed"`); (2) tool-argument — **HTTP 200** with
+  `result.isError === true` and `result.content`. The client must check **both**.
+- `tools/list` returns **422 keyless** — do not rely on it. Call the three catalog tools
+  (`search_catalog`, `lookup_catalog`, `get_product`) directly by name.
+- **Anonymous rate limiting is real.** Throttling surfaces as HTTP 429 **and** as a
+  JSON-RPC `{"code":-32600,"message":"Invalid Request","data":"Rate limit exceeded"}`
+  body on an HTTP 200. Retry both with backoff.
+- No `x-ratelimit-*`/`retry-after` headers are exposed keyless. `x-request-id` is useful
+  for support tickets.
+
+## Compliance rules (Shopify usage guidelines — never violate)
+
+- **No caching of search results.** The server proxy sets `Cache-Control: no-store` and
+  route handlers are `force-dynamic`. There is no results cache anywhere in the kit —
+  a rate-limit-aware queue instead.
+- **No downloading or re-hosting product images.** Hot-link images from Shopify's CDN and
+  render them in real time. The **one sanctioned exception** is the transient base64 encode
+  of a *reference* image for a `like` search request (the API requires inline bytes and
+  rejects URLs).
+- **Endpoints may change.** All URLs live **only** in
+  `packages/catalog-client/src/endpoints.ts` (plus `UCP_SPEC_VERSION`). Never hardcode a
+  Catalog URL anywhere else.
+
+## Conventions
+
+- **Lenient response schemas.** Response fields are ML-inferred and shapes drift, so every
+  response field is `.optional()` and every object uses `.passthrough()`. Unknown fields
+  must survive parsing.
+- **Secrets never reach client components.** All catalog calls go through the server proxy
+  route (`apps/web/app/api/catalog/route.ts`); credentials are read server-side only.
+- **Verified-date line.** Every docs page ends with `_Verified against shopify.dev and live
+  probes: YYYY-MM-DD._` — update the date whenever you re-verify.
+- **Conventional commits** (`feat:`, `fix:`, `docs:`, `chore:`, `test:`, `ci:`, scoped
+  where useful e.g. `feat(client):`).
+- **Not published to npm.** This is a clone-and-build starter; the client is a private
+  workspace package. No changesets, no release workflow.
+- **Capability coverage matrix** (plan Part A6) is the definition of done for surface area —
+  every capability must be toggleable in the configurator, exercisable in the playground,
+  and documented.
+
+## Playbooks
+
+File-touch lists, in order. Don't skip the doc/test step — it's part of the change.
+
+**Add a filter to the configurator**
+1. `packages/catalog-client/src/config.ts` — add the field to `CatalogConfig` and its
+   handling in `buildSearchArguments()`.
+2. `packages/catalog-client/src/schemas/requests.ts` — add the zod shape (match the probed
+   wire shape exactly).
+3. `pnpm build` — regenerates `schema/catalog-config.schema.json` from zod.
+4. `apps/web/components/configurator/filters-panel.tsx` — add the toggle row + controls.
+5. `docs/configuration.md` — document shape, example payload, gotchas.
+6. If the filter needed a new probe to confirm its shape, record a fixture (`pnpm fixtures`).
+
+**Add a preset**
+1. `examples/<name>.config.json` — author it; it must validate against
+   `packages/catalog-client/schema/catalog-config.schema.json` (the presets vitest globs
+   `examples/*.json` and asserts this — presets can't drift from the contract).
+2. `apps/web/app/(tools)/demo/page.tsx` — add a preset card.
+3. `README.md` — add a row to the "what you can build" preset table.
+
+**Refresh fixtures**
+1. `pnpm fixtures` — re-records from the live API.
+2. `pnpm test` — confirm the suite still passes against the new fixtures.
+3. Update the "Verified against live probes" date in `docs/probe-findings.md`.
+
+**Re-verify API behavior**
+- `pnpm probe --json` — runs the live probes and emits the machine-readable report. Update
+  `docs/probe-findings.md` (table + verified date) with anything that changed.
+
+## The rule
+
+Any change to commands, structure, or conventions must update `AGENTS.md` **in the same
+commit**. Pointer files never carry content — they only point here.
+
+---
+# docs/getting-started.md
+
+# Getting started
+
+`catalog-kit` is a clone-and-go starter for the **Shopify Global Catalog (UCP)** —
+cross-merchant product search, no API key required. This page takes you from a fresh
+clone to your first live query in under a minute, then explains the one piece of setup
+that trips everyone up: the **agent profile**.
+
+## Prerequisites
+
+- **Node 20.19+ / 22.12+ / 24** (24 recommended; the repo is developed and CI-tested on
+  Node 24). Transitive dependencies require one of these three ranges — a bare "Node ≥ 20"
+  is not sufficient below 20.19.
+- **pnpm** (this is a pnpm monorepo — `npm`/`yarn` will not resolve the workspace).
+  Install with `corepack enable` or `npm i -g pnpm`.
+
+No Shopify API key, no `.env` file, and no account are required to run the demo. Keyless
+anonymous access is the default and works out of the box.
+
+## 60-second keyless quickstart
+
+```bash
+# 1. Clone
+git clone https://github.com/DevCreate-Studio/catalog-kit.git
+cd catalog-kit
+
+# 2. Install (pnpm workspace — installs client + web app)
+pnpm install
+
+# 3. Run the Next.js app
+pnpm dev
+```
+
+4. Open **http://localhost:3000**.
+5. Go to **Configure**, pick a preset (or build a `CatalogConfig`), and hit **Run in
+   playground**.
+6. You get live, cross-merchant products back — no key, no signup.
+
+That's it. The dev server ships with a working fallback agent profile (see below), so a
+plain `pnpm dev` searches the real catalog immediately.
+
+> Nothing is cached. Every search hits the live API — the kit deliberately never caches
+> results (a Shopify usage-guideline requirement). The proxy route sets
+> `Cache-Control: no-store`.
+
+## The agent profile
+
+<a id="agent-profile"></a>
+
+Every request to the Global Catalog must carry a **UCP agent profile URL**. This is the
+one concept to understand before you deploy.
+
+### What it is
+
+The [Universal Commerce Protocol (UCP)](https://ucp.dev) identifies the *agent* making a
+request by a public JSON document — the **agent profile** — that advertises which
+capabilities the agent speaks (here: `dev.ucp.shopping.catalog.search` /
+`.lookup`). Shopify's servers **fetch that URL themselves** on every call and inject it
+into the request envelope under `params.arguments.meta['ucp-agent'].profile`. Without a
+reachable, valid profile the request is rejected before any search runs.
+
+The kit injects it for you — you only supply the URL via `AGENT_PROFILE_URL`.
+
+### The `application/json` requirement (and the gist trap)
+
+The profile URL **must be served with `Content-Type: application/json`.** This is the
+single most common setup failure.
+
+- A **GitHub gist raw URL serves `text/plain`** and is **rejected** with
+  `profile_malformed` / `"Invalid content type"` (verified live 2026-07-04). Do not use a
+  gist raw URL as `AGENT_PROFILE_URL`, even though it looks like it should work.
+- Host it somewhere that sets the JSON content-type: **your own deploy** (this app serves
+  it — see below), a CDN, or an object store.
+
+### Self-hosting: your deploy serves `/agent-profile.json`
+
+The web app exposes the profile at `/agent-profile.json` with the correct
+`application/json` content-type. So in production the loop closes on itself: your deployed
+app hosts the profile, and you point `AGENT_PROFILE_URL` at
+`https://<your-deploy-host>/agent-profile.json`.
+
+**A `localhost` URL can never work.** Shopify fetches the profile from its own servers,
+which cannot reach your machine — so `http://localhost:3000/agent-profile.json` is valid
+JSON that Shopify simply can't retrieve. The kit fails loud on this: `getServerEnv()`
+throws a descriptive error naming the variable and linking here if `AGENT_PROFILE_URL`
+points at `localhost` or `127.0.0.1`.
+
+### The dev fallback
+
+So local dev works with zero setup, when `AGENT_PROFILE_URL` is **unset** the app falls
+back to Shopify's own published sample profile:
+
+```
+https://shopify.dev/ucp/agent-profiles/2026-04-08/valid-with-capabilities.json
+```
+
+It is served as `application/json` and verified working keyless. Fine for local dev — but
+it is Shopify's identity, not yours.
+
+### Publish your own before production
+
+Before you ship, publish a profile under **your** identity. The repo ships a ready
+template at [`profile/agent-profile.json`](../profile/agent-profile.json) (catalog
+search + lookup capabilities, UCP version `2026-04-08`). Two ways to host it:
+
+1. **Let the app serve it** — deploy `apps/web` and set
+   `AGENT_PROFILE_URL=https://<your-deploy-host>/agent-profile.json`. Nothing else to do.
+2. **Host it yourself** — put the JSON on any host that sends `application/json` (CDN,
+   object store) and point `AGENT_PROFILE_URL` at it.
+
+## Optional: credentials for higher rate limits
+
+Keyless anonymous access works fully — you only need credentials to raise your rate limit.
+
+1. In the **Shopify Dev Dashboard**, go to **Catalog → create key**.
+2. Copy the `client_credentials` id and secret into your environment:
+
+```bash
+# .env (or apps/web/.env.local) — server-side only, never exposed to the browser
+SHOPIFY_CATALOG_CLIENT_ID=your-client-id
+SHOPIFY_CATALOG_CLIENT_SECRET=your-client-secret
+```
+
+3. Restart. The client detects both variables and automatically switches to the **token
+   tier**: it exchanges the credentials for a short-lived JWT (~60-minute TTL), caches it,
+   and refreshes 5 minutes early. `client.tier` reads `"token"` instead of `"anonymous"`.
+
+**What the token tier changes:** higher rate limits. That's it — the search surface,
+tools, and response shapes are identical across tiers. **Keyless cannot get rate-limit
+increases** (it is the lowest tier by design), so if you're hitting `429`s in production,
+credentials are the fix.
+
+> Credentials are read server-side only (`getServerEnv()`) and never reach a client
+> component. Leave them blank for keyless.
+
+## Your first query without the app
+
+You don't need the Next.js app at all — the client is a self-contained workspace package.
+From your clone, drop this file at the repo root (e.g. `first-query.ts`); the pnpm workspace
+resolves `catalog-kit` to `packages/catalog-client` with no install step.
+
+Here's a complete, runnable TypeScript file that runs one keyless search:
+
+```ts
+import {
+  createCatalogClient,
+  type CatalogConfig,
+} from "catalog-kit";
+
+// The portable contract the configurator emits — one config drives everything.
+const config: CatalogConfig = {
+  version: 1,
+  name: "gift-finder",
+  scope: { type: "global" },
+  query: "cozy gift for a coffee lover",
+  context: {
+    intent: "Find a thoughtful, well-reviewed gift for someone who loves coffee, under $50.",
+  },
+  filters: {
+    available: true,
+    price: { max: 5000 },
+    rating: { variant: { min: 4 } },
+  },
+  pagination: { limit: 12 },
+};
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  // No `auth` → keyless anonymous (the default). Add { clientId, clientSecret } for the token tier.
+  const client = createCatalogClient({ agentProfileUrl });
+
+  const result = await client.searchCatalog(config);
+
+  console.log(`Tier: ${client.tier}`);
+  console.log(`Products: ${result.products?.length ?? 0}`);
+  for (const product of result.products ?? []) {
+    console.log("-", product.title ?? product.id ?? "(untitled)");
+  }
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
+```
+
+Run it with a real profile URL:
+
+```bash
+AGENT_PROFILE_URL=https://shopify.dev/ucp/agent-profiles/2026-04-08/valid-with-capabilities.json \
+  npx tsx first-query.ts
+```
+
+(The configurator generates this exact snippet for whatever config you build — copy it
+from the **Export** panel.)
+
+## Using the client in your own project
+
+catalog-kit is a **clone-and-build starter, not an npm package** — there's nothing to
+`npm install`. To use the client outside this repo, copy `packages/catalog-client` into your
+project, or add the repo as a git dependency. It is **dual ESM + CJS** (import or require)
+and **runtime-agnostic** — it uses only the global `fetch` and has no `node:`-only
+dependencies, so it runs on **Node, Cloudflare Workers, and edge runtimes** unchanged.
+`fetch` is injectable (`createCatalogClient({ fetch })`) if you need a custom one.
+
+The full API surface is in [api-reference.md](./api-reference.md); every field of the
+`CatalogConfig` contract is in [configuration.md](./configuration.md).
+
+## Troubleshooting pointers
+
+- **"AGENT_PROFILE_URL is set to a localhost URL"** — Shopify can't reach your machine.
+  Deploy and point at your host's `/agent-profile.json`, or leave the variable unset for
+  the dev fallback. See [the agent profile](#agent-profile).
+- **`profile_malformed` / "Invalid content type"** — your profile URL serves
+  `text/plain` (a gist raw URL does this). Host it with `application/json`.
+- **Empty results** — a nonsense text query still returns ~5 fuzzy fallbacks; genuinely
+  empty usually means an over-narrow filter combination (e.g. a `price.max` far below any
+  matching product's price *and* a query with no fuzzy matches), or you passed a `categories`
+  object instead of a string GID. Check the response `messages[]`.
+- **`429` / rate limited** — you're keyless at the lowest tier. Add credentials for the
+  token tier; keyless cannot get increases.
+
+A full troubleshooting guide lives in [troubleshooting.md](./troubleshooting.md).
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/configuration.md
+
+# Configuration
+
+The whole kit runs on one JSON object: the **`CatalogConfig`**. The configurator emits
+it; the playground, demo, exported snippet, and
+[`buildSearchArguments()`](../packages/catalog-client/src/config.ts) all consume it. This
+page documents every field, with a **real** payload for each and the gotchas that only
+show up against the live API.
+
+Every shape here is verified against live probes ([probe-findings.md](./probe-findings.md))
+and matches the zod contract in
+[`packages/catalog-client/src/schemas/requests.ts`](../packages/catalog-client/src/schemas/requests.ts).
+
+## Capability coverage matrix
+
+Every capability of the current Catalog API surface is bundled — toggleable in the
+configurator, exercisable in the playground, and documented here.
+
+| Capability | Config field | Where to try it |
+|---|---|---|
+| Text search | `query` | Configurator search mode: Text → Playground Search tool |
+| Image search | `like: [{ image_url }]` / `[{ image }]` | Search mode: Image → dupe-finder preset |
+| More-like-this | `like: [{ id }]` | Search mode: More like this → "Similar" on demo cards |
+| Multimodal | `query` + `like` | Search mode: Text + Image → recipes |
+| Buyer context incl. intent | `context` | Context block → gift-finder preset |
+| All 10 filters | `filters.*` | One toggle each → across presets |
+| Pagination (cursor + limit) | `pagination.limit` + cursor | Limit slider / Load more → demo load-more |
+| Offer view | `view: "offer"` | Toggle → comparison-shopper preset |
+| Saved catalog | `scope.savedCatalogSlug` | Input → documented below |
+| Lookup (≤50 ids) | — (`lookupCatalog({ ids })`) | Playground Lookup tab → price-watcher recipe |
+| Product + selected/preferences | — (`getProduct({ id, selected, preferences })`) | Product inspector → demo product detail |
+
+**Documented but not built** (each marked with status): `placements: ["affiliate"]`
+(invite-only preview), shop sign-in personalization (not yet released), signed-tier
+RFC 9421 auth (see [api-reference.md](./api-reference.md#auth-tiers)).
+
+## Validated behavior
+
+These are the live-verified facts the whole contract is built on. Do not relitigate them
+without re-probing (`pnpm probe --json`).
+
+| Behavior | What actually happens |
+|---|---|
+| **Prices are minor units** | `{"amount":2500,"currency":"USD"}` = $25.00. Applies to `filters.price` (integer minor units) and all response prices. |
+| **`pagination.limit` clamps at 50** | `limit:51` → HTTP 200, 50 products, **silently** — no error, no message. The client's schema caps it at 50 client-side. |
+| **Cursor pagination** | Response `pagination` is `{has_next_page, total_count, cursor}`. The `cursor` is an opaque base64 blob; pass it back to page forward. |
+| **`total_count` is an estimate** | Treat it as approximate, not a guaranteed count. |
+| **`categories` are string GIDs only** | `["gid://shopify/TaxonomyCategory/…"]`. The object `{id}` form is a **hard tool error** now (was previously a silent 0 results). |
+| **Filters require a query or like** | Filters *refine* a search; they can't *be* one. Filters with no `query`/`like` → tool error `"A query is required"`. |
+| **`rating` shape** | Request: `{variant:{min, min_count}}`. Response product rating: `{value, scale_min, scale_max, count}`. |
+| **`ships_to` / `ships_from` shapes** | `ships_to` is an **object** `{country:"US"}`; `ships_from` is an **array** `[{country:"CA"}]`. |
+| **Supported attribute names** | Exactly **`Color`, `Size`, `Target gender`**. Others are **ignored** (not an error) and reported in `messages[]`. |
+| **`like` entry shapes** | Always an array; each element is `{id}` **XOR** `{image:{content_type, data}}` (base64). Bare strings and public URLs are rejected. |
+| **`image_url` kit convenience** | The kit resolves a config `{image_url}` → `{image:{content_type,data}}` at request time (fetch → base64, ≤2 MB cap). Sanctioned exception to the no-image-download rule. |
+| **Multimodal** | `query` + `like` works with either `like` shape; neither input is silently dropped. |
+| **Nonsense-query fallback** | A nonsense text query returns ~5 fuzzy fallbacks, **never empty**. To test a true empty state use an impossible **filter** (e.g. `price.max:1`). |
+| **Two error shapes** | (1) transport/discovery — top-level JSON-RPC `error` at HTTP **422**; (2) tool-argument — HTTP **200** with `result.isError === true`. The client checks both. |
+| **Rate limiting** | Surfaces as HTTP **429** *and* as a JSON-RPC `{"code":-32600,…,"data":"Rate limit exceeded"}` body on an HTTP 200. No `x-ratelimit-*` headers keyless; `x-request-id` is useful for support. |
+
+Full detail, including every rejected `like` shape and its error text, is in
+[probe-findings.md](./probe-findings.md).
+
+## Fields
+
+### `version` / `scope` / `name`
+
+```json
+{ "version": 1, "name": "gift-finder", "scope": { "type": "global" } }
+```
+
+- **`version`** — always `1`. Pins the config contract revision.
+- **`name`** — optional label for your own bookkeeping (used by the configurator/demo).
+- **`scope`** — a discriminated union:
+  - `{ "type": "global" }` — the cross-merchant Global Catalog (default).
+  - `{ "type": "global", "savedCatalogSlug": "curated-2026" }` — scope to a saved
+    catalog. On the wire this is hoisted to a top-level `saved_catalog_slug`
+    (see mapping below). **Precedence:** the slug only applies when `scope.type` is
+    `"global"`; it is omitted for storefront scope.
+  - `{ "type": "storefront", "storeDomain": "shop.example.com" }` — a single shop's
+    catalog. Supported by the client via an **endpoint swap** (`storefrontCatalog()`
+    builds `https://{domain}/api/ucp/mcp`). The client's endpoint is fixed at
+    construction, so pass storefront scope (or an explicit `endpoint`) at
+    `createCatalogClient()` time.
+
+> `scope`, `version`, and `name` are **kit-only** — `buildSearchArguments()` never leaks
+> them into the wire payload.
+
+### `query`
+
+Free-text search. Optional on its own, but a config must include **at least one** of
+`query` or `like`.
+
+```json
+{ "query": "wireless headphones" }
+```
+
+**Gotcha:** a nonsense query (`"xzqvwkjhgfdsa"`) returns ~5 fuzzy fallbacks, not zero.
+Filters, not bad queries, produce genuinely empty results.
+
+### `like` — similarity & multimodal
+
+Always an **array**, `min` length 1. Each element is one of three entry shapes (the first
+two are the wire shapes; the third is a kit convenience):
+
+**1. Item ref** — "more like this":
+
+```json
+{ "like": [{ "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw" }] }
+```
+
+The seed product is excluded from its own results. No similarity score is exposed.
+
+**2. Inline base64 image** — the wire shape for image search:
+
+```json
+{ "like": [{ "image": { "content_type": "image/jpeg", "data": "<base64-bytes>" } }] }
+```
+
+**3. `image_url` (kit convenience)** — you give a URL; the client fetches it, validates
+(2xx, image content-type, ≤2 MB), base64-encodes it, and swaps it to shape #2 at request
+time. This is the sanctioned exception to the no-image-download rule.
+
+```json
+{ "like": [{ "image_url": "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg" }] }
+```
+
+**Gotchas:** bare strings (`"gid://…"`), non-array objects, and **public image URLs on
+the wire** are all rejected by the API — the API only accepts inline bytes, which is why
+`image_url` is resolved client-side. `query` + `like` may coexist for multimodal search.
+
+### `context`
+
+Buyer context that steers ranking. All fields optional.
+
+```json
+{
+  "context": {
+    "intent": "Find a thoughtful, well-reviewed gift for someone who loves coffee, under $50.",
+    "address_country": "US",
+    "address_region": "CA",
+    "postal_code": "94103",
+    "language": "en",
+    "currency": "USD"
+  }
+}
+```
+
+- **`intent`** — a natural-language description of what the shopper wants. This is the
+  single most impactful context field.
+  - **Good:** `"Find a thoughtful, well-reviewed gift for someone who loves coffee, under $50."`
+    — a full sentence describing the goal.
+  - **Bad:** `"gift"` — a bare keyword duplicates `query` and adds no steering signal.
+- **`address_country`** — ISO-2 country code (exactly 2 chars).
+- **`address_region`** / **`postal_code`** — buyer location refinement.
+- **`language`** — locale hint.
+- **`currency`** — ISO-3 currency code (exactly 3 chars).
+
+### Filters
+
+All under `filters`, all optional — but remember filters **require** a `query` or `like`
+alongside them (they refine, they don't search).
+
+**`available`** — in-stock only.
+
+```json
+{ "filters": { "available": true } }
+```
+
+**`price`** — integer **minor units** (`5000` = $50.00). `min` and/or `max`.
+
+```json
+{ "filters": { "price": { "max": 5000 } } }
+```
+
+**`condition`** — array of `"new"` / `"secondhand"`.
+
+```json
+{ "filters": { "condition": ["new", "secondhand"] } }
+```
+
+**`ships_to`** — an **object** with an ISO-2 `country`, optional `region`/`postal_code`.
+
+```json
+{ "filters": { "ships_to": { "country": "US" } } }
+```
+
+**`ships_from`** — an **array** of `{country}` objects (note the shape asymmetry with
+`ships_to`).
+
+```json
+{ "filters": { "ships_from": [{ "country": "CA" }] } }
+```
+
+**`shop_ids`** — array of shop GIDs to restrict to (max 1000).
+
+```json
+{ "filters": { "shop_ids": ["gid://shopify/Shop/77114245396"] } }
+```
+
+**`attributes`** — array of `{name, values}`. **Only `Color`, `Size`, `Target gender`
+are supported.**
+
+```json
+{ "filters": { "attributes": [{ "name": "Color", "values": ["Green", "Black"] }] } }
+```
+
+**Gotcha:** an unsupported attribute name is **ignored, not rejected**, and surfaces in
+`messages[]` (see the messages contract in
+[api-reference.md](./api-reference.md#messages)):
+
+```json
+{
+  "type": "info",
+  "code": "not_found",
+  "path": "$.filters.attributes[0]",
+  "content": "Attribute \"…\" is not supported and was ignored. Supported attributes: Color, Size, Target gender."
+}
+```
+
+**In the configurator:** for the three supported names the value field is a
+multi-select fed by the canonical value lists Shopify publishes in the Standard
+Product Taxonomy (Color, Size, and Target gender values), with a free-text escape
+hatch for custom values (the API tolerates unknown values). Those lists are
+generated into `apps/web/lib/attribute-values.json` from the pinned taxonomy
+version (see [`categories`](#categories--the-taxonomy-picker) below) by
+`pnpm taxonomy` — bump the pin and re-run to refresh them.
+
+**`rating`** — variant-level rating gate. Shape `{variant:{min, min_count}}`.
+
+```json
+{ "filters": { "rating": { "variant": { "min": 4 } } } }
+```
+
+**`price_tier`** — array of `"low"` / `"medium"` / `"high"`.
+
+```json
+{ "filters": { "price_tier": ["low", "medium"] } }
+```
+
+<h4 id="categories--the-taxonomy-picker"><code>categories</code> — the taxonomy picker</h4>
+
+**`categories`** — array of **string GIDs only**.
+
+```json
+{ "filters": { "categories": ["gid://shopify/TaxonomyCategory/hg-1"] } }
+```
+
+**In the configurator:** the categories filter is a searchable + browsable
+picker over Shopify's Standard Product Taxonomy. Type to search across category
+names and breadcrumb paths, or browse the top-level verticals and drill into any
+level (every level is selectable). Selecting a category adds its string GID to the
+array and shows a friendly breadcrumb chip; a "paste a GID manually" affordance
+stays for entering GIDs directly (unknown-but-valid GIDs render as raw removable
+chips). The config still stores plain string GIDs — the picker is pure UI sugar.
+
+Remember filters **pair with a query**: a search with `categories` but no
+`query`/`like` errors with "A query is required".
+
+The picker data is pinned to a specific taxonomy release for reproducibility
+(currently **`v2026-05`**, Shopify Standard Product Taxonomy). It is generated by
+`scripts/build-taxonomy.mjs` into `apps/web/public/taxonomy.json` (lazy-loaded on
+first open, never in the initial bundle) plus `apps/web/lib/taxonomy-meta.json`.
+To adopt a newer taxonomy version, bump `TAXONOMY_TAG` in that script and run
+`pnpm taxonomy` (both files are committed; `node scripts/build-taxonomy.mjs --check`
+guards against drift in CI). Source:
+[github.com/Shopify/product-taxonomy](https://github.com/Shopify/product-taxonomy).
+
+**Gotcha:** the object `{id}` form is a **hard tool error** now:
+`Invalid arguments: value at \`/catalog/filters/categories/0\` is not a string`. The
+client's schema enforces the `gid://shopify/TaxonomyCategory/` prefix and throws
+`INVALID_CONFIG` before any network call.
+
+### `pagination`
+
+```json
+{ "pagination": { "limit": 12 } }
+```
+
+- **`limit`** — 1–50. The API **silently clamps** anything over 50; the client's schema
+  caps it at 50 so you find out at build time instead.
+
+**Cursor flow.** To page forward, read the response `pagination.cursor` and pass it back:
+
+```ts
+const first = await client.searchCatalog(config);
+// first.pagination → { has_next_page: true, total_count: 422, cursor: "eyJvZmZzZXQiOjUs…" }
+
+if (first.pagination?.has_next_page && first.pagination.cursor) {
+  const next = await client.searchCatalog(config, { cursor: first.pagination.cursor });
+}
+```
+
+`buildSearchArguments(config, { cursor })` merges the cursor into `pagination` for you.
+`total_count` is an estimate — don't build exact "page N of M" UI on it.
+
+### `view: "offer"`
+
+Request offer-shaped results (seller, checkout URL, per-variant price/availability).
+
+```json
+{ "view": "offer" }
+```
+
+The comparison-shopper preset uses this. Offer fields on a returned variant look like:
+
+```json
+{
+  "id": "gid://shopify/ProductVariant/48748652429588",
+  "price": { "amount": 6999, "currency": "USD" },
+  "availability": { "available": true },
+  "seller": {
+    "id": "gid://shopify/Shop/77114245396",
+    "name": "kibhousdirect",
+    "url": "https://www.kibhousdirect.com",
+    "domain": "795cb8.myshopify.com"
+  },
+  "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=…"
+}
+```
+
+## CatalogConfig ↔ wire mapping
+
+`buildSearchArguments()` turns a `CatalogConfig` into the exact object that goes under
+`params.arguments.catalog` on the wire. It:
+
+- **drops** the kit-only keys `version`, `name`, `scope`;
+- **hoists** `scope.savedCatalogSlug` → top-level `saved_catalog_slug`;
+- **merges** a `{ cursor }` into `pagination`;
+- **omits** every absent key entirely (no `undefined` survives — the output round-trips
+  through JSON cleanly).
+
+Everything else (`query`, `like`, `context`, `filters`, `view`) passes through unchanged.
+
+**Before — the `CatalogConfig`** (from
+[`config.test.ts`](../packages/catalog-client/test/config.test.ts)):
+
+```json
+{
+  "version": 1,
+  "name": "gift-finder",
+  "scope": { "type": "global" },
+  "query": "cozy gift under 25",
+  "context": { "intent": "gift" },
+  "filters": {
+    "available": true,
+    "price": { "max": 2500 },
+    "rating": { "variant": { "min": 4 } }
+  },
+  "pagination": { "limit": 12 }
+}
+```
+
+**After — the wire `arguments.catalog`** (the exact `toEqual` expectation the test
+asserts):
+
+```json
+{
+  "query": "cozy gift under 25",
+  "context": { "intent": "gift" },
+  "filters": {
+    "available": true,
+    "price": { "max": 2500 },
+    "rating": { "variant": { "min": 4 } }
+  },
+  "pagination": { "limit": 12 }
+}
+```
+
+Note `version`, `name`, and `scope` are gone. (With `scope.savedCatalogSlug` set, a
+top-level `"saved_catalog_slug"` would appear here; with `{ cursor }` passed,
+`pagination` would gain a `"cursor"` key.)
+
+## JSON Schema
+
+A generated JSON Schema for the full contract lives at
+[`packages/catalog-client/schema/catalog-config.schema.json`](../packages/catalog-client/schema/catalog-config.schema.json).
+It is regenerated from the zod schema on `pnpm build`. Point your editor (or an agent) at
+it for autocomplete and validation before you ever hit the network.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/api-reference.md
+
+# API reference
+
+The catalog-kit client wraps the Shopify Global Catalog (UCP) — a JSON-RPC 2.0 endpoint
+(`POST https://catalog.shopify.com/api/ucp/mcp`, MCP binding) exposing three tools. This
+page documents the auth tiers, the three tools with **real** request/response shapes from
+the recorded fixtures, and the error model.
+
+All URLs and the API-version pin live **only** in
+[`packages/catalog-client/src/endpoints.ts`](../packages/catalog-client/src/endpoints.ts)
+(`UCP_SPEC_VERSION = "2026-04-08"`). Shopify flags these endpoints as subject to change —
+see the [endpoint-change warning](#endpoint-change) at the bottom.
+
+## Auth tiers
+
+<a id="auth-tiers"></a>
+
+The client speaks a tier ladder. Two tiers are implemented; a third is spec'd but not yet
+built.
+
+### Anonymous (default)
+
+No credentials, no `Authorization` header. **Keyless works out of the box** — it's the
+default and needs zero setup. Everything works: all three tools, the full search surface,
+identical response shapes. The only difference is the **rate limit**, which is the
+**lowest tier** — and **keyless cannot get rate-limit increases**. If you're hitting
+`429`s in production, move to the token tier.
+
+```ts
+const client = createCatalogClient({ agentProfileUrl });
+client.tier; // "anonymous"
+```
+
+### Token (`client_credentials`)
+
+Opt-in via `SHOPIFY_CATALOG_CLIENT_ID` / `SHOPIFY_CATALOG_CLIENT_SECRET` (Dev Dashboard →
+Catalog). Raises your rate limit; nothing else changes.
+
+The client exchanges the credentials for a short-lived JWT (~60-minute TTL) via the
+`client_credentials` grant. Per the Checkout MCP docs shape, the raw exchange is:
+
+```bash
+curl -X POST https://api.shopify.com/auth/access_token \
+  -H "content-type: application/json" \
+  -d '{
+    "client_id": "your-client-id",
+    "client_secret": "your-client-secret",
+    "grant_type": "client_credentials"
+  }'
+# → { "access_token": "…", "expires_in": 3600, "scope": "…" }
+```
+
+You don't call this yourself — `createAuth()`
+([`auth.ts`](../packages/catalog-client/src/auth.ts)) handles it. Its behavior:
+
+- **Automatic caching** — the JWT is cached and reused across requests (the proxy keeps a
+  module-level client singleton so the cache persists).
+- **Early refresh** — refreshed **5 minutes** before expiry (`REFRESH_EARLY_MS`), so a
+  request never races a just-expired token.
+- **Refresh de-dup** — concurrent requests that trigger a refresh all await the **same**
+  in-flight exchange rather than each firing their own.
+- Failures throw `CatalogError` with code `AUTH_FAILED`.
+
+```ts
+const client = createCatalogClient({
+  agentProfileUrl,
+  auth: { clientId, clientSecret },
+});
+client.tier; // "token"
+```
+
+### Signed (RFC 9421) — not implemented
+
+The UCP spec defines a signed request tier using
+[HTTP Message Signatures (RFC 9421)](https://www.rfc-editor.org/rfc/rfc9421). **Status:
+not implemented in the kit.** The client supports anonymous and token only; signed-tier
+auth is post-v1 backlog. See the [UCP specification](https://ucp.dev) for the wire
+format.
+
+## The three tools
+
+Every request is a JSON-RPC `tools/call` with the tool arguments under
+`params.arguments.catalog` and the agent profile under
+`params.arguments.meta['ucp-agent'].profile` — both required. The client builds this
+envelope; you call the typed methods below.
+
+> `tools/list` returns **HTTP 422 keyless** and is unusable. Call the three tools directly
+> by name — they are the whole usable surface.
+
+### `search_catalog`
+
+**Purpose:** the primary tool — text, image, more-like-this, and multimodal search over
+the cross-merchant catalog, with filters, context, and cursor pagination.
+
+**Request arguments** — built from a `CatalogConfig` (see
+[configuration.md](./configuration.md) for every field). The wire `arguments.catalog`:
+
+```json
+{
+  "query": "wireless headphones",
+  "filters": { "available": true, "price": { "max": 15000 } },
+  "pagination": { "limit": 5 }
+}
+```
+
+**Response shape** (real, trimmed — from `fixtures/search-basic.json`):
+
+```json
+{
+  "ucp": { "version": "2026-04-08", "status": "success", "…": "…" },
+  "products": [
+    {
+      "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+      "title": "E7 Active Noise Cancelling Headphones … Green",
+      "description": { "plain": "Wireless over-ear headphones with advanced noise cancellation …" },
+      "rating": { "value": 4.9, "scale_min": 1, "scale_max": 5, "count": 115 },
+      "media": [{ "type": "image", "url": "https://cdn.shopify.com/s/files/…", "alt_text": "…" }],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/48748652429588",
+          "price": { "amount": 6999, "currency": "USD" },
+          "availability": { "available": true },
+          "seller": { "id": "gid://shopify/Shop/77114245396", "name": "kibhousdirect", "url": "https://www.kibhousdirect.com", "domain": "795cb8.myshopify.com" },
+          "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=…",
+          "condition": ["new"]
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "pagination": { "has_next_page": true, "total_count": 422, "cursor": "eyJvZmZzZXQiOjUs…" }
+}
+```
+
+**Client method:**
+
+```ts
+searchCatalog(config: CatalogConfig, opts?: { cursor?: string }): Promise<SearchResult>;
+```
+
+**Cursor pagination:**
+
+```ts
+const first = await client.searchCatalog(config);
+if (first.pagination?.has_next_page && first.pagination.cursor) {
+  const next = await client.searchCatalog(config, { cursor: first.pagination.cursor });
+}
+```
+
+`total_count` (`422` above) is an **estimate**. The `cursor` is an opaque base64 blob —
+pass it back verbatim, don't decode it.
+
+### `lookup_catalog`
+
+**Purpose:** resolve a known set of ids to full products in one call — for price watching,
+re-fetching saved items, etc.
+
+**Request arguments:** `{ "ids": [ … ] }`. Accepted id types:
+
+- **UPID product GIDs** — `gid://shopify/p/2jH1G1bSch4rBP21t4dUYw`
+- **variant GIDs** — `gid://shopify/ProductVariant/48748652429588`
+- **product URLs** — a storefront product URL
+
+**Between 1 and 50 ids.** The client enforces the `1..50` bound client-side and throws
+`CatalogError` `INVALID_CONFIG` before any network call.
+
+**Response shape** (real, trimmed — from `fixtures/lookup.json`) — same product shape as
+search, but **no pagination**:
+
+```json
+{
+  "ucp": { "version": "2026-04-08", "status": "success", "…": "…" },
+  "products": [
+    {
+      "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+      "title": "E7 Active Noise Cancelling Headphones … Green",
+      "rating": { "value": 4.9, "scale_min": 1, "scale_max": 5, "count": 115 },
+      "variants": [{ "id": "gid://shopify/ProductVariant/48748652429588", "price": { "amount": 6999, "currency": "USD" } }]
+    }
+  ],
+  "messages": []
+}
+```
+
+**Client method:**
+
+```ts
+lookupCatalog(args: { ids: string[] }): Promise<LookupResult>;
+```
+
+### `get_product`
+
+**Purpose:** fetch one product with variant selection and buyer preferences applied.
+
+**Request arguments:** `{ id, selected?, preferences? }`. `selected` and `preferences`
+pass through **verbatim**; absent keys are omitted from the wire payload.
+
+- **`id`** — a product GID (`gid://shopify/p/…`).
+- **`selected`** — selected variant options. **Relaxation semantics:** the API resolves
+  the closest match — it starts from your exact selection and progressively **relaxes** the
+  least-constraining option until a valid variant is found, rather than returning nothing
+  on an over-constrained selection. The response echoes the resolved options in
+  `product.selected` (an array; `[]` when nothing was constrained).
+- **`preferences`** — buyer preferences (currency, locale, …), forwarded untouched.
+
+**Response shape** (real, trimmed — from `fixtures/get-product.json`) — singular
+`product`, not `products`:
+
+```json
+{
+  "ucp": { "version": "2026-04-08", "status": "success", "…": "…" },
+  "product": {
+    "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+    "title": "E7 Active Noise Cancelling Headphones … Green",
+    "rating": { "value": 4.9, "scale_min": 1, "scale_max": 5, "count": 115 },
+    "media": [{ "type": "image", "url": "https://cdn.shopify.com/s/files/…" }],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48748652429588",
+        "price": { "amount": 6999, "currency": "USD" },
+        "availability": { "available": true },
+        "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=…"
+      }
+    ],
+    "price_range": { "min": { "amount": 6999, "currency": "USD" }, "max": { "amount": 6999, "currency": "USD" } },
+    "selected": []
+  }
+}
+```
+
+**Client method:**
+
+```ts
+getProduct(args: { id: string; selected?: unknown; preferences?: unknown }): Promise<GetProductResult>;
+```
+
+## Errors
+
+The Catalog API surfaces failures in **two distinct wire shapes**, and the client checks
+both.
+
+### 1. Transport / discovery error — top-level JSON-RPC `error`, HTTP 422
+
+Real example, from `fixtures/tools-list.json`:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 7,
+  "error": {
+    "code": -32001,
+    "message": "UCP discovery failed",
+    "data": {
+      "code": "invalid_profile_url",
+      "content": "Unable to fetch agent profile: Missing profile uri"
+    }
+  }
+}
+```
+
+Also seen: `profile_malformed` / `"Invalid content type"` when the profile URL serves a
+non-JSON content type (a gist raw URL does this — see
+[getting-started.md](./getting-started.md#agent-profile)).
+
+### 2. Tool-argument error — HTTP 200 with `result.isError`
+
+Real example, from `fixtures/error-invalid-filter.json`:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "result": {
+    "content": [
+      { "type": "text", "text": "Invalid arguments: value at `/catalog/filters/categories/0` is not a string" }
+    ],
+    "isError": true
+  }
+}
+```
+
+Note this is an **HTTP 200** — you must inspect `result.isError`, not just the status code.
+The client does; both shapes normalize into a single `CatalogError`.
+
+### `CatalogError` codes
+
+Every client operation throws a normalized
+[`CatalogError`](../packages/catalog-client/src/errors.ts) carrying a stable `code`, the
+originating `httpStatus`, and — when relevant — the raw `jsonrpcError` and any
+`messages[]`.
+
+| Code | When it fires | Recommended handling |
+|---|---|---|
+| `INVALID_CONFIG` | Client-side validation fails (bad `CatalogConfig`, `lookup` id count outside 1–50). Thrown **before** any network call; `messages` carries the zod issues. | Fix the config. Surface the zod issues to the user/developer. |
+| `LIKE_IMAGE_FETCH_FAILED` | An `image_url` reference image can't be fetched, isn't an image content-type, or exceeds the 2 MB cap. | Check the URL is reachable, is an image, and is under 2 MB. |
+| `AUTH_FAILED` | Token exchange failed (bad credentials, non-2xx, or no `access_token` in the response). | Verify `SHOPIFY_CATALOG_CLIENT_ID`/`SECRET`. Fall back to keyless if needed. |
+| `RATE_LIMITED` | HTTP 429, or a JSON-RPC rate-limit body, after retries are exhausted. | Back off; move to the token tier for higher limits. |
+| `TOOL_ERROR` | The API rejected the arguments — either a JSON-RPC `error` (non-rate-limit) or an HTTP 200 `result.isError`. | Read `err.message`/`err.messages`; usually a bad filter shape (e.g. `categories` object form). |
+| `TRANSPORT_ERROR` | Network failure, non-JSON response, or unclassified non-2xx / 5xx after retries. | Retry later; check connectivity and the endpoint. |
+| `TIMEOUT` | The request exceeded the per-request timeout (default 12s). | Retry; raise `timeoutMs` if legitimately slow. |
+
+### Checking errors — use `isCatalogError` + `code`, not `instanceof`
+
+catalog-kit ships a **dual ESM/CJS** build, so two distinct `CatalogError` class objects
+can coexist in one process (one dependency loads ESM, another CJS). In that case
+`instanceof CatalogError` can be **false** for an error this package threw. Use the
+brand-based structural check plus the `code` field:
+
+```ts
+import { CatalogError } from "catalog-kit";
+
+try {
+  await client.searchCatalog(config);
+} catch (err) {
+  if (CatalogError.isCatalogError(err) && err.code === "RATE_LIMITED") {
+    // back off and retry, or upgrade to the token tier
+  } else {
+    throw err;
+  }
+}
+```
+
+`isCatalogError` checks a `Symbol.for("catalog-kit.CatalogError")` brand from the global
+registry, so it holds across module/build boundaries where `instanceof` doesn't.
+
+## Rate limits
+
+Observed behavior, keyless (see [probe-findings.md](./probe-findings.md)):
+
+- **No rate-limit headers keyless.** No `x-ratelimit-*`, `ratelimit-*`, or `retry-after`
+  on 2xx responses. The only Shopify-specific headers are
+  `x-shopify-ucp-mcp-api-version`, `shopify-complexity-score`, and `x-request-id` (keep
+  the request id for support tickets). Rate limiting is only observable when you're
+  actually throttled.
+- **Throttling has two signals**, both retried by the transport: HTTP **429**, and a
+  JSON-RPC `{"code":-32600,"message":"Invalid Request","data":"Rate limit exceeded"}`
+  body on an HTTP 200. (The `-32600` code alone is generic "Invalid Request" — the client
+  keys on the `"rate limit"` text, not the code.)
+- **Transport retry policy:** up to **3 retries** (4 attempts total) with **exponential
+  backoff + full jitter** (base 800 ms, doubling per attempt). 5xx is retried too.
+  Configurable via `maxRetries` on `createCatalogClient()`.
+
+**Compliance:** the kit **never caches search results** (a Shopify usage-guideline
+requirement). The proxy route is `force-dynamic` and sets `Cache-Control: no-store` on
+every response. Do not add a results cache — use a rate-limit-aware queue instead.
+
+## The `messages[]` contract
+
+<a id="messages"></a>
+
+Successful responses can carry a `messages[]` array reporting things the API **accepted
+but adjusted** — it is **not** an error channel. Two things surface here:
+
+- **Ignored filters** — a filter the API chose not to apply.
+- **Unsupported attribute names** — an `attributes` entry whose `name` isn't one of
+  `Color`, `Size`, `Target gender`. The attribute is **ignored** (not rejected) and
+  reported:
+
+```json
+{
+  "type": "info",
+  "code": "not_found",
+  "path": "$.filters.attributes[0]",
+  "content": "Attribute \"…\" is not supported and was ignored. Supported attributes: Color, Size, Target gender."
+}
+```
+
+Always surface `result.messages` to your user/UI — a "no results" run with a `messages[]`
+entry usually means a filter was silently dropped, not that the catalog is empty.
+
+> **`path` format differs by source.** API `messages[]` entries use a string JSON-pointer
+> (`"$.filters.attributes[0]"`). An `INVALID_CONFIG` error's `messages` instead carries raw
+> zod issues, where `path` is an **array** of segments. Handle both if you inspect `path`.
+
+## ML-inferred fields caveat
+
+Response fields are **ML-inferred and drift over time.** That's why the client's response
+schemas are deliberately lenient — **every field is `.optional()` and every object
+`.passthrough()`**, so parsing never throws on a missing or unknown field and unknown keys
+survive. Treat every response property as **possibly absent** (`product.title ?? "…"`),
+and don't assume a field's presence from these examples — assume the shape, not the
+guarantee.
+
+## Endpoint-change warning
+
+<a id="endpoint-change"></a>
+
+Shopify's usage guidelines flag the Catalog endpoint URLs as **subject to change.** The
+kit isolates that risk:
+
+- **All URLs live only in
+  [`endpoints.ts`](../packages/catalog-client/src/endpoints.ts)** — `globalCatalog`,
+  `token`, and `storefrontCatalog()`. Never hardcode a Catalog URL anywhere else. If an
+  endpoint moves, change it there and everything downstream follows.
+- **`UCP_SPEC_VERSION` (`"2026-04-08"`)** pins the spec revision the client was built
+  against, observed live as the `x-shopify-ucp-mcp-api-version` response header. If Shopify
+  bumps the API version, re-probe (`pnpm probe --json`) and update the pin plus
+  [probe-findings.md](./probe-findings.md).
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/recipes.md
+
+# Recipes
+
+Full, runnable patterns built on the `catalog-kit` client. Each section is
+self-contained: drop the TypeScript into a file, set `AGENT_PROFILE_URL`, and run it
+with `npx tsx <file>.ts`. Every snippet compiles against the real client surface — see
+[api-reference.md](./api-reference.md) for the method signatures and
+[configuration.md](./configuration.md) for the `CatalogConfig` contract. Setup (profile
+URL, keyless vs. token) is covered in [getting-started.md](./getting-started.md); this
+page is about *what to build*.
+
+These recipes obey the [compliance rules](./compliance.md) — no result caching, no image
+re-hosting. Where a pattern brushes up against that line (recipe 5), it says so
+explicitly.
+
+## Contents
+
+1. [Gift finder — intent + quality gates](#1-gift-finder)
+2. [Query-variant union — the flagship](#2-query-variant-union)
+3. [Dupe finder / visual search](#3-dupe-finder)
+4. [More like this](#4-more-like-this)
+5. [Price watcher](#5-price-watcher)
+6. [Variant picker UX](#6-variant-picker)
+7. [Pagination done right](#7-pagination)
+
+---
+
+## 1. Gift finder — intent + quality gates
+
+<a id="1-gift-finder"></a>
+
+A gift finder leans on two things the catalog does well: a natural-language **`intent`**
+(the single most impactful context field) and **filters as quality gates** (price
+ceiling, rating floor). But the API's price filter operates per-variant and can still
+surface a product whose *cheapest* variant is over budget, so a real gift finder adds a
+**hard post-filter** on the client side.
+
+> Pattern credit: distilled from a production gift-finder build. The lesson that mattered
+> — never trust `variants[0]` for "the price"; a product's entry price is the **lowest**
+> variant price, and that's what a budget promise must be measured against.
+
+```ts
+import { createCatalogClient, type CatalogConfig, type CatalogProduct } from "catalog-kit";
+
+const BUDGET_MINOR = 5000; // $50.00 in minor units
+
+const config: CatalogConfig = {
+  version: 1,
+  name: "gift-finder",
+  scope: { type: "global" },
+  query: "cozy gift for a coffee lover",
+  context: {
+    // A full sentence steers ranking; a bare keyword ("gift") does not.
+    intent: "Find a thoughtful, well-reviewed gift for someone who loves coffee, under $50.",
+  },
+  filters: {
+    available: true,
+    price: { max: BUDGET_MINOR }, // soft gate — the API applies it per-variant
+    rating: { variant: { min: 4 } },
+  },
+  pagination: { limit: 24 },
+};
+
+/** Lowest variant price in minor units, or null if none is priced. */
+function lowestVariantPriceMinor(product: CatalogProduct): number | null {
+  const prices = (product.variants ?? [])
+    .map((v) => v.price?.amount)
+    .filter((a): a is number => typeof a === "number");
+  return prices.length ? Math.min(...prices) : null;
+}
+
+/**
+ * Hard budget reject + de-dupe. The catalog is cross-merchant, so the same
+ * product can appear from multiple sellers — de-dupe by title + seller so you
+ * don't show the "same" gift five times.
+ */
+function applyQualityGates(products: CatalogProduct[], budgetMinor: number): CatalogProduct[] {
+  const seen = new Set<string>();
+  const out: CatalogProduct[] = [];
+
+  for (const product of products) {
+    const lowest = lowestVariantPriceMinor(product);
+    // Reject if we can't confirm the entry price is within budget.
+    if (lowest === null || lowest > budgetMinor) continue;
+
+    // `seller` is a loose passthrough object — read its `name` defensively.
+    const seller = product.variants?.[0]?.seller as { name?: string } | undefined;
+    const sellerName = seller?.name ?? "";
+    const key = `${(product.title ?? "").toLowerCase()}::${sellerName.toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    out.push(product);
+  }
+  return out;
+}
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+  const result = await client.searchCatalog(config);
+
+  const gifts = applyQualityGates(result.products ?? [], BUDGET_MINOR);
+  console.log(`${gifts.length} gifts within budget (from ${result.products?.length ?? 0} raw):`);
+  for (const g of gifts) {
+    const lowest = lowestVariantPriceMinor(g);
+    console.log(`- ${g.title ?? g.id} — $${((lowest ?? 0) / 100).toFixed(2)}`);
+  }
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+The shipped [`examples/gift-finder.config.json`](../examples/gift-finder.config.json) is
+the config half of this recipe; the post-filter is the part the raw API can't do for you.
+
+---
+
+## 2. Query-variant union — the flagship
+
+<a id="2-query-variant-union"></a>
+
+**The single most valuable pattern in this doc.** If you need broad coverage of a
+catalog for a query, do **not** paginate one query deep. Run **2–3 complementary query
+variants concurrently** and merge them.
+
+**Why deep pagination decays.** Measured in one production build (not a benchmark — one
+real app, one catalog, one afternoon of measuring): a *single* query paginated five pages
+deep held only **~58–69% usable results** by the deep pages — relevance rots as you
+descend, because the tail of one query is where the fuzzy, off-intent matches live. A
+**union of two complementary query variants**, each read shallow, held **96–100% usable
+results** over the same total result count. Same number of products fetched; far higher
+quality. Frame this honestly to yourself: it's a measurement from one build, not a
+guaranteed law — but the mechanism (query tails decay; independent queries don't share a
+tail) is sound and has held up across catalogs.
+
+```ts
+import { createCatalogClient, type CatalogConfig, type CatalogProduct } from "catalog-kit";
+
+// 2–3 complementary phrasings of the same intent. They should overlap in goal
+// but differ in wording so their result *tails* don't coincide.
+const VARIANTS = [
+  "wireless noise cancelling headphones",
+  "over-ear bluetooth headphones with mic",
+  "premium ANC headphones long battery",
+];
+
+function baseConfig(query: string): CatalogConfig {
+  return {
+    version: 1,
+    name: "union-search",
+    scope: { type: "global" },
+    query,
+    filters: { available: true },
+    pagination: { limit: 24 }, // shallow: one page per variant, not five pages of one
+  };
+}
+
+/** Merge multiple result sets, de-duping by product id (first occurrence wins). */
+function unionById(sets: CatalogProduct[][]): CatalogProduct[] {
+  const seen = new Set<string>();
+  const out: CatalogProduct[] = [];
+  for (const set of sets) {
+    for (const product of set) {
+      const id = product.id;
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      out.push(product);
+    }
+  }
+  return out;
+}
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+
+  // Run the variants concurrently — one round-trip's worth of latency, N× the coverage.
+  const results = await Promise.all(
+    VARIANTS.map((q) => client.searchCatalog(baseConfig(q))),
+  );
+
+  const merged = unionById(results.map((r) => r.products ?? []));
+  console.log(`Union of ${VARIANTS.length} variants → ${merged.length} unique products`);
+  for (const p of merged) console.log("-", p.title ?? p.id);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+**Result-quality vs. depth, stated plainly:** a shallow union beats a deep single query.
+If you find yourself reaching for page 4 of one query (recipe 7), that's the signal to
+switch to a union instead. Mind the [rate limits](./compliance.md#rate-limits) —
+concurrent variants are concurrent requests; keyless is the lowest tier, so keep the fan
+small (2–3) and back off on `429`.
+
+---
+
+## 3. Dupe finder / visual search
+
+<a id="3-dupe-finder"></a>
+
+Search by **image**: give the client an image URL, it fetches the bytes, base64-encodes
+them, and sends them inline (the API rejects hosted URLs and requires inline bytes — see
+the [`like` findings](./probe-findings.md#like--similarity--multimodal-added-2026-07-04)).
+This is the sanctioned exception to the no-image-download rule: a **transient encode of a
+reference image for one request**, never storage.
+
+```ts
+import { createCatalogClient, type CatalogConfig } from "catalog-kit";
+
+// The kit-convenience `image_url` entry: the client fetches, validates
+// (2xx, image content-type, ≤2 MB), base64-encodes, and swaps it to the wire
+// shape { image: { content_type, data } } at request time.
+const config: CatalogConfig = {
+  version: 1,
+  name: "dupe-finder",
+  scope: { type: "global" },
+  like: [
+    {
+      image_url:
+        "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg",
+    },
+  ],
+  pagination: { limit: 12 },
+};
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+  const result = await client.searchCatalog(config);
+  for (const p of result.products ?? []) console.log("-", p.title ?? p.id);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+**The base64 transform & 2 MB cap.** If the reference image can't be fetched, isn't an
+`image/*` content-type, or exceeds **2 MB**, the client throws `CatalogError` with code
+`LIKE_IMAGE_FETCH_FAILED` *before* any catalog call — so you fail fast, locally, with a
+clear message. Already have raw bytes? Skip the fetch and pass the wire shape directly:
+`like: [{ image: { content_type: "image/jpeg", data: "<base64>" } }]`.
+
+**Multimodal variant (live-verified).** Add a `query` alongside the image and the text
+*steers* the visual results — verified live: pairing an image with `query: "minimalist"`
+returned products whose titles literally contained "Minimalist"
+([probe findings](./probe-findings.md#like--similarity--multimodal-added-2026-07-04)):
+
+```ts
+const multimodal: CatalogConfig = {
+  version: 1,
+  name: "dupe-finder-steered",
+  scope: { type: "global" },
+  query: "minimalist",
+  like: [
+    { image_url: "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg" },
+  ],
+  pagination: { limit: 12 },
+};
+```
+
+[`examples/dupe-finder.config.json`](../examples/dupe-finder.config.json) is the image-only
+config; the demo's dupe-finder preset renders exactly this.
+
+---
+
+## 4. More like this
+
+<a id="4-more-like-this"></a>
+
+The item-ref form of `like`: pass a product **id** from any prior result and get similar
+products. The seed product is excluded from its own results, and no similarity score is
+exposed — you get the normal product shape back, ranked by similarity.
+
+```ts
+import { createCatalogClient, type CatalogConfig } from "catalog-kit";
+
+async function moreLikeThis(client: ReturnType<typeof createCatalogClient>, id: string) {
+  const config: CatalogConfig = {
+    version: 1,
+    name: "more-like-this",
+    scope: { type: "global" },
+    like: [{ id }], // any product id from a search / lookup / get_product result
+    pagination: { limit: 12 },
+  };
+  const result = await client.searchCatalog(config);
+  return result.products ?? [];
+}
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+
+  // 1. Get a seed product from a normal search.
+  const seed = await client.searchCatalog({
+    version: 1, name: "seed", scope: { type: "global" },
+    query: "wireless headphones", pagination: { limit: 1 },
+  });
+  const seedId = seed.products?.[0]?.id;
+  if (!seedId) throw new Error("No seed product.");
+
+  // 2. Find more like it.
+  const similar = await moreLikeThis(client, seedId);
+  console.log(`Products similar to ${seedId}:`);
+  for (const p of similar) console.log("-", p.title ?? p.id);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+**UI note:** the demo's **Similar** button on each product card does exactly this — one
+click re-searches with `like: [{ id }]` for the clicked product
+([`apps/web/components/demo/product-card.tsx`](../apps/web/components/demo/product-card.tsx)).
+It's the smallest possible "recommendations" feature: no model to train, one field to set.
+
+---
+
+## 5. Price watcher
+
+<a id="5-price-watcher"></a>
+
+Watch a **saved list of product ids** for price changes using `lookupCatalog` (1–50 ids
+per call) on a schedule, comparing each product's current price against the last price you
+recorded.
+
+**The compliance line — read this before you build it.** Caching *catalog results* is
+prohibited: you must not store the products, images, descriptions, or offers the API
+returns and re-serve them. But tracking **your own price history for specific products you
+are watching is your data.** The distinction is:
+
+- ✅ **Allowed:** store the minimal fields *you* need to detect a change — the product
+  `id`, the price you observed, and a timestamp. That's a log you generated.
+- ❌ **Not allowed:** persist and re-host the catalog payload — titles, descriptions,
+  media URLs, seller info, the full product objects — as a substitute for calling the
+  live API. That's caching results.
+
+Draw the line conservatively: **store the id, the number, and the time; re-fetch
+everything else live.** Don't republish catalog data.
+
+```ts
+import { createCatalogClient, type CatalogProduct } from "catalog-kit";
+
+/** Minimal tracked record — YOUR data, not a cache of catalog payloads. */
+interface PricePoint {
+  productId: string;
+  lowestMinor: number; // lowest variant price, minor units
+  observedAt: string;  // ISO timestamp
+}
+
+// In production this is a DB row keyed by productId. In-memory here for the example.
+const lastSeen = new Map<string, PricePoint>();
+
+function lowestVariantPriceMinor(product: CatalogProduct): number | null {
+  const prices = (product.variants ?? [])
+    .map((v) => v.price?.amount)
+    .filter((a): a is number => typeof a === "number");
+  return prices.length ? Math.min(...prices) : null;
+}
+
+/** One watch pass over the ids you're tracking. */
+async function checkPrices(
+  client: ReturnType<typeof createCatalogClient>,
+  watchedIds: string[],
+): Promise<void> {
+  // lookupCatalog takes 1–50 ids; chunk if you watch more.
+  const result = await client.lookupCatalog({ ids: watchedIds });
+
+  for (const product of result.products ?? []) {
+    const id = product.id;
+    const lowest = lowestVariantPriceMinor(product);
+    if (!id || lowest === null) continue;
+
+    const prev = lastSeen.get(id);
+    if (prev && lowest < prev.lowestMinor) {
+      const drop = ((prev.lowestMinor - lowest) / 100).toFixed(2);
+      console.log(`↓ ${product.title ?? id} dropped $${drop} → $${(lowest / 100).toFixed(2)}`);
+      // notify(...) here
+    }
+
+    // Record the minimal point. Do NOT store the product object.
+    lastSeen.set(id, { productId: id, lowestMinor: lowest, observedAt: new Date().toISOString() });
+  }
+}
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+  const watchedIds = ["gid://shopify/p/2jH1G1bSch4rBP21t4dUYw"]; // your saved list
+
+  // Cron-agnostic: a plain interval works locally; use a real scheduler in prod.
+  const HOUR = 60 * 60 * 1000;
+  await checkPrices(client, watchedIds);
+  setInterval(() => checkPrices(client, watchedIds).catch(console.error), HOUR);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+**Scheduling in production:** `setInterval` only runs while a process is alive. For a
+serverless deploy, use a scheduled trigger instead — **Vercel Cron** or **Cloudflare
+Workers Cron Triggers** call a route on a schedule. See
+[deployment.md](./deployment.md#scheduled-jobs) for both.
+
+---
+
+## 6. Variant picker UX
+
+<a id="6-variant-picker"></a>
+
+`getProduct` takes `{ id, selected?, preferences? }`. `selected` expresses the variant
+options the shopper has chosen; `preferences` carries buyer preferences (currency, locale)
+forwarded verbatim.
+
+**Relaxation semantics — the important part.** The API does **not** return nothing when
+your selection over-constrains. It starts from your exact selection and progressively
+**relaxes the least-constraining option** until a valid variant is found. The response
+echoes what it actually resolved to in `product.selected` — an array, and `[]` when
+nothing was constrained (as in the real fixture below). So always render from the
+*returned* `product.selected`, not from what you asked for — they can differ.
+
+```ts
+import { createCatalogClient } from "catalog-kit";
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+
+  const result = await client.getProduct({
+    id: "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+    selected: [{ name: "Color", value: "Green" }], // shopper's choice
+    preferences: [{ currency: "USD" }],            // forwarded untouched
+  });
+
+  const product = result.product;
+  // Render from what the API RESOLVED, not what you sent — relaxation may differ.
+  console.log("Resolved selection:", JSON.stringify(product?.selected ?? []));
+  console.log("Price range:", JSON.stringify(product?.price_range));
+  for (const v of product?.variants ?? []) {
+    console.log(`- ${v.title ?? v.id}: $${((v.price?.amount ?? 0) / 100).toFixed(2)}`);
+  }
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+The real [`fixtures/get-product.json`](../packages/catalog-client/fixtures/get-product.json)
+response for this product returns `"selected": []` (nothing was constrained) and a
+`price_range` of `{ min: { amount: 6999, currency: "USD" }, max: { amount: 6999, currency: "USD" } }`.
+The playground's product inspector
+([`apps/web/components/playground/inspector.tsx`](../apps/web/components/playground/inspector.tsx))
+lets you build `selected`/`preferences` rows interactively and see the resolved response.
+
+---
+
+## 7. Pagination done right
+
+<a id="7-pagination"></a>
+
+For genuinely large result sets, page with the **cursor** — read `pagination.cursor` off a
+response and pass it back on the next call. The client's `searchCatalog(config, { cursor })`
+merges it in for you.
+
+```ts
+import { createCatalogClient, type CatalogConfig, type CatalogProduct } from "catalog-kit";
+
+const DEPTH_CAP = 1000; // stop long before you hallucinate exact totals
+
+async function pageThrough(
+  client: ReturnType<typeof createCatalogClient>,
+  config: CatalogConfig,
+): Promise<CatalogProduct[]> {
+  const all: CatalogProduct[] = [];
+  let cursor: string | undefined;
+  let pages = 0;
+
+  do {
+    const result = await client.searchCatalog(config, cursor ? { cursor } : {});
+    all.push(...(result.products ?? []));
+    pages++;
+
+    const p = result.pagination;
+    // Stop when there's no next page, the cursor is missing, or we hit the cap.
+    if (!p?.has_next_page || !p.cursor || all.length >= DEPTH_CAP) break;
+    cursor = p.cursor;
+
+    if (pages >= 3) {
+      // If you're 3+ pages deep, your query is probably wrong — a union of query
+      // variants (recipe 2) holds far higher result quality than deep pagination.
+      console.warn("3+ pages deep — consider the query-variant union (recipe 2) instead.");
+    }
+  } while (true);
+
+  return all;
+}
+
+async function main() {
+  const agentProfileUrl = process.env.AGENT_PROFILE_URL;
+  if (!agentProfileUrl) throw new Error("Set AGENT_PROFILE_URL — see docs/getting-started.md#agent-profile.");
+
+  const client = createCatalogClient({ agentProfileUrl });
+  const config: CatalogConfig = {
+    version: 1, name: "paged", scope: { type: "global" },
+    query: "headphones", filters: { available: true }, pagination: { limit: 50 },
+  };
+
+  const products = await pageThrough(client, config);
+  console.log(`Fetched ${products.length} products across pages.`);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
+```
+
+**When to stop:**
+
+- **`has_next_page === false`** or a **missing `cursor`** — the natural end.
+- **Depth cap ~1000** — cursor pagination isn't a bulk-export API; cap it.
+- **`total_count` is an estimate**, not a promise. Don't build "page N of M" UI on it, and
+  don't loop until you've "seen `total_count` products" — you may never exactly reach it.
+
+**And the real lesson:** if you're **3+ pages deep**, your query is almost certainly wrong.
+Deep pages are where relevance rots (recipe 2 measured ~58–69% usable by page five). Switch
+to a **[union of query variants](#2-query-variant-union)** — shallow reads of complementary
+queries hold 96–100% usable results for the same fetch count.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/agent-guide.md
+
+# Building with AI agents
+
+`catalog-kit` is a first-class agent workspace. This page is for two audiences:
+
+- **Humans pointing a coding agent at this repo** — clone it, hand your agent one of the
+  prompts below, and it can build a working app on the Shopify Global Catalog (UCP) without
+  you explaining the wire protocol.
+- **Agent developers using the client _inside_ an agent** — the catalog client is agent
+  infrastructure. The upstream surface is an MCP server; the client wraps it into a typed,
+  compliant tool you can hand your own agent.
+
+## Why this repo is agent-ready
+
+The repo ships machine-checkable artifacts so an agent can build **and verify** without you
+in the loop, and mostly without a network or keys:
+
+| Artifact | What it gives an agent |
+| --- | --- |
+| [`AGENTS.md`](../AGENTS.md) (root) | The single source of truth: repo map, commands, the live-verified API gotchas, and file-touch playbooks. Read this first. |
+| `CLAUDE.md`, `.cursor/rules/catalog-kit.mdc`, `.github/copilot-instructions.md` | Editor pointer files — three lines each, pointing at `AGENTS.md`. No duplicated content, no drift, so every agent reads the same truth. |
+| [`.claude/skills/build-catalog-app/SKILL.md`](../.claude/skills/build-catalog-app/SKILL.md) | A bundled Claude Code skill that turns an app idea into a valid `CatalogConfig` and a working page. |
+| [`catalog-config.schema.json`](../packages/catalog-client/schema/catalog-config.schema.json) | JSON Schema generated from zod — validate a config **without running any code**. |
+| `packages/catalog-client/fixtures/*.json` | Recorded live responses. The full test suite runs offline against them — **no keys, no network**. |
+| `scripts/*.mjs --json` | `probe.mjs` and this script emit deterministic machine-readable output for agents to parse. |
+| [`llms.txt`](../llms.txt) / [`llms-full.txt`](../llms-full.txt) | The whole docs set, LLM-ingestible per llmstxt.org. |
+
+The load-bearing idea: **one `CatalogConfig` JSON is the contract.** The configurator emits
+it, the playground/demo/exported code consume it, and `buildSearchArguments()` turns it into
+the exact JSON-RPC payload. An agent that produces a valid config has produced a working app.
+
+## Three copy-paste prompts
+
+Each is self-contained — paste it into your agent as-is.
+
+**(a) From scratch — clone and build.** For a fresh agent with no clone yet:
+
+```text
+Clone https://github.com/DevCreate-Studio/catalog-kit and read AGENTS.md, then build me
+a gift-finder that surfaces well-reviewed products under a budget on the Shopify Global
+Catalog. Use the configurator's CatalogConfig contract as the single source of truth, and
+validate every config you produce against packages/catalog-client/schema/catalog-config.schema.json
+before wiring it into a page. Run `pnpm lint && pnpm test && pnpm build` before you call it done.
+```
+
+**(b) Generate a preset.** For an existing clone — produce and validate one config:
+
+```text
+In this catalog-kit clone, generate a new CatalogConfig preset for a "sustainable outdoor gear"
+niche marketplace. Start from the nearest example in examples/ (niche-marketplace.config.json),
+keep version:1 and a descriptive name, and honor the API gotchas in AGENTS.md (categories are
+string GIDs; filters need a query or like; prices are minor units; limit ≤ 50). Write it to
+examples/<name>.config.json and validate it against packages/catalog-client/schema/catalog-config.schema.json
+with ajv. The presets vitest (apps/web/lib/__tests__/presets.test.ts) must stay green.
+```
+
+**(c) Add a feature.** Extend the demo with a new config-driven page:
+
+```text
+In this catalog-kit clone, add a new page at apps/web/app/(tools)/deals/page.tsx that renders a
+"today's deals" storefront. Copy apps/web/app/(tools)/demo/page.tsx as the template and drive it from
+a new CatalogConfig (validate it against the JSON Schema first). All catalog calls must go
+through the existing POST /api/catalog proxy — never call the endpoint from a client component
+(secrets and no-store live server-side). Follow the "add a preset" playbook in AGENTS.md and
+run `pnpm lint && pnpm test && pnpm build`.
+```
+
+## For agent builders: the client is agent infrastructure
+
+The Global Catalog's upstream surface **is an MCP server** (`tools/call` over JSON-RPC). The
+catalog client wraps that surface into a typed, retrying, compliance-aware function — exactly
+the shape you want to expose as a tool to your own agent. Wrap `searchCatalog` (or the
+higher-level `client.searchCatalog`) in a tool definition and let your agent drive it:
+
+```ts
+import { createCatalogClient, catalogConfigSchema, type CatalogConfig } from "catalog-kit";
+
+// One client, bound to your hosted agent profile (keyless anonymous by default).
+const catalog = createCatalogClient({
+  agentProfileUrl: "https://your-app.example.com/agent-profile.json",
+});
+
+// A tool your agent can call. `input` is model-generated, so validate it against the
+// generated schema before it ever reaches the wire.
+async function searchCatalogTool(input: unknown) {
+  const parsed = catalogConfigSchema.safeParse(input);
+  if (!parsed.success) {
+    return { ok: false as const, error: "invalid CatalogConfig", issues: parsed.error.issues };
+  }
+  const config: CatalogConfig = parsed.data;
+  const result = await catalog.searchCatalog(config);
+  // Do NOT cache result; hot-link result image URLs — never re-host. (Compliance.)
+  return { ok: true as const, products: result.products, messages: result.messages };
+}
+```
+
+The same rules that apply to a human integration apply to an agent:
+
+- **Keyless anonymous is the default tier** — no API key. Only add Dev Dashboard credentials
+  to raise rate limits.
+- **A hosted agent profile is required on every request** and must be served with
+  `Content-Type: application/json` (see the gotcha in [`AGENTS.md`](../AGENTS.md)). The client
+  injects it for you; you just supply a valid URL.
+- **Compliance rules bind agents too:** never cache search results, and hot-link product
+  images from Shopify's CDN rather than downloading or re-hosting them. See
+  [compliance](./compliance.md).
+
+## Validating configs mechanically
+
+The JSON Schema is generated from the same zod schema the client enforces, so a config that
+passes the schema will build the correct wire payload. Validate any config with one ajv command
+— no code execution, no network:
+
+```bash
+npx ajv-cli validate \
+  -s packages/catalog-client/schema/catalog-config.schema.json \
+  -d examples/gift-finder.config.json
+```
+
+The repo's own guard is the presets test — copy its pattern to validate configs in your suite:
+
+```ts
+import { catalogConfigSchema } from "catalog-kit";
+const result = catalogConfigSchema.safeParse(config);
+if (!result.success) throw new Error(JSON.stringify(result.error.issues, null, 2));
+```
+
+`apps/web/lib/__tests__/presets.test.ts` runs exactly this over every `examples/*.config.json`,
+so shipped presets can never drift from the contract.
+
+## llms.txt / llms-full.txt
+
+- **`llms.txt`** is an llmstxt.org index: an H1, a one-line summary, then a curated list of the
+  docs and optional references with one-line descriptions. It points an LLM at the right doc.
+- **`llms-full.txt`** is the whole corpus concatenated — README + AGENTS.md + every doc — for
+  agents that prefer one paste over crawling links.
+
+Both are **generated and committed**. Regenerate them after editing docs:
+
+```bash
+pnpm llms
+```
+
+The generator (`scripts/build-llms-txt.mjs`) is deterministic (stable ordering, no timestamps),
+and CI runs `node scripts/build-llms-txt.mjs --check` to fail the build if the committed files
+drift from the docs.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/compliance.md
+
+# Compliance — how to not get cut off
+
+The Shopify Global Catalog is a live cross-merchant surface, and its
+[usage guidelines](https://shopify.dev/docs/api/usage-guidelines) are the contract you
+agree to by using it. Violate them and your access gets throttled or revoked. This page
+is the practical version: what each rule *actually means* in code, and how the kit already
+honors it so you don't have to relitigate it.
+
+None of this is optional. The rules below are enforced (or made easy to follow) throughout
+`catalog-kit` — this page tells you where the lines are so your own code stays on the
+right side of them.
+
+## No caching of search results
+
+<a id="no-caching"></a>
+
+**The rule:** you may not cache the results of catalog searches. Every search must hit the
+live API.
+
+**What that means practically:**
+
+- ❌ No **Redis / Memcached** of result payloads.
+- ❌ No **CDN caching** of your search API responses (no `s-maxage`, no edge cache of the
+  proxy).
+- ❌ No **Next.js ISR / `revalidate`** on routes that return catalog data, and no
+  `unstable_cache` / `fetch(..., { next: { revalidate } })` wrapping a catalog call.
+- ✅ **Per-request pass-through** — exactly like the kit's proxy: fetch live, return, set
+  `Cache-Control: no-store`, keep nothing.
+- ✅ **Pagination cursors are fine.** A cursor is an opaque position token, not result
+  data. Holding one to fetch the next page is not caching results.
+
+The kit's proxy route
+([`apps/web/app/api/catalog/route.ts`](../apps/web/app/api/catalog/route.ts)) is
+`export const dynamic = "force-dynamic"` and sets `Cache-Control: no-store` on **every**
+response. There is no result cache anywhere in the kit — when you need to smooth over rate
+limits, use a **rate-limit-aware queue**, not a cache.
+
+> The one nuance — a **price watcher** ([recipe 5](./recipes.md#5-price-watcher)) storing
+> *your own* observed price history (id + number + timestamp) for products you're actively
+> watching is your data, not a cache of catalog payloads. The line: store the minimal
+> fields you generate; never persist and re-serve the catalog's product objects, media, or
+> offers. Draw it conservatively.
+
+## No downloading or re-hosting product images
+
+<a id="images"></a>
+
+**The rule:** do not download product images and re-host them. Render them **hot-linked**
+from Shopify's CDN, in real time.
+
+**What that means practically:**
+
+- ✅ Render `<img src="https://cdn.shopify.com/...">` **directly** from the `media[].url`
+  the API returns. The playground and demo do exactly this.
+- ❌ Don't fetch the image, save it to S3 / R2 / your `public/` folder, and serve your own
+  copy.
+- ⚠️ **Next.js `<Image>` caveat:** the default `next/image` loader **proxies and caches**
+  remote images on your server — which is a form of re-hosting. Either use a plain `<img>`,
+  or configure `next/image` with `unoptimized` (or a passthrough loader) for catalog media
+  so the browser fetches straight from Shopify's CDN.
+
+**The one sanctioned exception** is image similarity search. The `like` image API requires
+**inline base64 bytes** and rejects hosted URLs
+([probe findings](./probe-findings.md#like--similarity--multimodal-added-2026-07-04)), so
+to search *by* an image the client must fetch it and encode it into the request. The kit
+does this transiently: `resolveLikeEntries()`
+([`config.ts`](../packages/catalog-client/src/config.ts)) fetches the reference image,
+validates it (2xx, `image/*`, ≤2 MB), base64-encodes it into the request payload, and
+keeps nothing. This is a **request payload, not storage** — the bytes exist only for the
+duration of one search call. That's the whole exception; it does not license caching or
+re-hosting anything the API returns.
+
+## Rate limits
+
+<a id="rate-limits"></a>
+
+**The rule:** stay within your tier's rate limit; back off when throttled; don't hammer.
+
+**The tiers** (full detail in [api-reference.md](./api-reference.md#auth-tiers)):
+
+| Tier | How | Rate limit |
+|---|---|---|
+| **Anonymous (keyless)** | Default, no credentials | **Lowest tier** — and **cannot get increases**. |
+| **Token (`client_credentials`)** | `SHOPIFY_CATALOG_CLIENT_ID` / `SECRET` | Higher limits. The only thing the token tier changes. |
+| **Signed (RFC 9421)** | Not implemented in the kit | Spec'd, post-v1. |
+
+Keyless is the lowest tier **by design and cannot be raised** — if you're hitting `429`s in
+production, credentials are the fix, not retries.
+
+**The client's retry policy** ([`transport.ts`](../packages/catalog-client/src/transport.ts)):
+up to **3 retries** (4 attempts total) with **exponential backoff + full jitter** (base
+800 ms, doubling per attempt). It retries **both** rate-limit signals — HTTP **429** *and*
+the JSON-RPC `{"code":-32600,…,"data":"Rate limit exceeded"}` body that can arrive on an
+HTTP 200 — plus 5xx. After retries are exhausted it throws `CatalogError` with code
+`RATE_LIMITED`.
+
+**Back off and don't hammer.** No `x-ratelimit-*` or `retry-after` headers are exposed
+keyless, so you can't read your remaining budget — you only learn you're throttled by being
+throttled. So: keep concurrency small (the [query-variant union](./recipes.md#2-query-variant-union)
+fans out to just 2–3), let the client's backoff do its work, and move to the token tier
+before you scale. Keep the `x-request-id` from responses for support tickets.
+
+## ML-inferred fields may be missing or fuzzy — code defensively
+
+<a id="ml-fields"></a>
+
+Catalog response fields are **ML-inferred** — titles, descriptions, ratings, categories,
+attributes are generated and **drift over time**. A field present today may be absent
+tomorrow; a shape may shift.
+
+**Code defensively:**
+
+- The kit's response schemas are deliberately **lenient** — every field is `.optional()`
+  and every object `.passthrough()`, so parsing never throws on a missing or unknown field,
+  and unknown fields survive
+  ([`schemas/responses.ts`](../packages/catalog-client/src/schemas/responses.ts)). That's
+  *why* they're lenient — the API is inherently drifty.
+- Treat every property as **possibly absent**: `product.title ?? "(untitled)"`,
+  `variant.price?.amount ?? 0`. The recipes do this throughout.
+- Don't assume presence from an example. Assume the *shape*, not the *guarantee*.
+
+## Endpoint URLs may change
+
+<a id="endpoints"></a>
+
+Shopify's usage guidelines flag the Catalog endpoint URLs as **subject to change.** The kit
+gives you a single pin point so a move is a one-line fix:
+
+- **All URLs live only in
+  [`endpoints.ts`](../packages/catalog-client/src/endpoints.ts)** — `globalCatalog`,
+  `token`, and `storefrontCatalog()`. **Never hardcode a Catalog URL anywhere else.** If an
+  endpoint moves, change it there and everything downstream follows.
+- **`UCP_SPEC_VERSION` (`"2026-04-08"`)** pins the spec revision the client was built
+  against, observed live as the `x-shopify-ucp-mcp-api-version` response header. If Shopify
+  bumps it, re-probe (`pnpm probe --json`) and update the pin plus
+  [probe-findings.md](./probe-findings.md).
+
+## Usage guidelines — read the source
+
+This page is the practical distillation; the authoritative text is Shopify's own:
+
+- **[Shopify usage guidelines](https://shopify.dev/docs/api/usage-guidelines)** — the
+  binding rules.
+- **[Universal Commerce Protocol (UCP)](https://ucp.dev)** — the protocol the catalog
+  speaks.
+
+When in doubt, the guidelines win over anything here.
+
+## The kit's own compliance choices, summarized
+
+The kit is built to stay compliant so you inherit it for free:
+
+| Choice | Where |
+|---|---|
+| **Proxy sets `no-store`, route is `force-dynamic`** | [`api/catalog/route.ts`](../apps/web/app/api/catalog/route.ts) |
+| **No result cache anywhere** — rate-limit-aware queue instead | whole kit |
+| **Images hot-linked from Shopify CDN**, never re-hosted | playground + demo product cards |
+| **Transient base64 encode for `like` image search only** — a request payload, not storage | [`config.ts`](../packages/catalog-client/src/config.ts) `resolveLikeEntries()` |
+| **All endpoint URLs isolated** in one file | [`endpoints.ts`](../packages/catalog-client/src/endpoints.ts) |
+| **Lenient schemas** for drifty ML fields | [`schemas/responses.ts`](../packages/catalog-client/src/schemas/responses.ts) |
+
+Follow the same choices in your own code — hot-link, pass through, never cache — and you
+stay on the right side of the line.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/deployment.md
+
+# Deployment
+
+The kit is two deployables: the **Next.js app** (`apps/web` — landing, configurator,
+playground, demo, and the proxy + agent-profile routes) and the **standalone client**
+(`packages/catalog-client`, the `catalog-kit` workspace package), which runs anywhere `fetch` does.
+This page covers deploying the app to **Vercel** (the first-class path), running the client
+on **Cloudflare Workers**, and where to host your **agent profile** in production.
+
+Setup concepts (the agent profile, keyless vs. token) are in
+[getting-started.md](./getting-started.md); [compliance.md](./compliance.md) explains why
+the routes are dynamic. This page is the deploy mechanics.
+
+## Vercel (first-class)
+
+`apps/web` is a standard Next.js App Router app — Vercel is the intended target.
+
+### One-click deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/DevCreate-Studio/catalog-kit)
+
+The button clones the repo into your Vercel account. **Two things to set in the import
+flow:**
+
+1. **Root Directory → `apps/web`.** This is a pnpm monorepo; the deployable app is not at
+   the repo root. Vercel's importer lets you pick the root directory — set it to `apps/web`.
+2. **Environment variables** (see the [table below](#env-vars)) — or skip them on the first
+   deploy and rely on the dev fallback, then set `AGENT_PROFILE_URL` once you have a URL
+   (the [chicken-and-egg note](#chicken-and-egg)).
+
+### Manual path (Vercel CLI)
+
+```bash
+npm i -g vercel
+
+# From the repo root, link and set the root directory to apps/web when prompted.
+vercel link
+
+# Push env vars (or set them in the dashboard — see the table below).
+vercel env add AGENT_PROFILE_URL production
+
+# Deploy.
+vercel --prod
+```
+
+Set the project's **Root Directory** to `apps/web` in the Vercel dashboard (Settings →
+General) if the CLI didn't during `link`.
+
+### Environment variables
+
+<a id="env-vars"></a>
+
+| Variable | Required | Value |
+|---|---|---|
+| `AGENT_PROFILE_URL` | Recommended | Point it at **`https://<your-deploy>/agent-profile.json`** after your first deploy (your app serves it). Unset → falls back to Shopify's sample profile (fine to bootstrap; it's Shopify's identity, not yours). **A `localhost` URL never works** — Shopify fetches it from its own servers. |
+| `SHOPIFY_CATALOG_CLIENT_ID` | Optional | Dev Dashboard `client_credentials` id. Raises rate limits. Server-side only. |
+| `SHOPIFY_CATALOG_CLIENT_SECRET` | Optional | The matching secret. Server-side only, never exposed to the browser. |
+
+These mirror [`.env.example`](../.env.example). Credentials are read server-side via
+`getServerEnv()` and never reach a client component.
+
+> **Public demo? Stay keyless.** The catalog proxy is unauthenticated by design (it's a
+> demo anyone can try). Its browser-facing guard blocks cross-site abuse, but a scripted
+> client can still call it — so **do not set `SHOPIFY_CATALOG_CLIENT_ID`/`SECRET` on a
+> publicly reachable deployment.** Without them the proxy runs at the anonymous tier, so the
+> worst a relay can borrow is the same keyless budget anyone already has hitting Shopify
+> directly (further throttled by the per-IP rate limit). Add token credentials only on a
+> deployment that isn't openly exposed, or put your own auth in front of `/api/catalog`
+> first.
+
+### The chicken-and-egg: profile URL points at a deploy that doesn't exist yet
+
+<a id="chicken-and-egg"></a>
+
+Your production `AGENT_PROFILE_URL` should be `https://<your-deploy>/agent-profile.json` —
+but you don't know your deploy URL until you've deployed. Resolve it in two steps:
+
+1. **First deploy with `AGENT_PROFILE_URL` unset.** The app falls back to Shopify's
+   published sample profile
+   (`https://shopify.dev/ucp/agent-profiles/2026-04-08/valid-with-capabilities.json`),
+   which is served as `application/json` and works keyless. Search works immediately — but
+   under Shopify's identity, not yours.
+2. **Then set your own.** Once the deploy exists, set
+   `AGENT_PROFILE_URL=https://<your-deploy>/agent-profile.json` (your app serves it from
+   [`app/agent-profile.json/route.ts`](../apps/web/app/agent-profile.json/route.ts) with the
+   correct content-type) and redeploy. The loop closes on itself.
+
+### Don't "fix" the dynamic routes
+
+The proxy ([`app/api/catalog/route.ts`](../apps/web/app/api/catalog/route.ts)) and the
+agent-profile route are **`force-dynamic` and `no-store` by design** —
+[compliance](./compliance.md#no-caching) forbids caching catalog results. If a build report
+or optimization suggestion nudges you to make them static or cacheable, **ignore it.** That
+dynamism is intentional, not an oversight.
+
+## Cloudflare Workers
+
+The client is **fetch-native** — it uses only global `fetch`, has no `node:`-only
+dependencies, and injectable `fetch` — so `createCatalogClient` runs on Workers unchanged.
+
+**Sketch — adapt to your setup.** A minimal Worker that runs one keyless search:
+
+```ts
+// src/worker.ts — sketch, adapt to your project.
+import { createCatalogClient } from "catalog-kit";
+
+export interface Env {
+  AGENT_PROFILE_URL: string;
+  SHOPIFY_CATALOG_CLIENT_ID?: string;
+  SHOPIFY_CATALOG_CLIENT_SECRET?: string;
+}
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const client = createCatalogClient({
+      agentProfileUrl: env.AGENT_PROFILE_URL,
+      // Omit `auth` for keyless; include for the token tier.
+      auth:
+        env.SHOPIFY_CATALOG_CLIENT_ID && env.SHOPIFY_CATALOG_CLIENT_SECRET
+          ? { clientId: env.SHOPIFY_CATALOG_CLIENT_ID, clientSecret: env.SHOPIFY_CATALOG_CLIENT_SECRET }
+          : undefined,
+    });
+
+    const q = new URL(request.url).searchParams.get("q") ?? "wireless headphones";
+    const result = await client.searchCatalog({
+      version: 1, name: "worker-search", scope: { type: "global" },
+      query: q, filters: { available: true }, pagination: { limit: 12 },
+    });
+
+    // Compliance: never cache results.
+    return Response.json(
+      { products: result.products ?? [] },
+      { headers: { "cache-control": "no-store" } },
+    );
+  },
+} satisfies ExportedHandler<Env>;
+```
+
+A matching `wrangler.toml` sketch:
+
+```toml
+name = "catalog-worker"
+main = "src/worker.ts"
+compatibility_date = "2026-07-04"
+
+[vars]
+# AGENT_PROFILE_URL is public; set it here or with `wrangler deploy --var`.
+AGENT_PROFILE_URL = "https://<your-host>/agent-profile.json"
+# Credentials are secrets — set with `wrangler secret put SHOPIFY_CATALOG_CLIENT_ID` etc.,
+# never in this file.
+```
+
+> **The Next.js app itself is Vercel-first.** Running the *full `apps/web` app* on Workers
+> (via OpenNext or `@cloudflare/next-on-pages`) is out of scope for this kit — adapt at
+> your own discretion. See
+> [Cloudflare's Next.js guide](https://developers.cloudflare.com/workers/frameworks/framework-guides/nextjs/).
+> The **client** on Workers is fully supported; the **app** on Workers is not something the
+> kit ships or tests.
+
+## Scheduled jobs (price watcher, etc.)
+
+<a id="scheduled-jobs"></a>
+
+The [price-watcher recipe](./recipes.md#5-price-watcher) uses `setInterval`, which only
+runs while a process is alive — wrong for serverless. Use a platform scheduler that calls a
+route:
+
+- **Vercel Cron** — add a `crons` entry to `vercel.json` pointing at a route
+  (`app/api/watch-prices/route.ts`) that runs one watch pass. See
+  [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs).
+- **Cloudflare Workers Cron Triggers** — add a `[triggers] crons = [...]` block to
+  `wrangler.toml` and export a `scheduled()` handler that runs the pass. See
+  [Cron Triggers](https://developers.cloudflare.com/workers/configuration/cron-triggers/).
+
+Either way, the route/handler does exactly what the recipe's `checkPrices()` does, once per
+invocation.
+
+## Where to host the agent profile in production
+
+<a id="profile-hosting"></a>
+
+The profile URL **must be served with `Content-Type: application/json`** — this is the most
+common setup failure ([getting-started.md](./getting-started.md#agent-profile)). Good hosts:
+
+- ✅ **Your app route** — `apps/web` serves `/agent-profile.json` with the correct
+  content-type
+  ([`app/agent-profile.json/route.ts`](../apps/web/app/agent-profile.json/route.ts)). This
+  is the recommended path: deploy the app, point `AGENT_PROFILE_URL` at
+  `https://<your-deploy>/agent-profile.json`, done.
+- ✅ **Any static host / CDN / object store** that sets `application/json` (S3 + correct
+  content-type, R2, a CDN).
+- ❌ **NOT a GitHub gist raw URL** — it serves `text/plain` and is rejected with
+  `profile_malformed` / `"Invalid content type"` (verified live 2026-07-04). Looks like it
+  should work; doesn't.
+- ❌ **NOT `localhost`** — Shopify fetches the profile from its own servers, which can't
+  reach your machine.
+
+The ready-to-publish template ships at
+[`profile/agent-profile.json`](../profile/agent-profile.json) — publish it under your own
+identity before production.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/troubleshooting.md
+
+# Troubleshooting
+
+Symptom → cause → fix, with the **exact error text** the API and client produce so you can
+match on it. Everything here is verified against live probes
+([probe-findings.md](./probe-findings.md)); the client behavior referenced is in
+[api-reference.md](./api-reference.md#errors).
+
+## Quick reference
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| Empty results | Filter too strict, or `query` missing, or `categories` object form | Loosen the filter; add a `query`; use string GIDs. [→](#empty-results) |
+| `"A query is required"` | Filters with no `query`/`like` | Add a `query` or `like`. [→](#query-required) |
+| `429` / `-32600 "Rate limit exceeded"` | Keyless lowest tier, throttled | Back off; add credentials. [→](#rate-limited) |
+| `profile_malformed` / `"Invalid content type"` | Profile served as `text/plain` (gist) | Host with `application/json`. [→](#profile-fetch) |
+| `"Unable to fetch agent profile"` | Unreachable / `localhost` profile URL | Use a public URL. [→](#profile-fetch) |
+| `INVALID_CONFIG` | Client-side zod validation failed | Read the issue paths. [→](#invalid-config) |
+| `LIKE_IMAGE_FETCH_FAILED` | Reference image unfetchable / not an image / >2 MB | Check URL, type, size. [→](#like-image) |
+| Works local, fails deployed | Env vars / profile URL points at localhost | Set prod env vars. [→](#local-vs-deployed) |
+| `tools/list` returns 422 | Expected keyless | Call tools by name. [→](#tools-list) |
+| `pnpm` build/dev failures | Wrong pnpm/Node, or blocked build scripts | Match versions; allow builds. [→](#build-dev) |
+
+---
+
+## Empty results
+
+<a id="empty-results"></a>
+
+**A `products: []` with `total_count: 0` almost always means a filter, not the catalog.**
+
+- **A nonsense text query does NOT return empty** — it returns ~5 fuzzy fallback matches.
+  So if you got zero, it wasn't the query text alone; it was an **over-narrow filter
+  combination** (e.g. a `price.max` set far below any matching product's price, an
+  over-narrow `rating`, or a `shop_ids` list that excludes everything) — especially when
+  paired with a query specific enough that fuzzy fallback has nothing to match against.
+  Loosen or drop filters one at a time.
+- **`categories` in the object `{id}` form is a hard error now** (was previously a silent
+  0-results). If you passed `categories: [{ id: "gid://..." }]`, the API returns:
+  ```
+  Invalid arguments: value at `/catalog/filters/categories/0` is not a string
+  ```
+  Use **string GIDs only**: `categories: ["gid://shopify/TaxonomyCategory/hg-1"]`.
+- **Always check the response `messages[]` array** (the playground surfaces it in a
+  **Messages** tab with a count badge). A "no results" run with a `messages[]` entry usually
+  means a filter was **silently dropped** — e.g. an unsupported attribute name:
+  ```json
+  { "type": "info", "code": "not_found", "path": "$.filters.attributes[0]",
+    "content": "Attribute \"…\" is not supported and was ignored. Supported attributes: Color, Size, Target gender." }
+  ```
+  Supported attribute names are exactly **`Color`, `Size`, `Target gender`.**
+
+## "A query is required"
+
+<a id="query-required"></a>
+
+**Cause:** you sent `filters` (and/or a saved-catalog scope) with **no `query` and no
+`like`.** Filters *refine* a search; they can't *be* one. The tool errors with:
+
+```
+A query is required
+```
+
+**Fix:** add a `query` or a `like` alongside the filters. A category-scoped search still
+needs a query — see [`examples/niche-marketplace.config.json`](../examples/niche-marketplace.config.json),
+which pairs `categories` with `query: "coffee mug"`.
+
+## `429` / rate limited
+
+<a id="rate-limited"></a>
+
+**Cause:** you're keyless, which is the **lowest rate-limit tier**, and you've been
+throttled. Throttling shows up two ways — the client retries **both**:
+
+- HTTP **429**.
+- A JSON-RPC body on an HTTP **200**:
+  `{"code":-32600,"message":"Invalid Request","data":"Rate limit exceeded"}`.
+
+After the client's retries (3, exponential backoff + jitter) are exhausted, it throws
+`CatalogError` with code `RATE_LIMITED`.
+
+**Fix:**
+
+1. **Back off** — let the client's backoff work; don't tighten a retry loop around it.
+2. **Reduce concurrency** — a query-variant union should fan out to 2–3, not 20.
+3. **Get credentials** — keyless **cannot get rate-limit increases**. Create a
+   `client_credentials` key (Dev Dashboard → Catalog), set
+   `SHOPIFY_CATALOG_CLIENT_ID` / `SECRET`, and the client moves to the token tier
+   automatically (`client.tier === "token"`). This is the real fix for production `429`s.
+
+No `x-ratelimit-*` / `retry-after` headers are exposed keyless, so you can't read your
+budget — keep the `x-request-id` from responses for support tickets.
+
+## Profile fetch failures
+
+<a id="profile-fetch"></a>
+
+All three surface as an HTTP **422** with a top-level JSON-RPC `error` (code `-32001`,
+`"UCP discovery failed"`):
+
+- **`text/plain` content-type trap:**
+  ```
+  profile_malformed / "Invalid content type"
+  ```
+  Your profile URL serves `text/plain`. **A GitHub gist raw URL does this** and is rejected
+  (verified live 2026-07-04). Host it somewhere that sets `Content-Type: application/json` —
+  your own deploy's `/agent-profile.json`, a CDN, or an object store.
+- **`localhost` URL:** Shopify fetches the profile from **its own servers**, which can't
+  reach your machine. `http://localhost:3000/agent-profile.json` is valid JSON that Shopify
+  simply can't retrieve. The kit fails loud on this — `getServerEnv()` throws a descriptive
+  error naming the variable if `AGENT_PROFILE_URL` points at `localhost` / `127.0.0.1`.
+- **Unreachable host:** any URL Shopify's fetcher can't reach returns:
+  ```
+  Unable to fetch agent profile: Missing profile uri
+  ```
+  (or a fetch failure). Confirm the URL is public, resolves, and returns 200 with JSON.
+
+See [getting-started.md](./getting-started.md#agent-profile) for the full agent-profile
+walkthrough.
+
+## `INVALID_CONFIG` (zod validation)
+
+<a id="invalid-config"></a>
+
+**Cause:** the `CatalogConfig` failed client-side validation — thrown **before** any network
+call, so it's fast and local. The error carries the raw **zod issues** in `err.messages`.
+
+**Fix: read the issue paths.** Each zod issue has a `path` (an **array** of segments, e.g.
+`["filters", "categories", 0]`) and a `message`. The path points straight at the bad field.
+Common ones:
+
+- `categories` not matching the `gid://shopify/TaxonomyCategory/` prefix (the schema enforces
+  string GIDs).
+- `pagination.limit` out of the 1–50 range.
+- `context.address_country` not exactly 2 chars, or `context.currency` not exactly 3.
+- a `like` entry that's neither `{id}`, `{image}`, nor `{image_url}`.
+
+```ts
+import { CatalogError } from "catalog-kit";
+try {
+  await client.searchCatalog(config);
+} catch (err) {
+  if (CatalogError.isCatalogError(err) && err.code === "INVALID_CONFIG") {
+    console.error(err.messages); // zod issues — path + message
+  }
+}
+```
+
+> Note the `path` format differs by source: **`INVALID_CONFIG`** issues carry `path` as an
+> **array**; API **`messages[]`** entries use a **string** JSON-pointer
+> (`"$.filters.attributes[0]"`). Handle both if you inspect `path`.
+
+## `LIKE_IMAGE_FETCH_FAILED`
+
+<a id="like-image"></a>
+
+**Cause:** a `like` `{image_url}` reference image couldn't be turned into inline bytes.
+Three reasons, each with its own message:
+
+- **Over the 2 MB cap:** `Reference image … is <n> bytes, over the 2097152-byte (2 MB) cap.`
+- **Not an image content-type:** `Reference image … has a non-image content-type: "…".`
+- **Unreachable / non-2xx:** `Failed to fetch reference image …: HTTP <status>.` or a fetch
+  failure.
+
+**Fix:** confirm the URL is reachable, returns an `image/*` content-type, and the file is
+under 2 MB. Already have raw bytes? Skip the fetch and pass the wire shape directly:
+`like: [{ image: { content_type: "image/jpeg", data: "<base64>" } }]`.
+
+## Works local, fails deployed
+
+<a id="local-vs-deployed"></a>
+
+Almost always **environment**:
+
+- **`AGENT_PROFILE_URL` still points at `localhost`** (or is unset and you're relying on the
+  dev fallback in prod). Set it to `https://<your-deploy>/agent-profile.json` in your host's
+  env and redeploy. The kit throws a descriptive error for a `localhost` value.
+- **Missing env vars on the host.** Local reads `apps/web/.env.local`; your host reads its
+  own env settings — set `AGENT_PROFILE_URL` (and optional credentials) there too. See the
+  [deployment env table](./deployment.md#env-vars).
+- **Credentials present locally, absent in prod** → prod silently runs keyless and hits
+  `429`s under load. Set `SHOPIFY_CATALOG_CLIENT_ID` / `SECRET` in the host.
+
+## `tools/list` returns 422
+
+<a id="tools-list"></a>
+
+**This is expected keyless — not a bug.** `tools/list` returns **HTTP 422**
+(`-32001 "UCP discovery failed"`) through every profile placement tried. Don't rely on
+discovery. **Call the three catalog tools directly by name** — `search_catalog`,
+`lookup_catalog`, `get_product` — which is exactly what the client's `searchCatalog`,
+`lookupCatalog`, and `getProduct` methods do. Those three are the entire usable surface.
+
+## Build / dev issues
+
+<a id="build-dev"></a>
+
+- **pnpm version.** This is a **pnpm 11 / Node 24** monorepo. `npm` or `yarn` won't resolve
+  the workspace. Enable pnpm with `corepack enable` (or `npm i -g pnpm`). Node 20.19+ / 22.12+ /
+  24 is the floor; CI runs on 24.
+- **Blocked build scripts (`allowBuilds`).** pnpm may refuse to run a dependency's install
+  scripts by default, printing an "ignored build scripts" warning. If a native dep needs its
+  postinstall (e.g. to compile), approve it — run `pnpm approve-builds`, or add the package
+  to `onlyBuiltDependencies` / `pnpm.allowBuilds` in the workspace config — then reinstall.
+- **Stale install after a pull.** `rm -rf node_modules && pnpm install` from the repo root
+  clears most "module not found" oddities.
+
+---
+
+_Verified against live probes: 2026-07-04._
+
+---
+# docs/architecture.md
+
+# Architecture
+
+How `catalog-kit` is put together and *why*. The authoritative repo map and conventions
+live in [`AGENTS.md`](../AGENTS.md) (the source of truth — keep this page in sync with it);
+this page annotates the structure and explains the design decisions behind it. For API
+behavior see [api-reference.md](./api-reference.md); for the field contract,
+[configuration.md](./configuration.md); for the historical "why" of each probed quirk,
+[probe-findings.md](./probe-findings.md).
+
+## The repo tree, annotated
+
+A pnpm monorepo: a framework-agnostic typed **client** plus a Next.js **demo app**. Kept in
+sync with the repo map in [`AGENTS.md`](../AGENTS.md#repo-map).
+
+```
+catalog-kit/
+├── AGENTS.md                     # single source of truth for working in the repo
+├── packages/catalog-client/      # the published client (npm: `catalog-kit`)
+│   ├── src/
+│   │   ├── index.ts              # public barrel — exports only
+│   │   ├── endpoints.ts          # ALL Catalog URLs + UCP_SPEC_VERSION (the single pin point)
+│   │   ├── auth.ts               # tier ladder: anonymous | token (JWT cache + early refresh)
+│   │   ├── transport.ts          # JSON-RPC tools/call, profile injection, retry/backoff/timeout
+│   │   ├── config.ts             # CatalogConfig type + buildSearchArguments() + resolveLikeEntries()
+│   │   ├── tools/                # search.ts · lookup.ts · get-product.ts (the three typed tools)
+│   │   ├── schemas/              # requests.ts (strict) · responses.ts (LENIENT — optional+passthrough)
+│   │   └── errors.ts             # CatalogError: stable code + jsonrpc error + messages[]
+│   ├── fixtures/*.json           # recorded live responses (tests run against these, offline)
+│   └── schema/catalog-config.schema.json   # generated from zod on `pnpm build`
+├── apps/web/                     # Next.js App Router + shadcn/ui
+│   └── app/
+│       ├── page.tsx              # landing: pitch, 5-step viz, live teaser
+│       ├── (tools)/configure/    # 3-panel configurator — EMITS a CatalogConfig
+│       ├── (tools)/playground/   # raw config → response inspector — CONSUMES a CatalogConfig
+│       ├── (tools)/demo/         # preset-driven storefront (Similar button, load-more)
+│       ├── agent-profile.json/route.ts   # serves the UCP profile as application/json
+│       └── api/catalog/route.ts  # server proxy — secrets stay server-side, no-store, force-dynamic
+├── examples/*.config.json        # presets — validated against the JSON Schema in CI
+├── profile/agent-profile.json    # sample UCP profile to publish under your own identity
+├── docs/                         # this documentation
+└── scripts/                      # probe.mjs · record-fixtures.mjs · build-llms-txt.mjs
+```
+
+## Config is the contract — the data flow
+
+The core principle: **one `CatalogConfig` JSON is the portable contract that everything
+shares.** It's the spine the whole kit hangs off.
+
+```
+  configurator  ──emits──▶  CatalogConfig (JSON)  ──consumed by──▶  playground / demo / exported code
+  (configure/)                    │                                          │
+                                  ▼                                          ▼
+                        buildSearchArguments(config)  ──▶  params.arguments.catalog  ──▶  JSON-RPC wire
+                          (packages/catalog-client/src/config.ts)                    (transport.ts)
+```
+
+- The **configurator** ([`configure/`](../apps/web/app/(tools)/configure)) *emits* a `CatalogConfig`.
+- The **playground** ([`playground/`](../apps/web/app/(tools)/playground)), **demo**
+  ([`demo/`](../apps/web/app/(tools)/demo)), and the **exported code snippet** *consume* the
+  same shape.
+- [`buildSearchArguments()`](../packages/catalog-client/src/config.ts) turns that config into
+  the exact object under `params.arguments.catalog` on the wire — dropping kit-only keys
+  (`version`, `name`, `scope`), hoisting `scope.savedCatalogSlug` → `saved_catalog_slug`,
+  and merging a cursor.
+
+**Why it matters:** change the shape in one place ([`schemas/requests.ts`](../packages/catalog-client/src/schemas/requests.ts))
+and it must flow through *all* of them — configurator UI, playground, exported code, and the
+wire builder — or something visibly breaks. The config can't drift silently, because the
+same object drives every surface. The JSON Schema
+([`schema/catalog-config.schema.json`](../packages/catalog-client/schema/catalog-config.schema.json),
+regenerated from zod on `pnpm build`) is what the preset tests validate `examples/*.json`
+against, so presets can't drift from the contract either.
+
+## Why lenient response schemas
+
+Catalog **response** fields are **ML-inferred and drift over time** — a field present today
+may be absent tomorrow, and shapes shift. So the response schemas
+([`schemas/responses.ts`](../packages/catalog-client/src/schemas/responses.ts)) are
+deliberately **lenient: every field is `.optional()` and every object `.passthrough()`.**
+Parsing never throws on a missing or unknown field, and unknown keys survive. The **request**
+schemas ([`schemas/requests.ts`](../packages/catalog-client/src/schemas/requests.ts)), by
+contrast, are **strict** — your config is validated hard *before* the network call
+(`INVALID_CONFIG`), because that's the input you control. Lenient out, strict in.
+
+## Why no cache
+
+Shopify's [usage guidelines](./compliance.md#no-caching) **forbid caching search results.**
+So there is **no result cache anywhere in the kit** — the proxy
+([`api/catalog/route.ts`](../apps/web/app/api/catalog/route.ts)) is `force-dynamic` and sets
+`Cache-Control: no-store` on every response. When rate limits bite, the answer is a
+**rate-limit-aware queue and backoff** (in [`transport.ts`](../packages/catalog-client/src/transport.ts)),
+never a cache. The full compliance rationale — including the one sanctioned exception for
+`like` image encoding — is in [compliance.md](./compliance.md).
+
+## The auth tier ladder
+
+Three tiers, two implemented ([api-reference.md](./api-reference.md#auth-tiers) has the wire
+detail):
+
+1. **Anonymous (keyless)** — the default. No credentials, lowest rate-limit tier, **cannot
+   get increases**. Everything works keyless; this is what makes clone-and-go possible.
+2. **Token (`client_credentials`)** — opt-in via env vars. `auth.ts` exchanges credentials
+   for a short-lived JWT (~60-min TTL), **caches it**, and **refreshes 5 min early** with
+   concurrent-refresh de-dup. Raises rate limits; nothing else changes.
+3. **Signed (RFC 9421)** — spec'd by UCP, **not implemented** in the kit. Post-v1 backlog.
+
+The ladder is a graceful climb: start keyless, add credentials when you hit `429`s, without
+changing any calling code.
+
+## How the web app proxy isolates secrets
+
+Client components never touch credentials. Every catalog call from the browser goes through
+the **server proxy** ([`api/catalog/route.ts`](../apps/web/app/api/catalog/route.ts)), which
+reads `SHOPIFY_CATALOG_CLIENT_ID` / `SECRET` server-side via `getServerEnv()`, instantiates
+the client, executes, and returns `{ok, data | error, meta}` with `no-store`. A module-level
+client singleton keeps the JWT cache warm across requests. The browser sends a
+`CatalogConfig`; the secrets stay on the server. The proxy also enforces a per-IP in-memory
+rate limit so a public demo can't be farmed.
+
+## What is deliberately NOT built
+
+Several capabilities are **documented but intentionally unbuilt**, each with a status label —
+so nobody wastes time looking for them:
+
+| Capability | Status | Note |
+|---|---|---|
+| `placements: ["affiliate"]` | **Invite-only preview** | Affiliate placements aren't generally available; not wired. |
+| Shop sign-in personalization | **Unreleased** | Buyer sign-in / personalized results not yet released by Shopify. |
+| Signed tier (RFC 9421) | **Post-v1 backlog** | Spec'd, not implemented; client does anonymous + token only. |
+
+These are tracked in the [configuration coverage matrix](./configuration.md#capability-coverage-matrix)
+and the [auth section](./api-reference.md#auth-tiers). They're absent by decision, not
+oversight.
+
+## History and provenance
+
+- **[docs/probe-findings.md](./probe-findings.md)** — the live-verified API behavior every
+  design decision rests on. Re-probe with `pnpm probe --json` and update it whenever the API
+  changes; don't relitigate a documented finding without re-probing.
+
+---
+
+_Verified against live probes: 2026-07-04._

@@ -1,0 +1,657 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8,
+  "result": {
+    "structuredContent": {
+      "ucp": {
+        "version": "2026-04-08",
+        "capabilities": {
+          "dev.ucp.shopping.catalog.search": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+            }
+          ],
+          "dev.ucp.shopping.catalog.lookup": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json"
+            }
+          ],
+          "dev.shopify.catalog.global": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://shopify.dev/docs/agents/catalog/global-catalog",
+              "schema": "https://shopify.dev/ucp/schemas/2026-04-08/shopify_catalog_global.json",
+              "extends": [
+                "dev.ucp.shopping.catalog.search",
+                "dev.ucp.shopping.catalog.lookup"
+              ],
+              "requires": {
+                "protocol": {
+                  "min": "2026-04-08"
+                }
+              }
+            }
+          ]
+        },
+        "status": "success"
+      },
+      "products": [
+        {
+          "id": "gid://shopify/p/Eyk22bhCdtVyBypgyAM4",
+          "title": "Hill's Prescription Diet Metabolic",
+          "description": {
+            "plain": "Clinically proven dry dog food designed to help dogs lose weight and maintain a healthy weight naturally."
+          },
+          "rating": {
+            "value": 4.8,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 44
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Formulated by veterinarians to activate dogs' unique metabolism for effective weight loss and maintenance."
+            ],
+            "top_features": "Synergistic blend of ingredients supports natural metabolism for efficient weight loss\nUnique fiber blend from fruits and vegetables helps dogs feel full and satisfied between meals\nPowerful antioxidants promote holistic health and vitality\nHelps prevent weight regain after weight loss for long-term results\nIrresistible chicken flavor encourages mealtime enjoyment",
+            "tech_specs": "Dog Age Group: Adult\nPackage Type: Bag\nPet Dietary Requirements: Weight control\nPet Food Form: Dry\nPet Food Flavor: Chicken\nPet Food Supplements: Omega-3, Omega-6"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0494/5274/4853/products/metaboliccane_5f2175e9-d559-4fe5-a1e1-db01bdd00903.jpg",
+              "alt_text": "Hill's Prescription Diet Metabolic"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/40975921021077",
+              "title": "Hill's Prescription Diet Metabolic",
+              "description": {
+                "plain": "Crocchette per cani con patologie associate al peso Anche solo un leggero aumento di peso può condizionare la qualità di vita degli animali da compagnia e le loro relazioni in famiglia, poichè un peso extra può ridurre i tempi di gioco, alterare la mobilità e influenzare la salute generale del vostro cane. Mantenere il peso ideale può aiutare a condizionare l'aspettativa di vita, riducendo il rischio di insorgenza di patologie associate al peso. Nutrizionisti e veterinari Hill's hanno sviluppato Prescription Diet Metabolic nutrizione clinica formulata in maniera specifica per aiutare i cani a perdere peso e a mantenere il peso raggiunto. Questo alimento secco con pollo ha un gusto irresistibile che il tuo cane amerà. Progettazione Stati Uniti d'America Manifattura/Assemblaggio Stati Uniti d'America Controllo Qualità Stati Uniti d'America"
+              },
+              "url": "https://salalaurus.it/products/hills-prescription-diet-metabolic?variant=40975921021077&_gsid=GbgAfmRVFQ8T",
+              "price": {
+                "amount": 3191,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0494/5274/4853/products/metaboliccane_5f2175e9-d559-4fe5-a1e1-db01bdd00903.jpg",
+                  "alt_text": "Hill's Prescription Diet Metabolic"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/49452744853",
+                "name": "Sala Laurus",
+                "url": "https://salalaurus.it",
+                "domain": "sala-laurus.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/49452744853/policies/26770145429.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/49452744853/policies/26770178197.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/49452744853/policies/26770112661.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/49452744853/policies/26770210965.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://salalaurus.it/cart/40975921021077:1?_gsid=GbgAfmRVFQ8T",
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 3191,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 3191,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/2AWCE5AXn9BIOdhYviHPV",
+          "title": "Perfect Amino Bar",
+          "description": {
+            "plain": "A convenient, high-protein, allergen-free snack bar with monk fruit sweetener for clean energy and sustained satiety."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 2273
+          },
+          "options": [
+            {
+              "name": "Flavor",
+              "values": [
+                {
+                  "label": "Blondie"
+                },
+                {
+                  "label": "Brownie"
+                },
+                {
+                  "label": "Mocha Chip"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Combines 8-9 grams of high-quality protein, MCT oil, and organic superfoods in a gluten-free, non-GMO, allergen-free bar sweetened with monk fruit."
+            ],
+            "top_features": "8-9 grams of high-quality protein per bar supports muscle growth and repair\nSweetened with pure monk fruit for zero sugar and natural taste\nGluten-free, non-GMO, soy-free, dairy-free, and vegan for clean nutrition\nContains MCT oil and MCTs for clean-burning, sustained energy\nIncludes organic superfoods and prebiotic fiber to support gut health",
+            "tech_specs": "Protein: 8-9 g per bar\nSugar: 4-7 g net carbs, 4 g sugar per bar\nNet Carbs: 7 g per bar\nCaffeine: 3-10 mg per bar (varies by flavor)\nAllergen Information: Gluten-free, soy-free, dairy-free, egg-free, nuts-free, wheat-free, peanut-free, sesame-free, milk-free, fish-free, shellfish-free, artificial sweetener-free\nDietary Preferences: Non-GMO, vegan, kosher, dairy-free, soy-free, gluten-free, organic (varies by flavor)"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0835/8481/files/BH_Product-Images_PA-Bar-Box-Blondie_Angle_08e84dc0-1491-4cba-a66c-d5e2d33cc138.jpg",
+              "alt_text": "Perfect Amino Bar"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/32105026617437",
+              "title": "Perfect Amino Bar",
+              "description": {
+                "plain": "A convenient, quick, easy, delicious, and nutritious snack that provides clean-burning energy and a boost of nutrients your body needs to be at peak performance. Three delicious flavors to choose from: Blondie, Brownie and Mocha Chip. Description Benefits Guilt-Free Snacking Ingredients FAQ WE'RE RAISING THE BAR The perfect protein snack bar to give you the energy to keep you going through the day! PerfectAmino Bars are delicious, appetite-filling, nutritious bars that will enhance your life and your daily routine. They can tackle hunger and provide a stable source of energy. Fortified with PERFECT AMINO®, all bundled together in a delicious Blondie, Brownie, or Mocha Chip flavored bar. Whether you are on a fat-management journey, keeping it low-carb, living a vegan lifestyle, or just want a tasty snack for you or your kids to tide you over through the day, this is the perfect bar for you. The Perfect Amino Bar comes with: Three delicious flavors: Blondie, Brownie, and Mocha Chip 8 grams of high-quality protein fortified with PERFECT AMINO® High-quality MCTs for energy and to satisfy hunger cravings Gluten-free, vegan, kosher, non-GMO, free from soy, egg, and dairy A formula enhanced with our organic superfood blend Total convenience (no, you don't have to refrigerate it) This groundbreaking bar delivers the goods, naturally, and can help you: Feel more energetic throughout the day Support healthy brain function with MCT oil Support muscle growth and repair with PERFECT AMINO® Support your immune system with organic superfoods With only four grams of sugar in each bar, we provide delicious sweetness with monk fruit to satisfy your sweet tooth while keeping your system in fat-burning mode. Three delicious flavors, on-the-go protein bars to help you maintain your active lifestyle. In a rush in the morning? Not enough time to make breakfast? Traveling? Craving snacks between meals? Tired of eating almonds, string cheese, or unhealthy snacks? Are you starving after your run or workout and don't have time to cook? Nutrient-dense, made with whole-food ingredients and fortified with PERFECT AMINO®, the PerfectAmino Bar provides a delicious, quick, and easy solution to your hunger with vegan-sourced whole food ingredients that are non-GMO and free from dairy, soy, and eggs. There's no better way to fit your macros while satisfying your sweet tooth! It has green superfoods and high-quality MCT oil for clean-burning sustained energy. In three flavors, Brownie, Blondie, and Mocha Chip this is remarkably satisfying – and tastes good too. The 200 calories in each bar give you energy and sustenance, all with only 7 net carbs. BENEFITS Superior, Healthy Ingredients When it comes to creating the ideal protein bar, there must be no compromise with quality ingredients. Every ingredient in the PerfectAmino Bar is: Non-GMO Gluten-free Soy-free Dairy-free Egg-free Vegan sourced A Next-Generation Formula Many protein bars on the market taste like cardboard, or have more sugar than a donut. The BodyHealth Bar's unique formula was carefully crafted over two years of intensive research and testing to accomplish three fundamental goals: A bar that is delicious and enjoyable to eat as a snack or meal replacement. A bar that has real health benefits, low sugar, meets all dietary requirements and avoids many common allergens. Delicious Flavor We offer three delicious flavors: Brownie, Blondie, and Mocha Chip. Each flavor combination comes from the synergy of nutty goodness (almonds or cashews) combined with cocoa. You will feel like you are eating a wonderful dessert-like treat. Once you try these bars, there is no going back. Curb Hunger Cravings We designed the BodyHealth Bar to curb hunger pangs while providing sustained, clean energy with an ideal balance of healthy fats, proteins, and only 7 net carbs. Furthermore, we fortified the bar with chicory root, a natural prebiotic dietary fiber that helps regulate hunger hormones to reduce cravings and keep you feeling satisfied for longer. MCT Oil Our organic and high-quality MCT oil is the ultimate biohack for your energy levels, giving your body a direct infusion of healthy fat. Several MCTs that our product contains bypass your liver and become immediately available to convert into ketones: the most efficient and preferred body fuel for sustained clean energy. No Whey, Egg, or Soy Whey, egg, and soy derivatives, whether they are in the form of protein, lecithin, or other food product, can trigger allergic reactions and trigger gut problems. The PerfectAmino Bar is free from these sources of trouble and instead is made with organic pea protein fortified with PERFECT AMINO®. GUILT-FREE SNACKING This bar is for those clean-living people who pay attention to what they put in their bodies. It has only 7 net carbs, \"good-quality\" fats, and excellent protein sources that are non-GMO, gluten-free, dairy-free, egg-free, and soy-free. Green superfoods and sea salt for minerals and electrolytes. Prebiotic fiber to help you move things along… PERFECT AMINO® with the Essential Amino acids to help you build and repair protein. The BodyHealth Bar is the ultimate alternative to the highly processed, sugar-filled snack bars on the market. SUPPLEMENT FACTS PANEL Brownie Flavor Click to enlarge Blondie Flavor Click to enlarge Mocha Chip Flavor Click to enlarge INGREDIENTS: Almonds: (Almonds & Almond Butter): The first ingredient in PERFECT AMINO® Bars is 'Almond Butter'. Almonds are naturally high in protein, healthy monounsaturated fats, fiber and antioxidants. Almonds can help you support performance and satiety while adding a crunchy texture and taste. Tapioca Fiber: A filling, tasty prebiotic to help satiety without spiking blood sugar levels. Semi-Sweet Chocolate Chips: Right in between dark and milk chocolate, these give just the right amount of tastiness for your enjoyment. Chicory Root Fiber: Allowing for great taste and texture, chicory root fiber has strong science that supports many health benefits for the human body. Pea Protein Isolate: Rich in amino acids, this protein offers a gluten-, dairy-, and soy-free source of protein and calories. Organic Coconut: Besides being a delicious antioxidant, coconuts are high in manganese, which is essential for bone health and metabolizing carbohydrates, proteins, and cholesterol. PERFECT AMINO®: The Essential Amino Acids in a perfect blend to allow the body to build and repair protein like no other. Cocoa Butter: A healthy fat source that adds a perfect, buttery taste. Organic Virgin Coconut Oil Cinnamon: A delicious superfood loaded with antioxidants, anti-inflammatory properties and so much more. Organic Fruit & Veggie Blend: apple, kale, broccoli, spinach, carrot, parsley, beet, green cabbage, blueberry, raspberry, strawberry, & tomato. What's more to say here. Gotta have your veggies! Medium Chain Triglycerides: A great energy source while also providing better brain & memory function, improved fat management, lowered cholesterol, blood sugar levels, and more. Sea Salt: An excellent electrolyte source with trace minerals, which are very hard to come by these days with all of the soil depletion. Sunflower Tocopherols: Antioxidants Monk Fruit Extract: A sweet, delicious, sugar-free sweetener from natural compounds called Mogrosides that promote fat loss with zero calories, carbs, or fat. *These bars contain some caffeine that is naturally occurring in some of the ingredients. Mocha Chip have approximately 10mg while Brownie has 8mg and Blondie has 3mg. In comparison, a cup of coffee usually has 80mg, so the caffeine in these bars is very minimal. FREQUENTLY ASKED QUESTIONS Q: What is the PerfectAmino Bar? A: The PerfectAmino Bar is a protein, snack, and energy bar all rolled into one. It contains all-natural, organic, non-GMO, and Kosher ingredients. It is also doctor-formulated to provide optimal energy, satisfy your hunger, and promote ideal health. Q: Why should I eat the PerfectAmino Bar? A: You should try the PerfectAmino Bar if: You are careful about what you put in your body You strive to eat non-GMO, organic, and kosher You desire clean-burning energy to keep you going You want a convenient snack that boosts overall health and wellbeing You are an athlete who needs clean, sustained energy You are trying to lose fat and are fighting cravings You want to optimize your digestive health Q: Is the PerfectAmino Bar Organic? A: No – Not all ingredients are organic. Q: Why should I pick the PerfectAmino Bar over others? A: The simple answer: It tastes better and brimming with health benefits far in excess of other bars. Q: What sweetener is in the PerfectAmino Bar? A: We added monk fruit extract for ideal no-carb sweetness. Q: How many bars come in a box? A: There are 12 PerfectAmino Bars to a box."
+              },
+              "url": "https://bodyhealth.com/products/pa-bar?variant=32105026617437&_gsid=GbgAfmRVFQ8T",
+              "price": {
+                "amount": 4795,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Bulk savings",
+                  "label": "1 Box (12 Bars)"
+                },
+                {
+                  "name": "Flavor",
+                  "label": "Blondie"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0835/8481/files/BH_Product-Images_PA-Bar-Box-Blondie_Angle_08e84dc0-1491-4cba-a66c-d5e2d33cc138.jpg",
+                  "alt_text": "Perfect Amino Bar"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/8358481",
+                "name": "BodyHealth.com LLC",
+                "url": "https://bodyhealth.com",
+                "domain": "bodyhealth-com.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179157.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179161.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179153.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/12185829469.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://bodyhealth.com/cart/32105026617437:1?_gsid=GbgAfmRVFQ8T",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 2815
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 4795,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 4795,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/3bxaTEMAHWh2s1OTtVRaC",
+          "title": "Crystal Cluster Huggies in Gold",
+          "description": {
+            "plain": "Sparkly huggie earrings featuring a cluster of cubic zirconia stones on recycled sterling silver for a modern, stackable accent."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 1351
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Gold"
+                },
+                {
+                  "label": "Rhodium Plated Recycled Sterling Silver"
+                },
+                {
+                  "label": "Rose Gold"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Made from recycled sterling silver with eye-catching cubic zirconia clusters, offering both sustainability and standout style."
+            ],
+            "top_features": "Cluster of cubic zirconia stones in various shapes and sizes for a unique, eye-catching finish\nMade from recycled sterling silver for an eco-friendly choice\nAvailable in gold, silver, and rose gold plating for versatile styling\nHuggie profile fits easily into existing ear stacks and can be stacked with hoops\nLightweight design at 0.8 g per earring for comfortable all-day wear",
+            "tech_specs": "Material: Recycled sterling silver\nPlating: 18k gold, 18k rose gold, or rhodium\nStone type: Cubic zirconia\nInner diameter: 7 mm\nOuter diameter: 11 mm\nWeight per earring: 0.8 g\nSuitable for: 10, 11, or 12 upper lobe earrings"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0140/0245/4586/products/crystalclusterhuggiesgold.jpg",
+              "alt_text": "Crystal Cluster Huggies in Gold"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/39377167384634",
+              "title": "Crystal Cluster Huggies in Gold",
+              "description": {
+                "plain": "Description A sparkly accent to add to your stack ~ the Crystal Cluster Huggies in Gold are the perfect way to elevate your jewellery rotation. In our best-selling huggie profile, these feature a cluster of cubic zirconia in different shapes & sizes for an eye-catching finish. These will fit into your existing ear stack with ease. Wear them alone, or stack them with your favourite hoops. This is made from Recycled Sterling Silver to be environmentally conscious. Treat yourself, and feel good doing it. Details Composition 18k Gold Plated Recycled Sterling Silver, Cubic Zirconia Stones Inner Diameter 7mm Outer Diameter 11mm Weight (per Huggie) 0.8g Suitable For 10. Lobes 11. Upper Lobe 12. Upper Lobe Earrings are non returnable due to hygiene reasons Care As most of our pieces are costume jewellery made from sterling silver or brass, plated with 18ct rose gold, 18ct gold and rhodium, they need special looking after for you to enjoy the beauty for a longer period of time. Here’s a list of tips for you on how to care for your Astrid & Miyu jewellery. Avoid water: Do not place next to heater, window, air conditioner or in the bathroom. Do not wear in the pool. Avoid sweat: Remove jewellery when exercising, or any other demanding physical work, as sweating causes the jewellery to tarnish. Storing in our original boxes or pouches is the best way to keep your jewellery. A zip plastic bag is a great alternative if no longer have the packaging. Avoid cosmetics: Apply scents or cosmetics before you put on your jewellery. Perfumes and lotions will tarnish the jewellery."
+              },
+              "url": "https://www.astridandmiyu.com/products/crystal-cluster-huggies-in-gold?variant=39377167384634&_gsid=GbgAfmRVFQ8T",
+              "price": {
+                "amount": 8670,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "18k Gold Plated Recycled Sterling Silver"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0140/0245/4586/products/crystalclusterhuggiesgold.jpg",
+                  "alt_text": "Crystal Cluster Huggies in Gold"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/14002454586",
+                "name": "Astrid & Miyu",
+                "url": "https://www.astridandmiyu.com",
+                "domain": "astridandmiyu.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/14002454586/policies/6618251322.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/14002454586/policies/6618284090.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/14002454586/policies/6618218554.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/14002454586/policies/6618316858.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.astridandmiyu.com/cart/39377167384634:1?_gsid=GbgAfmRVFQ8T",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 771
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 8670,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 8670,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/3AzwpvhNHUZp7aPNIgQb4",
+          "title": "Women's Lettuce Edge Sock - Black",
+          "description": {
+            "plain": "Compressive, stretchy socks with ruffled trim for a secure, stylish fit during any activity."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Athletic Heather Grey"
+                },
+                {
+                  "label": "Black"
+                },
+                {
+                  "label": "Bright Red"
+                },
+                {
+                  "label": "Candlelight Yellow"
+                },
+                {
+                  "label": "Candy Red"
+                },
+                {
+                  "label": "Oatmeal Heather"
+                },
+                {
+                  "label": "Pink Wild Rose"
+                },
+                {
+                  "label": "Summer Romance Red"
+                },
+                {
+                  "label": "Vintage Pink"
+                },
+                {
+                  "label": "Warm Butter"
+                },
+                {
+                  "label": "White"
+                },
+                {
+                  "label": "White/Candy Heart Pink"
+                },
+                {
+                  "label": "White/Winter Frost"
+                }
+              ]
+            },
+            {
+              "name": "Size",
+              "values": [
+                {
+                  "label": "S/M"
+                },
+                {
+                  "label": "M/L"
+                },
+                {
+                  "label": "M/L (8-11)"
+                },
+                {
+                  "label": "S/M (5-7.5)"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Ruffled edge design with compressive fit prevents rolling and enhances comfort."
+            ],
+            "top_features": "Ruffled edge detail adds a stylish accent for a fashionable look\nCompressive fit keeps socks securely in place during movement\nStretch material prevents rolling and ensures a comfortable fit\nLightweight construction ideal for workouts and everyday wear",
+            "tech_specs": "Material: Not specified\nFit: Compressive\nStretch: Yes\nEdge: Ruffled trim\nAvailable Colors: White, Black, Candy Heart Pink, Athletic Heather Grey, Candlelight Yellow, Pink Wild Rose, White/Light Provence Blue, Bright Red, Vintage Pink, Oatmeal Heather"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/2185/2813/files/A0660W_01_b1_s1_a1_d02108ee-e383-4eff-929d-36fad750d231.jpg",
+              "alt_text": "Women's Lettuce Edge Sock - Black"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/43766370631860",
+              "title": "Women's Lettuce Edge Sock - Black",
+              "description": {
+                "plain": "The perfect way to step up your shoe game? Just add these Lettuce Edge Socks. With a ruffled trim and compressive feel, they’re made with just the right amount of stretch, so they won’t roll down whether you’re working out or hanging out."
+              },
+              "url": "https://www.aloyoga.com/products/a0660w-womens-lettuce-edge-sock-black?variant=43766370631860&_gsid=GbgAfmRVFQ8T",
+              "price": {
+                "amount": 3200,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Black"
+                },
+                {
+                  "name": "Size",
+                  "label": "S/M (5-7.5)"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/2185/2813/files/A0660W_01_b1_s1_a1_d02108ee-e383-4eff-929d-36fad750d231.jpg",
+                  "alt_text": "Women's Lettuce Edge Sock - Black"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/21852813",
+                "name": "Alo Yoga",
+                "url": "https://www.aloyoga.com",
+                "domain": "alo-yoga.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245570.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245634.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245506.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/25273958580.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.aloyoga.com/cart/43766370631860:1?_gsid=GbgAfmRVFQ8T",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 73
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 3200,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 3200,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/5jUetzuaRXntRWV9UOlpt",
+          "title": "【Pokemon Card】Mega Dream ex (M2a) Japanese Booster Box - With Shrink",
+          "description": {
+            "plain": "Japanese booster box featuring Mega Dream ex cards with high pull rates and exclusive artwork for collectors."
+          },
+          "options": [
+            {
+              "name": "Packaging",
+              "values": [
+                {
+                  "label": "With Shrink"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Includes a variety of Mega Dream ex cards with high pull rates and special art, packaged in a factory-sealed box for authenticity."
+            ],
+            "top_features": "Factory-sealed Japanese booster box ensures authenticity and preserves card quality\nIncludes Mega Dream ex cards with high pull rates for increased collecting value\nFeatures special art and rare card variants for unique collector appeal\nComes with multiple card types including mirror, art rare, super rare, and stadium goods\nPackaged in a protective box suitable for display or storage",
+            "tech_specs": "Language: Japanese\nRelease Date: November 28, 2025\nTotal Card Sets: 513\nMega Dream ex Pull Rates: 7 mirror, 3 AR, 1 SR, 10 per box, 236 Mega Dream ex\nBox Contents: 10 booster packs (10 cards per pack)\nPackaging: Factory-sealed box"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0904/1861/0476/files/BOX_61bf7856-745e-4ce4-a252-60f89a3325cc.jpg",
+              "alt_text": "【Pokemon Card】Mega Dream ex (M2a) Japanese Booster Box - With Shrink"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/52138401628460",
+              "title": "【Pokemon Card】Mega Dream ex (M2a) Japanese Booster Box - With Shrink",
+              "description": {
+                "plain": "Options: ➡ Case (Factory Sealed) ➡ Without Shrink Wrap Mega Dream ex Details ●Language：Japanese ●Release date：11/28/2025 ●Condition：Brand New ●Category：Pokemon Card MEGA ●Total Card Sets：513 〇SAR（Special Art Rare）：17 〇MUR（Ultra Rare）：1 〇MA（Super Rare）：10 〇SR（Super Rare）：9 〇AR（Art Rare）：20 〇Mirror：236 Mega Dream ex Box Contents Each Booster Box includes： ●10 Booster Packs ●10 Cards per Pack Mega Dream ex — Pull Rates per Box • 7× Mirror • 3× AR (Art Rare) • 1× SR (Stadium / Goods) • 1× MA (Mega Attack Rare) • SR (Super Rare): ~10% per box • SAR (Special Art Rare): ~40% per box • MUR (Mega Ultra Rare): ~2% per box Note: Rare production errors may result in some packs having fewer cards."
+              },
+              "url": "https://fandom.tokyo/products/pokemon-card-mega-dream-ex-m2a-japanese-booster-box-with-shrink?variant=52138401628460&_gsid=GbgAfmRVFQ8T",
+              "price": {
+                "amount": 10074,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Packaging",
+                  "label": "With Shrink"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0904/1861/0476/files/BOX_61bf7856-745e-4ce4-a252-60f89a3325cc.jpg",
+                  "alt_text": "【Pokemon Card】Mega Dream ex (M2a) Japanese Booster Box - With Shrink"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/90418610476",
+                "name": "Fandom Tokyo",
+                "url": "https://fandom.tokyo",
+                "domain": "kyrrd9-7p.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/90418610476/policies/41025831212.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/90418610476/policies/43572003116.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/90418610476/policies/43796922668.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://fandom.tokyo/cart/52138401628460:1?_gsid=GbgAfmRVFQ8T",
+              "rating": {
+                "value": 5,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 207
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 10074,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 10074,
+              "currency": "USD"
+            }
+          }
+        }
+      ],
+      "messages": [],
+      "pagination": {
+        "has_next_page": true,
+        "total_count": 398,
+        "cursor": "eyJvZmZzZXQiOjUsInRvdGFsX2NvdW50IjozOTgsInJldHVybmVkIjo1fQ"
+      }
+    }
+  }
+}

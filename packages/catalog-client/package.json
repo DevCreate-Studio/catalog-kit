@@ -1,0 +1,57 @@
+{
+  "name": "catalog-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "license": "MIT",
+  "description": "Typed client for the Shopify Global Catalog (UCP) — agent-ready, keyless by default.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevCreate-Studio/catalog-kit.git",
+    "directory": "packages/catalog-client"
+  },
+  "homepage": "https://github.com/DevCreate-Studio/catalog-kit",
+  "bugs": {
+    "url": "https://github.com/DevCreate-Studio/catalog-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./schema": "./schema/catalog-config.schema.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs && node scripts/generate-schema.mjs",
+    "schema": "node scripts/generate-schema.mjs",
+    "test": "vitest run --passWithNoTests",
+    "lint": "tsc --noEmit",
+    "check:types": "attw --pack . --profile node16"
+  },
+  "dependencies": {
+    "zod": "^3"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18",
+    "tsup": "^8",
+    "typescript": "^5",
+    "vitest": "^2",
+    "zod-to-json-schema": "^3"
+  }
+}

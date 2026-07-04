@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "dupe-finder",
+  "scope": { "type": "global" },
+  "like": [
+    {
+      "image_url": "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg"
+    }
+  ],
+  "pagination": { "limit": 12 }
+}

@@ -1,0 +1,532 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "structuredContent": {
+      "ucp": {
+        "version": "2026-04-08",
+        "capabilities": {
+          "dev.ucp.shopping.catalog.search": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+            }
+          ],
+          "dev.ucp.shopping.catalog.lookup": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json"
+            }
+          ],
+          "dev.shopify.catalog.global": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://shopify.dev/docs/agents/catalog/global-catalog",
+              "schema": "https://shopify.dev/ucp/schemas/2026-04-08/shopify_catalog_global.json",
+              "extends": [
+                "dev.ucp.shopping.catalog.search",
+                "dev.ucp.shopping.catalog.lookup"
+              ],
+              "requires": {
+                "protocol": {
+                  "min": "2026-04-08"
+                }
+              }
+            }
+          ]
+        },
+        "status": "success"
+      },
+      "products": [
+        {
+          "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+          "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+          "description": {
+            "plain": "Wireless over-ear headphones with advanced noise cancellation, rich bass, and up to 30 hours of playtime for immersive listening and clear calls."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 115
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Combines deep noise cancellation with professional 45 mm drivers and 30-hour battery life in a comfortable, wireless design."
+            ],
+            "top_features": "Advanced noise cancellation up to 32 dB for immersive isolation in any environment\nProfessional 45 mm acoustic drivers deliver rich, clear bass and full sound spectrum\nWireless Bluetooth 5.0 connectivity ensures stable, high-quality audio streaming\nBuilt-in microphone enables clear, hands-free calls and instant communication\nMemory foam ear cushions and adjustable headband provide all-day comfort",
+            "tech_specs": "Noise Cancellation: Up to 32 dB\nDriver Size: 45 mm\nConnectivity: Bluetooth 5.0, Wireless\nBattery Life: Up to 30 hours per charge\nMicrophone: Built-in\nHeadphone Style: Closed-back, Over-ear"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+              "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/48748652429588",
+              "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+              "description": {
+                "plain": "ADVANCED NOISE CANCELLATION –E7 active noise cancelling headphones offer improved ANC that cancels up to 32dB deeper of the noise around you, keeping more focus on your listening. Frequently flights, subway, cubicles, open offices, home offices, and everywhere you are, you still have your own music world with our noise cancelling headphones. IMMERSIVE SOUND – With professional 45-millimeter acoustic drivers - that reproduce all frequencies of sound, E7 wireless headphones provide exceptional sound quality and music clarity, wherever you listen. You would be immersive in the amazing sound: super crisp highs, pretty mids, and clear bass through E7 Bluetooth headphones. QUALITY CONVERSATIONS – It is easy to make and take calls on the go with the Built-in microphone call technology, while confident that you’ll be heard clearly. E7 Bluetooth headphones with microphone make sure the stability of your connection. Plus, you get quality and convenience at the touch of a button when you get a call. ALL-DAY COMFORT – Lightweight, comfortable and adjustable, these E7 over-ear headphones are designed to fit perfectly into your life. Super soft memory foam ear cushions ensure outstanding comfort, adjustable headband and angled-swivel earcups to find your personal perfect fit, making them ideal for all-day comfort. UP TO 30 HOURS ENJOY – Get up to 30 hours of playtime from a single charge, E7 noise cancelling headphones minimise interruptions from your wireless ANC listening. Believe in the E7 wireless headphones, spend more time enjoy with great music and calls but less time waiting for charging."
+              },
+              "url": "https://www.kibhousdirect.com/products/e7-active-noise-cancelling-headphones-wireless-bluetooth-headphones-with-rich-bass-wireless-headphones-with-mic-clear-calls-bluetooth-5-0-30-hours-playtime-comfort-fit-green?variant=48748652429588&_gsid=fQ3bG45BqNki",
+              "price": {
+                "amount": 6999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+                  "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/77114245396",
+                "name": "kibhousdirect",
+                "url": "https://www.kibhousdirect.com",
+                "domain": "795cb8.myshopify.com"
+              },
+              "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=fQ3bG45BqNki",
+              "rating": {
+                "value": 4.8,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 84
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 6999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 6999,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/1apzuhLiwhlBYGmkyegDfK",
+          "title": "Rewind2 Wireless Retro Headphones Black",
+          "description": {
+            "plain": "Lightweight retro-inspired wireless headphones with 20-hour battery life, app customization, and Bluetooth multipoint sharing."
+          },
+          "rating": {
+            "value": 4,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 2
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Combines a retro design with modern features like Bluetooth multipoint, app sound customization, and fast charging."
+            ],
+            "top_features": "Bluetooth multipoint wireless sharing enables connection to two devices for seamless switching\nApp customization allows users to personalize sound and experience via the JLab app\nGoogle Fast Pair technology ensures quick and easy pairing with any device\nLightweight retro design with foam pads provides comfort for extended listening\nRapid charging delivers up to 1.5 hours of playtime in just 10 minutes",
+            "tech_specs": "Speaker: 36 mm dynamic neodymium magnet\nFrequency Response: 20 Hz – 20 kHz\nOutput Resistance: 32 Ω\nSpeaker Output: 106.3 dB\nMicrophone: MEMS, 41 dB sensitivity\nBattery: 220 mAh lithium polymer rechargeable\nPlaytime: Over 20 hours at 50% volume\nCharging Time: 2 hours (rapid charge in 10 minutes)\nBluetooth Version: 5.0\nRange: 30 ft (9.1 m)\nWeight: 57 g"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0240/9337/files/2_Rewind2_BlackOrange.jpg",
+              "alt_text": "Rewind2 Wireless Retro Headphones Black"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/40366498578504",
+              "title": "Rewind2 Wireless Retro Headphones Black",
+              "description": {
+                "plain": "FEATURES Rewind Wireless Retro Headphones with modern features • 20+ hours playtime • Lightweight retro design with foam pads • Connect to any two devices with Bluetooth® Multipoint + Wireless Share Mode • Customize your sound + experience via JLab App • Find your headphones with Google Fast Pair PACKAGE INCLUDES • Rewind 2 Wireless Headphones • 2 sets of Foam Cushions (1 orange and 1 black) • JLab Two Year Warranty SPECIFICATIONS AUDIO • Speaker: Φ36mm Dynamic, Neodymium Magnet, 20Hz-20kHz, 32Ω • Output: 106±3db • Microphone: MEMS, - 41dB±3dB BATTERY • Battery Life: 20+ hours of playtime at 50% volume. • Input Power: DC 5V, 100mA • Headphone Battery: 220mah lithium polymer rechargeable • Headphone Charge Time: 2 Hours • Rapid Charge: 10 min charging = 1.5+ hour playtime • Standby Time: 300 Hours BLUETOOTH • Version: Bluetooth 5 • Range: 30+ ft. • Support Protocols: HSP/HFP/A2DP/AVRCP GENERAL • Weight: 57g • IP Rating: NA • Warranty: 2 year warranty"
+              },
+              "url": "https://www.jlab.com/products/rewind-2-wireless-retro-headphones-black?variant=40366498578504&_gsid=fQ3bG45BqNki",
+              "price": {
+                "amount": 2500,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0240/9337/files/2_Rewind2_BlackOrange.jpg",
+                  "alt_text": "Rewind2 Wireless Retro Headphones Black"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/2409337",
+                "name": "JLab",
+                "url": "https://www.jlab.com",
+                "domain": "jlabgrabbag.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594941.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594945.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594937.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/23307157576.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.jlab.com/cart/40366498578504:1?_gsid=fQ3bG45BqNki",
+              "rating": {
+                "value": 4.8,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 55
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 2500,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 2500,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/2ijcCx2HED1lprFyQYXR4e",
+          "title": "F9 Wireless Earphones LED Dislpaly Binaural TWS Wireless Bluetooth Headset Waterproof Noise Reduction Bluetooth Headphones",
+          "description": {
+            "plain": "Wireless earphones with active noise cancellation, waterproof design, and built-in microphone for immersive listening and calls."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Black"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Combines active noise cancellation with waterproof protection and Bluetooth 5.0 connectivity in a compact, user-friendly design."
+            ],
+            "top_features": "Active noise cancellation for immersive sound in any environment\nWaterproof design allows for worry-free listening during workouts or travel\nBluetooth 5.0 connectivity ensures stable, fast wireless performance\nBuilt-in microphone enables clear hands-free calls\nSemi-open earbud design provides comfort and sound isolation",
+            "tech_specs": "Bluetooth Version: 5.0\nConnectivity: Wireless, Bluetooth\nImpedance: Up to 32 ohms\nCharging Method: Included charging case and cable\nEarbud Type: In-ear, semi-open\nMaterial: Plastic"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0830/5518/2043/files/Sa13b5517523d4ffcb67d2a45b3dc2657j.webp",
+              "alt_text": "Sa13b5517523d4ffcb67d2a45b3dc2657j"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/48801793114331",
+              "title": "F9 Wireless Earphones LED Dislpaly Binaural TWS Wireless Bluetooth Headset Waterproof Noise Reduction Bluetooth Headphones",
+              "description": {
+                "plain": "Wireless earphones with active noise cancellation, waterproof design, and built-in microphone for immersive listening and calls."
+              },
+              "url": "https://q1xtc1-ya.myshopify.com/products/f9-wireless-earphones-led-dislpaly-binaural-tws-wireless-bluetooth-headset-waterproof-noise-reduction-bluetooth-headphones-92030271707-ocq5s?variant=48801793114331&_gsid=fQ3bG45BqNki",
+              "price": {
+                "amount": 1999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Black"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0830/5518/2043/files/Sa13b5517523d4ffcb67d2a45b3dc2657j.webp",
+                  "alt_text": "Sa13b5517523d4ffcb67d2a45b3dc2657j"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/83055182043",
+                "name": "My Store",
+                "url": "https://q1xtc1-ya.myshopify.com",
+                "domain": "q1xtc1-ya.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/83055182043/policies/44731334875.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://q1xtc1-ya.myshopify.com/cart/48801793114331:1?_gsid=fQ3bG45BqNki",
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 1999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 1999,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/6RSB37PQFpDWy4lXI6ogVx",
+          "title": "Sony Wireless Over-Ear Noise-Canceling Headphones WH-CH720N (Black)",
+          "description": {
+            "plain": "Wireless over-ear headphones with adaptive noise cancellation, dual microphones, and up to 35 hours of battery life for immersive, hands-free listening."
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Combines advanced adaptive noise cancellation with dual beamforming microphones and multipoint Bluetooth connectivity for seamless, immersive audio."
+            ],
+            "top_features": "Adaptive noise canceling technology: Blocks out ambient sounds for a fully immersive listening experience\nDual beamforming microphones: Enables clear hands-free calls and voice assistant activation in any environment\nMultipoint Bluetooth connectivity: Pair with up to two devices for seamless switching between music and calls\n360 Reality Audio technology: Delivers immersive, personalized sound tailored to your ear shape\nLightweight swiveling over-ear design: Ensures comfort for all-day wear and easy fit on various head sizes",
+            "tech_specs": "Driver Size: 30 mm dynamic drivers\nBattery Life: Up to 35 hours (full charge), 1 hour (fast charge, 3 minutes)\nCharging Port: USB-C\nAudio Connectivity: 3.5 mm, Bluetooth 5.2\nMicrophone: Built-in dual beamforming microphones\nHeadphone Style: Closed-back, over-ear"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg",
+              "alt_text": "Sony Wireless Over-Ear Noise-Canceling Headphones WH-CH720N (Black)"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/40846763753533",
+              "title": "Sony Wireless Over-Ear Noise-Canceling Headphones WH-CH720N (Black)",
+              "description": {
+                "plain": "Sony WH-CH720N Wireless Over-Ear Noise-Canceling Headphones (Black) Experience the convenience of adaptive noise canceling and fantastic audio on the go with the WH-CH720N Wireless Headphones from Sony, a pair of surprisingly lightweight over-ear closed-back headphones with powerful 30mm dynamic drivers for realistic sound reproduction. These swiveling headphones sport dual beamforming microphones for crystal-clear calls in any environment and support voice-command control via Siri or Google Assistant. Bluetooth 5.2 is onboard for easy pairing with devices and supports a range of useful features such as Google Fast Pair, allowing you to find your missing headphones by sound, and multipoint connections for pairing up to two devices. The integrated V1 processor, built-in compatibility with Sony's Headphones Connect app, and 360 Reality Audio technology allow you to enjoy an incredibly immersive and highly personalized listening experience that suits your individual tastes and ear shape. The onboard battery lasts up to 35 hours with a 3.5 hour charge time, and you can get one hour of use out of only a 3-minute fast charge via the included USB-C charging cable. Features: Tune the World Out: Dual Noise Sensor technology and an integrated Processor V1 take noise canceling to the next level. Now you can shut out the world around you and immerse yourself in the music. You can also adjust the ambient sound across 20 different levels with the Sony Headphones Connect app. Adaptive Sound Control: Adaptive Sound Control is a smart function that senses where you are and what you're doing, then adjusts ambient sound settings for the ideal listening experience. It even recognizes locations that you frequently visit, such as your workplace, the gym, or a favorite café, and switches to the sound modes that suit the situation. A Listening Experience Just For You: When an original music source is compressed, it loses the high-frequency elements that add detail and richness to a track. Digital Sound Enhancement Engine (DSEE) restores the harmonics and liveliness lost during typical music compression, for a more authentic performance. Designed for All-Day Comfort: Not only is the design stylish, but it's also crafted with ease-of-use in mind. The surprisingly lightweight build and swiveling earcups easily fit onto any head size, while the adjustable headband, cushion, and soft ear pads give you all-day comfort. Control at Your Fingertips: An easy-to-use selection of buttons help control your headphones, meaning you can play, stop, or skip through your tracks and adjust the volume, all with a tap of your finger. Conversations also flow freely with easy hands-free calling, thanks to the built-in microphones. No need to even take your phone from your pocket, just use Google Home or Amazon Alexa to activate your preferred voice assistant. Long and Comfortable Operation: With up to 35 hours of battery life, you can listen to your favorite music without worrying about running out of charge. And if your headphone battery is running low, a 3-minute quick-charge with the included USB-C cable can give you 1 hour of listening time. The WH-CH720N includes a 3.5mm TRS straight to right-angle stereo audio cable for connecting directly to devices and saving precious battery life. In the box: Sony WH-CH720N Wireless Over-Ear Noise-Canceling Headphones (Black) USB-C Charging Cable 3.5mm TRS Straight to Right-Angle Audio Cable Limited 1-Year Manufacturer Warranty MPN:WHCH720N/B UPC:27242925397"
+              },
+              "url": "https://www.thetedstore.com/products/sony-whch720n-b-us?variant=40846763753533&_gsid=fQ3bG45BqNki",
+              "price": {
+                "amount": 9999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/1726/0467/files/921fa5a3-16fb-49ab-a25b-417df1178ca5.jpg",
+                  "alt_text": "Sony Wireless Over-Ear Noise-Canceling Headphones WH-CH720N (Black)"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/17260467",
+                "name": "Teds Electronics",
+                "url": "https://www.thetedstore.com",
+                "domain": "the-teds-store.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/17260467/policies/33537234.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/17260467/policies/33537298.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/17260467/policies/33537170.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/17260467/policies/6613139517.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.thetedstore.com/cart/40846763753533:1?_gsid=fQ3bG45BqNki",
+              "rating": {
+                "value": 5,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 1
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 9999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 9999,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/5F0VoydQ4R8fEFY1TA9tFa",
+          "title": "JBuds Lux ANC Headphones Mauve",
+          "description": {
+            "plain": "Over-ear wireless headphones with active noise cancellation, 40mm drivers, and app customization for immersive sound and clear calls."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Cloud"
+                },
+                {
+                  "label": "Graphite"
+                },
+                {
+                  "label": "Mauve"
+                },
+                {
+                  "label": "Navy"
+                },
+                {
+                  "label": "Sage"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Combines smart active noise cancellation, 40mm drivers, and app-based customization in a foldable, portable design."
+            ],
+            "top_features": "Active noise cancellation for immersive listening in any environment\n40mm dynamic drivers deliver deep, clear sound\nBe Aware microphones enable clear phone calls and voice assistant access\nFoldable design and portability for travel and on-the-go use\nApp customization allows personalized controls and EQ",
+            "tech_specs": "Driver Size: 40 mm\nANC Noise Reduction: 35 dB\nFrequency Response: 20–20 kHz\nImpedance: 16 ohms\nOutput: 98.2 dB\nBattery: 600 mAh Li-Po, 70 hours total playtime, 40 hours ANC playtime\nCharging Port: USB-C\nDimensions: 7.47 x 6.13 x 3.23 in\nWeight: 235 g"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0240/9337/files/1JBudsLuxMauve_0df84da8-5e92-4334-9deb-de5a54222534.jpg",
+              "alt_text": "JBuds LUX ANC Headphones Mauve | 40058337296456"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/40342910042184",
+              "title": "JBuds Lux ANC Headphones Mauve",
+              "description": {
+                "plain": "FEATURES Enjoy exceptional sound quality via 40mm drivers, bringing depth and clarity to your music. • Smart Active Noise Cancellation + Be Aware • ENC Microphones for clear phone calls • Bluetooth Multipoint • Over-Ear design w/ Cloud foam cushions • Foldable for portability • Customizable via JLab App • Google Fast Pair PACKAGE INCLUDES • JBuds Lux ANC Headphones • Type-C charging cable for charging and wired connection • JLab Two Year Warranty SPECIFICATIONS Audio Features Active Noise Canceling: Yes Active Noise Canceling Type: Hybrid Be Aware: Yes Controls: Buttons Ear Cushion Type: Faux Leather EQ3 Sound: Yes Foldable: Yes Google Fast Pair: Yes Includes: JBuds Lux ANC Headset, USB-C Charging and Audio Cable, and JLab 2 Year Limited Warranty. Multipoint: Yes Spatial Audio: Spatial Audio Voice Assistance: Yes Wireless Share Mode: Yes Microphone Environmental Noise Canceling Microphones: 3-mic ENC Microphone Sensitivity: -32dB ±1dB Total Microphone(s): 5 x Condensers Connectivity Bluetooth Version: Bluetooth 5.4 Codecs: SBC, AAC Latency (Movie Mode): <200ms Latency (Music): >200ms Range: 30+ feet Support Protocols: HSP / HFP / A2DP / AVRCP Wired: Yes, C to C Wired Playback: Yes App App Name: JLab App App Support: Yes Custom Controls Section: Yes Custom EQ Section: Yes Music / Movie Mode Section: Yes My JLab Section: Yes Noise Control Section: Yes OTA Section: Yes Safe Hearing Section: Yes Audio Specs ANC Noise Reduction (dB): 35 dB Driver: 40mm Dynamic Frequency Response: 20 - 20 kHz Impedance (ohms): 16 ohms Output: 98 +/- 2dB Product Dimensions Product Height (in.): 7.47 Product Length (in.): 6.13 Product Weight (Total, g): 235 Product Width (in.): 3.23 Battery Charge Cable: USB-C Charge Port: USB-C Charge Time: 2.5 hours Input Power: DC 5V, 1A Product Battery Type: 600mah 3.7v (LiPo) Quick Charge: 10 minutes = 7.5 hours Standby Time: 500+ hours Talk Time (Hours): 40 Total Playtime (Hours): 70 Total Playtime with Active Noise Canceling on (Hours): 40"
+              },
+              "url": "https://www.jlab.com/products/jbuds-lux-anc-headphones-mauve?variant=40342910042184&_gsid=fQ3bG45BqNki",
+              "price": {
+                "amount": 7999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Mauve"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0240/9337/files/1JBudsLuxMauve_0df84da8-5e92-4334-9deb-de5a54222534.jpg",
+                  "alt_text": "JBuds LUX ANC Headphones Mauve | 40058337296456"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/2409337",
+                "name": "JLab",
+                "url": "https://www.jlab.com",
+                "domain": "jlabgrabbag.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594941.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594945.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/1594937.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://www.jlabaudio.com/2409337/policies/23307157576.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.jlab.com/cart/40342910042184:1?_gsid=fQ3bG45BqNki",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 103
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 7999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 7999,
+              "currency": "USD"
+            }
+          }
+        }
+      ],
+      "messages": [],
+      "pagination": {
+        "has_next_page": true,
+        "total_count": 422,
+        "cursor": "eyJvZmZzZXQiOjUsInRvdGFsX2NvdW50Ijo0MjIsInJldHVybmVkIjo1fQ"
+      }
+    }
+  }
+}

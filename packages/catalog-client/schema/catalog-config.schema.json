@@ -1,0 +1,308 @@
+{
+  "$ref": "#/definitions/CatalogConfig",
+  "definitions": {
+    "CatalogConfig": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "number",
+          "const": 1
+        },
+        "name": {
+          "type": "string"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "global"
+                },
+                "savedCatalogSlug": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "storefront"
+                },
+                "storeDomain": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "storeDomain"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "query": {
+          "type": "string"
+        },
+        "like": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "object",
+                    "properties": {
+                      "content_type": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "content_type",
+                      "data"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "minItems": 1
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "intent": {
+              "type": "string"
+            },
+            "address_country": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "address_region": {
+              "type": "string"
+            },
+            "postal_code": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            }
+          },
+          "additionalProperties": false
+        },
+        "filters": {
+          "type": "object",
+          "properties": {
+            "available": {
+              "type": "boolean"
+            },
+            "price": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "condition": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "new",
+                  "secondhand"
+                ]
+              }
+            },
+            "ships_to": {
+              "type": "object",
+              "properties": {
+                "country": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 2
+                },
+                "region": {
+                  "type": "string"
+                },
+                "postal_code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "country"
+              ],
+              "additionalProperties": false
+            },
+            "ships_from": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  }
+                },
+                "required": [
+                  "country"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "shop_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 1000
+            },
+            "attributes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "name",
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "rating": {
+              "type": "object",
+              "properties": {
+                "variant": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 5
+                    },
+                    "min_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "variant"
+              ],
+              "additionalProperties": false
+            },
+            "price_tier": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              }
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^gid\\:\\/\\/shopify\\/TaxonomyCategory\\/"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          "additionalProperties": false
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "offer"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "scope"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/DevCreate-Studio/catalog-kit/blob/main/packages/catalog-client/schema/catalog-config.schema.json"
+}

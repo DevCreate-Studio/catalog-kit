@@ -1,0 +1,865 @@
+{
+  "jsonrpc": "2.0",
+  "id": 10,
+  "result": {
+    "structuredContent": {
+      "ucp": {
+        "version": "2026-04-08",
+        "capabilities": {
+          "dev.ucp.shopping.catalog.search": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+            }
+          ],
+          "dev.ucp.shopping.catalog.lookup": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json"
+            }
+          ],
+          "dev.shopify.catalog.global": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://shopify.dev/docs/agents/catalog/global-catalog",
+              "schema": "https://shopify.dev/ucp/schemas/2026-04-08/shopify_catalog_global.json",
+              "extends": [
+                "dev.ucp.shopping.catalog.search",
+                "dev.ucp.shopping.catalog.lookup"
+              ],
+              "requires": {
+                "protocol": {
+                  "min": "2026-04-08"
+                }
+              }
+            }
+          ]
+        },
+        "status": "success"
+      },
+      "products": [
+        {
+          "id": "gid://shopify/p/17bJKJ0gsg9DEmcXTXuen",
+          "title": "The Annie Wide Calf",
+          "description": {
+            "plain": "Classic cowgirl boots with timeless design, premium craftsmanship, and versatile styling."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Bone Cowhide"
+                },
+                {
+                  "label": "Cafe Goat"
+                },
+                {
+                  "label": "Midnight Cowhide"
+                },
+                {
+                  "label": "Scarlet Cowhide"
+                }
+              ]
+            },
+            {
+              "name": "Size",
+              "values": [
+                {
+                  "label": "5"
+                },
+                {
+                  "label": "5.5"
+                },
+                {
+                  "label": "6"
+                },
+                {
+                  "label": "6.5"
+                },
+                {
+                  "label": "7"
+                },
+                {
+                  "label": "7.5"
+                },
+                {
+                  "label": "8"
+                },
+                {
+                  "label": "8.5"
+                },
+                {
+                  "label": "9"
+                },
+                {
+                  "label": "9.5"
+                },
+                {
+                  "label": "10"
+                },
+                {
+                  "label": "10.5"
+                },
+                {
+                  "label": "11"
+                },
+                {
+                  "label": "12"
+                }
+              ]
+            },
+            {
+              "name": "Width",
+              "values": [
+                {
+                  "label": "B"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Features a deep scallop toe and tonal stitching for a flattering, comfortable fit that ages beautifully."
+            ],
+            "top_features": "Deep scallop toe provides a comfortable and flattering fit\nTonal stitching pattern adds a unique, stylish accent\nFashion-forward snip toe allows for versatile styling\nPremium materials ensure durability and a refined finish\nWide calf design offers a bold, modern silhouette",
+            "tech_specs": "Height: 14 in\nCalf Width: Wide\nToe Style: Snip toe\nAvailable Colors: Bone, Cafe, Midnight, Scarlet\nMaterial: Premium leather"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0991/0824/files/088d030c73de25dab14d601d642524f319ba6eff-2000x2500.png",
+              "alt_text": "The Annie Wide Calf"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/44315247476931",
+              "title": "The Annie Wide Calf",
+              "description": {
+                "plain": "Step Into an Icon Meet The Annie, our best-selling cowgirl boot. Tall and timeless, a beautiful tonal stitching pattern adorns its 14” shaft, the top of which features a deep scallop for a comfortable, flattering fit. A fashion-forward snip toe leads the way and our signature toe stitching rounds out a classic look open to a wide range of styling possibilities. These premium boots are not to be missed and will age beautifully over time. Wide Calf available in Bone, Cafe, Midnight, and Scarlet."
+              },
+              "url": "https://checkout.tecovas.com/products/the-annie-wide-calf-cafe-goat?variant=44315247476931&_gsid=nfb3Z511y5DQ",
+              "price": {
+                "amount": 37500,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Width",
+                  "label": "B"
+                },
+                {
+                  "name": "Color",
+                  "label": "Cafe Goat"
+                },
+                {
+                  "name": "Size",
+                  "label": "6"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0991/0824/files/088d030c73de25dab14d601d642524f319ba6eff-2000x2500.png",
+                  "alt_text": "The Annie Wide Calf"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/9910824",
+                "name": "Tecovas",
+                "url": "https://checkout.tecovas.com",
+                "domain": "tecovas-3.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/9910824/policies/11668483.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/9910824/policies/11668547.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/9910824/policies/11668419.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/9910824/policies/25818235075.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://checkout.tecovas.com/cart/44315247476931:1?_gsid=nfb3Z511y5DQ",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 58
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 37500,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 37500,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/2AWCE5AXn9BIOdhYviHPV",
+          "title": "Perfect Amino Bar",
+          "description": {
+            "plain": "A convenient, high-protein, allergen-free snack bar with monk fruit sweetener for clean energy and sustained satiety."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 2273
+          },
+          "options": [
+            {
+              "name": "Flavor",
+              "values": [
+                {
+                  "label": "Blondie"
+                },
+                {
+                  "label": "Brownie"
+                },
+                {
+                  "label": "Mocha Chip"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Combines 8-9 grams of high-quality protein, MCT oil, and organic superfoods in a gluten-free, non-GMO, allergen-free bar sweetened with monk fruit."
+            ],
+            "top_features": "8-9 grams of high-quality protein per bar supports muscle growth and repair\nSweetened with pure monk fruit for zero sugar and natural taste\nGluten-free, non-GMO, soy-free, dairy-free, and vegan for clean nutrition\nContains MCT oil and MCTs for clean-burning, sustained energy\nIncludes organic superfoods and prebiotic fiber to support gut health",
+            "tech_specs": "Protein: 8-9 g per bar\nSugar: 4-7 g net carbs, 4 g sugar per bar\nNet Carbs: 7 g per bar\nCaffeine: 3-10 mg per bar (varies by flavor)\nAllergen Information: Gluten-free, soy-free, dairy-free, egg-free, nuts-free, wheat-free, peanut-free, sesame-free, milk-free, fish-free, shellfish-free, artificial sweetener-free\nDietary Preferences: Non-GMO, vegan, kosher, dairy-free, soy-free, gluten-free, organic (varies by flavor)"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0835/8481/files/BH_Product-Images_PA-Bar-Box-Blondie_Angle_08e84dc0-1491-4cba-a66c-d5e2d33cc138.jpg",
+              "alt_text": "Perfect Amino Bar"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/32105026617437",
+              "title": "Perfect Amino Bar",
+              "description": {
+                "plain": "A convenient, quick, easy, delicious, and nutritious snack that provides clean-burning energy and a boost of nutrients your body needs to be at peak performance. Three delicious flavors to choose from: Blondie, Brownie and Mocha Chip. Description Benefits Guilt-Free Snacking Ingredients FAQ WE'RE RAISING THE BAR The perfect protein snack bar to give you the energy to keep you going through the day! PerfectAmino Bars are delicious, appetite-filling, nutritious bars that will enhance your life and your daily routine. They can tackle hunger and provide a stable source of energy. Fortified with PERFECT AMINO®, all bundled together in a delicious Blondie, Brownie, or Mocha Chip flavored bar. Whether you are on a fat-management journey, keeping it low-carb, living a vegan lifestyle, or just want a tasty snack for you or your kids to tide you over through the day, this is the perfect bar for you. The Perfect Amino Bar comes with: Three delicious flavors: Blondie, Brownie, and Mocha Chip 8 grams of high-quality protein fortified with PERFECT AMINO® High-quality MCTs for energy and to satisfy hunger cravings Gluten-free, vegan, kosher, non-GMO, free from soy, egg, and dairy A formula enhanced with our organic superfood blend Total convenience (no, you don't have to refrigerate it) This groundbreaking bar delivers the goods, naturally, and can help you: Feel more energetic throughout the day Support healthy brain function with MCT oil Support muscle growth and repair with PERFECT AMINO® Support your immune system with organic superfoods With only four grams of sugar in each bar, we provide delicious sweetness with monk fruit to satisfy your sweet tooth while keeping your system in fat-burning mode. Three delicious flavors, on-the-go protein bars to help you maintain your active lifestyle. In a rush in the morning? Not enough time to make breakfast? Traveling? Craving snacks between meals? Tired of eating almonds, string cheese, or unhealthy snacks? Are you starving after your run or workout and don't have time to cook? Nutrient-dense, made with whole-food ingredients and fortified with PERFECT AMINO®, the PerfectAmino Bar provides a delicious, quick, and easy solution to your hunger with vegan-sourced whole food ingredients that are non-GMO and free from dairy, soy, and eggs. There's no better way to fit your macros while satisfying your sweet tooth! It has green superfoods and high-quality MCT oil for clean-burning sustained energy. In three flavors, Brownie, Blondie, and Mocha Chip this is remarkably satisfying – and tastes good too. The 200 calories in each bar give you energy and sustenance, all with only 7 net carbs. BENEFITS Superior, Healthy Ingredients When it comes to creating the ideal protein bar, there must be no compromise with quality ingredients. Every ingredient in the PerfectAmino Bar is: Non-GMO Gluten-free Soy-free Dairy-free Egg-free Vegan sourced A Next-Generation Formula Many protein bars on the market taste like cardboard, or have more sugar than a donut. The BodyHealth Bar's unique formula was carefully crafted over two years of intensive research and testing to accomplish three fundamental goals: A bar that is delicious and enjoyable to eat as a snack or meal replacement. A bar that has real health benefits, low sugar, meets all dietary requirements and avoids many common allergens. Delicious Flavor We offer three delicious flavors: Brownie, Blondie, and Mocha Chip. Each flavor combination comes from the synergy of nutty goodness (almonds or cashews) combined with cocoa. You will feel like you are eating a wonderful dessert-like treat. Once you try these bars, there is no going back. Curb Hunger Cravings We designed the BodyHealth Bar to curb hunger pangs while providing sustained, clean energy with an ideal balance of healthy fats, proteins, and only 7 net carbs. Furthermore, we fortified the bar with chicory root, a natural prebiotic dietary fiber that helps regulate hunger hormones to reduce cravings and keep you feeling satisfied for longer. MCT Oil Our organic and high-quality MCT oil is the ultimate biohack for your energy levels, giving your body a direct infusion of healthy fat. Several MCTs that our product contains bypass your liver and become immediately available to convert into ketones: the most efficient and preferred body fuel for sustained clean energy. No Whey, Egg, or Soy Whey, egg, and soy derivatives, whether they are in the form of protein, lecithin, or other food product, can trigger allergic reactions and trigger gut problems. The PerfectAmino Bar is free from these sources of trouble and instead is made with organic pea protein fortified with PERFECT AMINO®. GUILT-FREE SNACKING This bar is for those clean-living people who pay attention to what they put in their bodies. It has only 7 net carbs, \"good-quality\" fats, and excellent protein sources that are non-GMO, gluten-free, dairy-free, egg-free, and soy-free. Green superfoods and sea salt for minerals and electrolytes. Prebiotic fiber to help you move things along… PERFECT AMINO® with the Essential Amino acids to help you build and repair protein. The BodyHealth Bar is the ultimate alternative to the highly processed, sugar-filled snack bars on the market. SUPPLEMENT FACTS PANEL Brownie Flavor Click to enlarge Blondie Flavor Click to enlarge Mocha Chip Flavor Click to enlarge INGREDIENTS: Almonds: (Almonds & Almond Butter): The first ingredient in PERFECT AMINO® Bars is 'Almond Butter'. Almonds are naturally high in protein, healthy monounsaturated fats, fiber and antioxidants. Almonds can help you support performance and satiety while adding a crunchy texture and taste. Tapioca Fiber: A filling, tasty prebiotic to help satiety without spiking blood sugar levels. Semi-Sweet Chocolate Chips: Right in between dark and milk chocolate, these give just the right amount of tastiness for your enjoyment. Chicory Root Fiber: Allowing for great taste and texture, chicory root fiber has strong science that supports many health benefits for the human body. Pea Protein Isolate: Rich in amino acids, this protein offers a gluten-, dairy-, and soy-free source of protein and calories. Organic Coconut: Besides being a delicious antioxidant, coconuts are high in manganese, which is essential for bone health and metabolizing carbohydrates, proteins, and cholesterol. PERFECT AMINO®: The Essential Amino Acids in a perfect blend to allow the body to build and repair protein like no other. Cocoa Butter: A healthy fat source that adds a perfect, buttery taste. Organic Virgin Coconut Oil Cinnamon: A delicious superfood loaded with antioxidants, anti-inflammatory properties and so much more. Organic Fruit & Veggie Blend: apple, kale, broccoli, spinach, carrot, parsley, beet, green cabbage, blueberry, raspberry, strawberry, & tomato. What's more to say here. Gotta have your veggies! Medium Chain Triglycerides: A great energy source while also providing better brain & memory function, improved fat management, lowered cholesterol, blood sugar levels, and more. Sea Salt: An excellent electrolyte source with trace minerals, which are very hard to come by these days with all of the soil depletion. Sunflower Tocopherols: Antioxidants Monk Fruit Extract: A sweet, delicious, sugar-free sweetener from natural compounds called Mogrosides that promote fat loss with zero calories, carbs, or fat. *These bars contain some caffeine that is naturally occurring in some of the ingredients. Mocha Chip have approximately 10mg while Brownie has 8mg and Blondie has 3mg. In comparison, a cup of coffee usually has 80mg, so the caffeine in these bars is very minimal. FREQUENTLY ASKED QUESTIONS Q: What is the PerfectAmino Bar? A: The PerfectAmino Bar is a protein, snack, and energy bar all rolled into one. It contains all-natural, organic, non-GMO, and Kosher ingredients. It is also doctor-formulated to provide optimal energy, satisfy your hunger, and promote ideal health. Q: Why should I eat the PerfectAmino Bar? A: You should try the PerfectAmino Bar if: You are careful about what you put in your body You strive to eat non-GMO, organic, and kosher You desire clean-burning energy to keep you going You want a convenient snack that boosts overall health and wellbeing You are an athlete who needs clean, sustained energy You are trying to lose fat and are fighting cravings You want to optimize your digestive health Q: Is the PerfectAmino Bar Organic? A: No – Not all ingredients are organic. Q: Why should I pick the PerfectAmino Bar over others? A: The simple answer: It tastes better and brimming with health benefits far in excess of other bars. Q: What sweetener is in the PerfectAmino Bar? A: We added monk fruit extract for ideal no-carb sweetness. Q: How many bars come in a box? A: There are 12 PerfectAmino Bars to a box."
+              },
+              "url": "https://bodyhealth.com/products/pa-bar?variant=32105026617437&_gsid=nfb3Z511y5DQ",
+              "price": {
+                "amount": 4795,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Bulk savings",
+                  "label": "1 Box (12 Bars)"
+                },
+                {
+                  "name": "Flavor",
+                  "label": "Blondie"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0835/8481/files/BH_Product-Images_PA-Bar-Box-Blondie_Angle_08e84dc0-1491-4cba-a66c-d5e2d33cc138.jpg",
+                  "alt_text": "Perfect Amino Bar"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/8358481",
+                "name": "BodyHealth.com LLC",
+                "url": "https://bodyhealth.com",
+                "domain": "bodyhealth-com.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179157.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179161.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/2179153.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://www.bodyhealth.com/8358481/policies/12185829469.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://bodyhealth.com/cart/32105026617437:1?_gsid=nfb3Z511y5DQ",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 2815
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 4795,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 4795,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/2ZA1S2Lt6WZrzD7skZBIy",
+          "title": "The Medium in Navy Blue",
+          "description": {
+            "plain": "A lightweight, durable midsize checked suitcase designed for effortless travel and organized packing."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Black Tie"
+                },
+                {
+                  "label": "Blush Pink"
+                },
+                {
+                  "label": "Buzz Lightyear Purple"
+                },
+                {
+                  "label": "Cherry Red"
+                },
+                {
+                  "label": "Coast Blue"
+                },
+                {
+                  "label": "Jet Black"
+                },
+                {
+                  "label": "Navy Blue"
+                },
+                {
+                  "label": "Olive Green"
+                },
+                {
+                  "label": "Pearl White"
+                },
+                {
+                  "label": "Salt White"
+                },
+                {
+                  "label": "Scenic Route"
+                },
+                {
+                  "label": "Sea Green"
+                },
+                {
+                  "label": "Woody Yellow"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Features a signature interior compression system to maximize packing space and keep belongings organized."
+            ],
+            "top_features": "Lightweight hard shell construction: Reduces carrying effort while protecting contents\nSignature interior compression system: Maximizes packing space and keeps items organized\nSmooth gliding wheels: Ensures easy maneuverability and reduces lifting strain\nEasy grip top and underside handles: Provides versatile and comfortable carrying options\nDurable build tested by travelers: Withstands frequent use for long-lasting reliability",
+            "tech_specs": "Dimensions: Medium size (exact measurements not specified)\nMaterial: Plastic hard shell\nClosure: Not specified\nHandle Type: Top carry and telescopic\nSpinner Type: 4-wheel\nPattern: Solid"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0664/7418/0792/files/430b3ece-a7a9-46af-9b50-0c455aad252c_033fd690-fb79-453c-9943-66be2e197334.jpg",
+              "alt_text": "Front product view of The Medium suitcase in Navy Blue with raised handle"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/50884554227896",
+              "title": "The Medium in Navy Blue",
+              "description": {
+                "plain": "Meet our award-winning Classic suitcases—designed by travelers, for travelers. The Medium is our midsize checked suitcase, perfect for 1-2 weeks away. It features a lightweight, durable hard shell that's been rigorously tested and a signature interior compression system that helps you pack, organize and protect more. Details like an easy-grip top handle, additional underside grab handle, and smooth-gliding wheels make it easier than ever to maneuver and lift your suitcase. Better travel starts here. Pack for longer trips without overpacking. The Medium is our smallest checked suitcase and a best-selling choice for travelers who want more space than a carry-on. Perfect for trips of 1-2 weeks, it gives you room to bring everything you need while still staying easy to maneuver. A lightweight, durable hard shell protects what you pack, while our signature interior compression system helps you maximize space and keep everything organized along the way. Smooth-gliding wheels and easy-grip top and underside handles make navigating terminals and lifting your suitcase simple. Spacious, durable, and thoughtfully sized, it’s the checked suitcase that makes longer trips feel effortless."
+              },
+              "url": "https://www.awaytravel.com/products/medium-navy-blue?variant=50884554227896&_gsid=nfb3Z511y5DQ",
+              "price": {
+                "amount": 34500,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Navy Blue"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0664/7418/0792/files/430b3ece-a7a9-46af-9b50-0c455aad252c_033fd690-fb79-453c-9943-66be2e197334.jpg",
+                  "alt_text": "Front product view of The Medium suitcase in Navy Blue with raised handle"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/66474180792",
+                "name": "Away: Built for modern travel",
+                "url": "https://www.awaytravel.com",
+                "domain": "766ad1-ab.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/66474180792/policies/39584497848.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/66474180792/policies/39509229752.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/66474180792/policies/42357260472.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.awaytravel.com/cart/50884554227896:1?_gsid=nfb3Z511y5DQ",
+              "rating": {
+                "value": 5,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 13
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 34500,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 34500,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/3AzwpvhNHUZp7aPNIgQb4",
+          "title": "Women's Lettuce Edge Sock - White",
+          "description": {
+            "plain": "Compressive, stretchy socks with ruffled trim for a secure, stylish fit during any activity."
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Athletic Heather Grey"
+                },
+                {
+                  "label": "Black"
+                },
+                {
+                  "label": "Bright Red"
+                },
+                {
+                  "label": "Candlelight Yellow"
+                },
+                {
+                  "label": "Candy Red"
+                },
+                {
+                  "label": "Oatmeal Heather"
+                },
+                {
+                  "label": "Pink Wild Rose"
+                },
+                {
+                  "label": "Summer Romance Red"
+                },
+                {
+                  "label": "Vintage Pink"
+                },
+                {
+                  "label": "Warm Butter"
+                },
+                {
+                  "label": "White"
+                },
+                {
+                  "label": "White/Candy Heart Pink"
+                },
+                {
+                  "label": "White/Winter Frost"
+                }
+              ]
+            },
+            {
+              "name": "Size",
+              "values": [
+                {
+                  "label": "S/M"
+                },
+                {
+                  "label": "M/L"
+                },
+                {
+                  "label": "M/L (8-11)"
+                },
+                {
+                  "label": "S/M (5-7.5)"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Ruffled edge design with compressive fit prevents rolling and enhances comfort."
+            ],
+            "top_features": "Ruffled edge detail adds a stylish accent for a fashionable look\nCompressive fit keeps socks securely in place during movement\nStretch material prevents rolling and ensures a comfortable fit\nLightweight construction ideal for workouts and everyday wear",
+            "tech_specs": "Material: Not specified\nFit: Compressive\nStretch: Yes\nEdge: Ruffled trim\nAvailable Colors: White, Black, Candy Heart Pink, Athletic Heather Grey, Candlelight Yellow, Pink Wild Rose, White/Light Provence Blue, Bright Red, Vintage Pink, Oatmeal Heather"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/2185/2813/files/A0660W_00_b1_s1_a1.jpg",
+              "alt_text": "Women's Lettuce Edge Sock - White"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/43766370697396",
+              "title": "Women's Lettuce Edge Sock - White",
+              "description": {
+                "plain": "The perfect way to step up your shoe game? Just add these Lettuce Edge Socks. With a ruffled trim and compressive feel, they’re made with just the right amount of stretch, so they won’t roll down whether you’re working out or hanging out."
+              },
+              "url": "https://www.aloyoga.com/products/a0660w-womens-lettuce-edge-sock-white?variant=43766370697396&_gsid=nfb3Z511y5DQ",
+              "price": {
+                "amount": 3200,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "White"
+                },
+                {
+                  "name": "Size",
+                  "label": "S/M (5-7.5)"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/2185/2813/files/A0660W_00_b1_s1_a1.jpg",
+                  "alt_text": "Women's Lettuce Edge Sock - White"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/21852813",
+                "name": "Alo Yoga",
+                "url": "https://www.aloyoga.com",
+                "domain": "alo-yoga.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245570.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245634.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/34245506.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/21852813/policies/25273958580.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.aloyoga.com/cart/43766370697396:1?_gsid=nfb3Z511y5DQ",
+              "rating": {
+                "value": 5,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 163
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 3200,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 3200,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/5u18A9Wots3vf5fONiO4J",
+          "title": "'Almost Perfect' Tote Backpack",
+          "description": {
+            "plain": "A versatile full grain leather tote backpack with adjustable straps and secure storage, perfect for hands-free commuters and everyday use."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 3832
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Aqua"
+                },
+                {
+                  "label": "Baja"
+                },
+                {
+                  "label": "Black"
+                },
+                {
+                  "label": "Chili Red"
+                },
+                {
+                  "label": "Cobalt"
+                },
+                {
+                  "label": "Cognac"
+                },
+                {
+                  "label": "Coldbrew"
+                },
+                {
+                  "label": "Cosmo"
+                },
+                {
+                  "label": "Cowboy Mint"
+                },
+                {
+                  "label": "Foxglove"
+                },
+                {
+                  "label": "Honey"
+                },
+                {
+                  "label": "Koi"
+                },
+                {
+                  "label": "Lagoon"
+                },
+                {
+                  "label": "Lava"
+                },
+                {
+                  "label": "Meadow"
+                },
+                {
+                  "label": "Molino Blue"
+                },
+                {
+                  "label": "Night Owl"
+                },
+                {
+                  "label": "Nimbus"
+                },
+                {
+                  "label": "Nutmeg"
+                },
+                {
+                  "label": "Orchid"
+                },
+                {
+                  "label": "Pebbled--Black"
+                },
+                {
+                  "label": "Plum"
+                },
+                {
+                  "label": "Sea Glass"
+                },
+                {
+                  "label": "Sienna"
+                },
+                {
+                  "label": "Sugar"
+                },
+                {
+                  "label": "Timber"
+                }
+              ]
+            },
+            {
+              "name": "Size",
+              "values": [
+                {
+                  "label": "Small"
+                },
+                {
+                  "label": "Classic"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Handmade from premium full grain leather with unique natural character marks, offering durability and style at a discounted price."
+            ],
+            "top_features": "Full grain oil tanned leather construction ensures long-lasting durability\nAdjustable straps provide versatile carry options for comfort\nSecure top zipper closure and exterior zipper pocket keep belongings safe\nExclusive durable interior pocket for organized storage\nNatural suede underside prevents discoloration and tearing",
+            "tech_specs": "Material: 100% full grain oil tanned leather\nClosure: Top zipper\nStraps: Adjustable handle and backpack straps\nInterior Pocket: Exclusive durable pocket\nExterior Pocket: 1 zippered pocket\nWeight: Approx. 1 lb 6 oz to 1 lb 15 oz"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0712/1227/files/tote-backpack-honey-portland-leather-1.jpg",
+              "alt_text": "Honey*Classic  | Square slim leather tote backpack"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/33245346922578",
+              "title": "'Almost Perfect' Tote Backpack",
+              "description": {
+                "plain": "100% Full Grain Leather Secure top zipper closure Exterior zipper pocket Adjustable Straps Classic size exclusive: durable interior pocket"
+              },
+              "url": "https://www.portlandleathergoods.com/products/almost-perfect-tote-backpack?variant=33245346922578&_gsid=nfb3Z511y5DQ",
+              "price": {
+                "amount": 13400,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Honey"
+                },
+                {
+                  "name": "Size",
+                  "label": "Classic"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0712/1227/files/tote-backpack-honey-portland-leather-1.jpg",
+                  "alt_text": "Honey*Classic  | Square slim leather tote backpack"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/7121227",
+                "name": "Portland Leather",
+                "url": "https://www.portlandleathergoods.com",
+                "domain": "forgedleather.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/7121227/policies/12933573.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/7121227/policies/12933637.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/7121227/policies/12933509.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/7121227/policies/6635618386.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.portlandleathergoods.com/cart/33245346922578:1?_gsid=nfb3Z511y5DQ",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 2576
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 13400,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 13400,
+              "currency": "USD"
+            }
+          }
+        }
+      ],
+      "messages": [],
+      "pagination": {
+        "has_next_page": true,
+        "total_count": 390,
+        "cursor": "eyJvZmZzZXQiOjUsInRvdGFsX2NvdW50IjozOTAsInJldHVybmVkIjo1fQ"
+      }
+    }
+  }
+}

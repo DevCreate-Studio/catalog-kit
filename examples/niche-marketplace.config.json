@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "niche-marketplace",
+  "scope": { "type": "global" },
+  "query": "coffee mug",
+  "filters": {
+    "categories": ["gid://shopify/TaxonomyCategory/hg-1"],
+    "price_tier": ["low", "medium"]
+  },
+  "pagination": { "limit": 12 }
+}

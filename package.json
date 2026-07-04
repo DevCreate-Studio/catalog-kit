@@ -1,0 +1,15 @@
+{
+  "name": "catalog-kit-monorepo",
+  "private": true,
+  "packageManager": "pnpm@11.5.3",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "probe": "node scripts/probe.mjs",
+    "fixtures": "node scripts/record-fixtures.mjs",
+    "llms": "node scripts/build-llms-txt.mjs",
+    "taxonomy": "node scripts/build-taxonomy.mjs"
+  }
+}

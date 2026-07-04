@@ -1,0 +1,24 @@
+# catalog-kit
+
+> An MIT-licensed, agent-ready starter kit for the Shopify Global Catalog (UCP): a typed keyless client plus a Next.js configurator, playground, and demo, all driven by one portable CatalogConfig JSON contract.
+
+Everything in this repo is driven by one portable `CatalogConfig` JSON. Start with AGENTS.md for the working contract; the docs below teach each surface. Configs validate against the JSON Schema without running any code, and the test suite runs offline against recorded fixtures (no keys, no network).
+
+## Docs
+
+- [Getting Started](docs/getting-started.md): Clone → keyless dev path, the agent-profile gotcha, optional credentials, first query.
+- [Configuration](docs/configuration.md): Every filter and parameter — shape, real wire payload, and the gotchas, with a validated-behavior table.
+- [API Reference](docs/api-reference.md): The auth tier ladder, the three catalog tools, CatalogError codes, and the messages[] contract.
+- [Recipes](docs/recipes.md): Full runnable app patterns: gift finder, query-variant union, dupe finder, price watcher.
+- [Agent Guide](docs/agent-guide.md): Building with AI agents — why the repo is agent-ready, copy-paste prompts, and using the client inside your own agents.
+- [Compliance](docs/compliance.md): Shopify usage rules you must never violate: no result caching, hot-linked images, per-tier rate limits.
+- [Deployment](docs/deployment.md): One-click Vercel deploy, Cloudflare Workers, and hosting your agent profile with the right content type.
+- [Troubleshooting](docs/troubleshooting.md): Empty results, 429s, profile-fetch failures, and 'works local, fails deployed'.
+- [Architecture](docs/architecture.md): The annotated repo tree, the config-contract data flow, and why lenient schemas and no cache.
+
+## Optional
+
+- [AGENTS.md](AGENTS.md): The single source of truth for working in the repo — commands, repo map, API gotchas, playbooks.
+- [README](README.md): The pitch — quickstart, presets, feature matrix, docs index.
+- [CatalogConfig JSON Schema](packages/catalog-client/schema/catalog-config.schema.json): JSON Schema for CatalogConfig — validate configs mechanically, no code execution required.
+- [Example presets](examples/): Four portable preset configs (gift-finder, comparison-shopper, niche-marketplace, dupe-finder).

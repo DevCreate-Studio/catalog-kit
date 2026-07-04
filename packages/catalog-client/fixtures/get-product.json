@@ -1,0 +1,190 @@
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "result": {
+    "structuredContent": {
+      "ucp": {
+        "version": "2026-04-08",
+        "capabilities": {
+          "dev.ucp.shopping.catalog.search": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+            }
+          ],
+          "dev.ucp.shopping.catalog.lookup": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json"
+            }
+          ],
+          "dev.shopify.catalog.global": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://shopify.dev/docs/agents/catalog/global-catalog",
+              "schema": "https://shopify.dev/ucp/schemas/2026-04-08/shopify_catalog_global.json",
+              "extends": [
+                "dev.ucp.shopping.catalog.search",
+                "dev.ucp.shopping.catalog.lookup"
+              ],
+              "requires": {
+                "protocol": {
+                  "min": "2026-04-08"
+                }
+              }
+            }
+          ]
+        },
+        "status": "success"
+      },
+      "product": {
+        "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+        "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+        "description": {
+          "plain": "Wireless over-ear headphones with advanced noise cancellation, rich bass, and up to 30 hours of playtime for immersive listening and clear calls."
+        },
+        "rating": {
+          "value": 4.9,
+          "scale_min": 1,
+          "scale_max": 5,
+          "count": 115
+        },
+        "metadata": {
+          "unique_selling_points": [
+            "Combines deep noise cancellation with professional 45 mm drivers and 30-hour battery life in a comfortable, wireless design."
+          ],
+          "top_features": "Advanced noise cancellation up to 32 dB for immersive isolation in any environment\nProfessional 45 mm acoustic drivers deliver rich, clear bass and full sound spectrum\nWireless Bluetooth 5.0 connectivity ensures stable, high-quality audio streaming\nBuilt-in microphone enables clear, hands-free calls and instant communication\nMemory foam ear cushions and adjustable headband provide all-day comfort",
+          "tech_specs": "Noise Cancellation: Up to 32 dB\nDriver Size: 45 mm\nConnectivity: Bluetooth 5.0, Wireless\nBattery Life: Up to 30 hours per charge\nMicrophone: Built-in\nHeadphone Style: Closed-back, Over-ear"
+        },
+        "media": [
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61B6OiNPuEL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61TO_1SSKSL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/71Jj00DJ_ZL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/71N0urD0CVL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/71VLdQ1iTpL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          },
+          {
+            "type": "image",
+            "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/716F0s1yRXL._AC_SL1500.jpg",
+            "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+          }
+        ],
+        "variants": [
+          {
+            "id": "gid://shopify/ProductVariant/48748652429588",
+            "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+            "description": {
+              "plain": "ADVANCED NOISE CANCELLATION –E7 active noise cancelling headphones offer improved ANC that cancels up to 32dB deeper of the noise around you, keeping more focus on your listening. Frequently flights, subway, cubicles, open offices, home offices, and everywhere you are, you still have your own music world with our noise cancelling headphones. IMMERSIVE SOUND – With professional 45-millimeter acoustic drivers - that reproduce all frequencies of sound, E7 wireless headphones provide exceptional sound quality and music clarity, wherever you listen. You would be immersive in the amazing sound: super crisp highs, pretty mids, and clear bass through E7 Bluetooth headphones. QUALITY CONVERSATIONS – It is easy to make and take calls on the go with the Built-in microphone call technology, while confident that you’ll be heard clearly. E7 Bluetooth headphones with microphone make sure the stability of your connection. Plus, you get quality and convenience at the touch of a button when you get a call. ALL-DAY COMFORT – Lightweight, comfortable and adjustable, these E7 over-ear headphones are designed to fit perfectly into your life. Super soft memory foam ear cushions ensure outstanding comfort, adjustable headband and angled-swivel earcups to find your personal perfect fit, making them ideal for all-day comfort. UP TO 30 HOURS ENJOY – Get up to 30 hours of playtime from a single charge, E7 noise cancelling headphones minimise interruptions from your wireless ANC listening. Believe in the E7 wireless headphones, spend more time enjoy with great music and calls but less time waiting for charging."
+            },
+            "url": "https://www.kibhousdirect.com/products/e7-active-noise-cancelling-headphones-wireless-bluetooth-headphones-with-rich-bass-wireless-headphones-with-mic-clear-calls-bluetooth-5-0-30-hours-playtime-comfort-fit-green?variant=48748652429588&_gsid=RjbtrkZcZsgh",
+            "price": {
+              "amount": 6999,
+              "currency": "USD"
+            },
+            "availability": {
+              "available": true
+            },
+            "media": [
+              {
+                "type": "image",
+                "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+                "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+              }
+            ],
+            "seller": {
+              "id": "gid://shopify/Shop/77114245396",
+              "name": "kibhousdirect",
+              "url": "https://www.kibhousdirect.com",
+              "domain": "795cb8.myshopify.com"
+            },
+            "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=RjbtrkZcZsgh",
+            "rating": {
+              "value": 4.8,
+              "scale_min": 1,
+              "scale_max": 5,
+              "count": 84
+            },
+            "condition": [
+              "new"
+            ],
+            "eligible": {
+              "native_checkout": false
+            }
+          },
+          {
+            "id": "gid://shopify/ProductVariant/48748681134356",
+            "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Purple",
+            "description": {
+              "plain": "ADVANCED NOISE CANCELLATION – E7 active noise cancelling headphones offer improved ANC that cancels up to 32dB deeper of the noise around you, keeping more focus on your listening. Frequently flights, subway, cubicles, open offices, home offices, and everywhere you are, you still have your own music world with our noise cancelling headphones. IMMERSIVE SOUND – With professional 45-millimeter acoustic drivers - that reproduce all frequencies of sound, E7 wireless headphones provide exceptional sound quality and music clarity, wherever you listen. You would be immersive in the amazing sound: super crisp highs, pretty mids, and clear bass through E7 Bluetooth headphones. QUALITY CONVERSATIONS – It is easy to make and take calls on the go with the Built-in microphone call technology, while confident that you’ll be heard clearly. E7 Bluetooth headphones with microphone make sure the stability of your connection. Plus, you get quality and convenience at the touch of a button when you get a call. ALL-DAY COMFORT – Lightweight, comfortable and adjustable, these E7 over-ear headphones are designed to fit perfectly into your life. Super soft memory foam ear cushions ensure outstanding comfort, adjustable headband and angled-swivel earcups to find your personal perfect fit, making them ideal for all-day comfort. UP TO 30 HOURS ENJOY – Get up to 30 hours of playtime from a single charge, E7 noise cancelling headphones minimise interruptions from your wireless ANC listening. Believe in the E7 wireless headphones, spend more time enjoy with great music and calls but less time waiting for charging."
+            },
+            "url": "https://www.kibhousdirect.com/products/e7-active-noise-cancelling-headphones-wireless-bluetooth-headphones-with-rich-bass-wireless-headphones-with-mic-clear-calls-bluetooth-5-0-30-hours-playtime-comfort-fit-purple?variant=48748681134356&_gsid=RjbtrkZcZsgh",
+            "price": {
+              "amount": 6999,
+              "currency": "USD"
+            },
+            "availability": {
+              "available": true
+            },
+            "media": [
+              {
+                "type": "image",
+                "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61ZcKx4EBuL._AC_SL1500.jpg",
+                "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Purple"
+              }
+            ],
+            "seller": {
+              "id": "gid://shopify/Shop/77114245396",
+              "name": "kibhousdirect",
+              "url": "https://www.kibhousdirect.com",
+              "domain": "795cb8.myshopify.com"
+            },
+            "checkout_url": "https://www.kibhousdirect.com/cart/48748681134356:1?_gsid=RjbtrkZcZsgh",
+            "condition": [
+              "new"
+            ],
+            "eligible": {
+              "native_checkout": false
+            }
+          }
+        ],
+        "price_range": {
+          "min": {
+            "amount": 6999,
+            "currency": "USD"
+          },
+          "max": {
+            "amount": 6999,
+            "currency": "USD"
+          }
+        },
+        "selected": []
+      }
+    }
+  }
+}

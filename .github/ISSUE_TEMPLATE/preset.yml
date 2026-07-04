@@ -1,0 +1,65 @@
+name: "\U0001F381 Share a preset"
+description: Contribute a CatalogConfig preset for a use case you've built or want to see.
+title: "[preset]: "
+labels: ["preset", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Presets are the easiest way to contribute to catalog-kit — no code
+        required! Share a `CatalogConfig` for a use case (gift finder, niche
+        marketplace, price comparison, whatever you built or wish existed) and
+        we'll help get it validated and merged into `examples/`.
+
+        Don't worry about getting everything perfect — we're happy to help
+        you shape the config in review.
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What's the use case?
+      description: Describe the app or experience this preset powers. Who is it for, and what does it help someone find?
+      placeholder: A "cozy gaming gift finder" — helps people find gift-worthy board games and accessories under $50 with good ratings.
+    validations:
+      required: true
+  - type: textarea
+    id: config-json
+    attributes:
+      label: CatalogConfig JSON
+      description: >
+        Paste your CatalogConfig JSON here. Not sure how to write one? Start
+        from an existing file in `examples/*.config.json` and tweak it, or
+        use the configurator in `apps/web` and copy its output.
+      render: json
+      placeholder: |
+        {
+          "version": 1,
+          "name": "cozy-gaming-gift-finder",
+          "scope": { "type": "global" },
+          "query": "board game",
+          "context": { "intent": "a cozy gift for a game night enthusiast" },
+          "filters": {
+            "available": true,
+            "price": { "max": 5000 },
+            "rating": { "variant": { "min": 4 } }
+          },
+          "pagination": { "limit": 20 }
+        }
+    validations:
+      required: true
+  - type: checkboxes
+    id: validated
+    attributes:
+      label: Validation
+      options:
+        - label: >
+            This config validates against
+            `packages/catalog-client/schema/catalog-config.schema.json`
+            (or I'd like help checking it — that's okay too!)
+          required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot (optional)
+      description: If you've run this in the playground or demo, drag and drop a screenshot here.
+    validations:
+      required: false

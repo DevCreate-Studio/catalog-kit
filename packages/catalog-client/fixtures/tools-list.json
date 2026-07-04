@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 7,
+  "error": {
+    "code": -32001,
+    "message": "UCP discovery failed",
+    "data": {
+      "code": "invalid_profile_url",
+      "content": "Unable to fetch agent profile: Missing profile uri"
+    }
+  }
+}

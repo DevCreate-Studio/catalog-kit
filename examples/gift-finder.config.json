@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "gift-finder",
+  "scope": { "type": "global" },
+  "query": "cozy gift for a coffee lover",
+  "context": {
+    "intent": "Find a thoughtful, well-reviewed gift for someone who loves coffee, under $50."
+  },
+  "filters": {
+    "available": true,
+    "price": { "max": 5000 },
+    "rating": { "variant": { "min": 4 } }
+  },
+  "pagination": { "limit": 12 }
+}

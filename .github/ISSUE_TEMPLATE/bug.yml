@@ -1,0 +1,53 @@
+name: Bug report
+description: Something isn't working the way it should.
+title: "[bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! The more detail you give,
+        the faster we can fix it.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug. What did you expect to happen instead?
+      placeholder: When I search with a "price.max" filter, I get an empty result set even though matching products exist...
+    validations:
+      required: true
+  - type: textarea
+    id: repro-steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps (or a minimal CatalogConfig) that reproduce the issue.
+      placeholder: |
+        1. Run `pnpm dev`
+        2. Open the playground and paste this config: { ... }
+        3. Click Run
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: probe-output
+    attributes:
+      label: "`node scripts/probe.mjs --json` output"
+      description: >
+        Run `node scripts/probe.mjs --json` from the repo root and paste the
+        output here. This helps us see live API behavior, rate-limit headers,
+        and which tools succeeded/failed.
+      render: json
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version, pnpm version, package version, browser (if relevant to apps/web).
+      placeholder: |
+        - OS: macOS 15.5
+        - Node: v24.16.0
+        - pnpm: 10.x
+        - catalog-kit version: 0.1.0
+    validations:
+      required: true

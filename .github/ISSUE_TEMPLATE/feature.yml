@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest an improvement or new capability for catalog-kit.
+title: "[feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please describe the problem before jumping
+        to a specific solution — it helps us find the best fix.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: What are you trying to do, and where does catalog-kit currently fall short?
+      placeholder: I'm building a comparison shopper and I need to filter by multiple categories at once, but...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: What would you like to see happen? Code sketches, config shapes, or UI mockups welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds you're using today, or other approaches you considered.
+    validations:
+      required: false

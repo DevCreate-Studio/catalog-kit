@@ -1,0 +1,13 @@
+node_modules
+.next
+.env
+.env.local
+.cache
+dist
+*.tsbuildinfo
+.vercel
+.env*
+.DS_Store
+
+# Internal working docs — never shipped (plans, launch strategy, drafts)
+/internal/

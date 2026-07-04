@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "name": "comparison-shopper",
+  "scope": { "type": "global" },
+  "query": "airpods pro",
+  "view": "offer",
+  "context": { "address_country": "US" },
+  "filters": {
+    "ships_to": { "country": "US" }
+  },
+  "pagination": { "limit": 12 }
+}

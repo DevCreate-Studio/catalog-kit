@@ -1,0 +1,571 @@
+{
+  "jsonrpc": "2.0",
+  "id": 9,
+  "result": {
+    "structuredContent": {
+      "ucp": {
+        "version": "2026-04-08",
+        "capabilities": {
+          "dev.ucp.shopping.catalog.search": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+            }
+          ],
+          "dev.ucp.shopping.catalog.lookup": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+              "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json"
+            }
+          ],
+          "dev.shopify.catalog.global": [
+            {
+              "version": "2026-04-08",
+              "spec": "https://shopify.dev/docs/agents/catalog/global-catalog",
+              "schema": "https://shopify.dev/ucp/schemas/2026-04-08/shopify_catalog_global.json",
+              "extends": [
+                "dev.ucp.shopping.catalog.search",
+                "dev.ucp.shopping.catalog.lookup"
+              ],
+              "requires": {
+                "protocol": {
+                  "min": "2026-04-08"
+                }
+              }
+            }
+          ]
+        },
+        "status": "success"
+      },
+      "products": [
+        {
+          "id": "gid://shopify/p/3dbxsH6VmHIb3ECQabOxlF",
+          "title": "HD 620 S",
+          "description": {
+            "plain": "Closed-back headphones delivering reference-grade sound with panoramic imaging and all-day comfort for audiophiles."
+          },
+          "rating": {
+            "value": 4.7,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 15
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Combines closed-back noise isolation with open-baffle, angled transducers for natural, spacious soundstage."
+            ],
+            "top_features": "Closed-back design with open-baffle and angled transducers: Delivers a wide, natural soundstage while keeping external noise at bay\nReference-grade 42 mm transducer with 38 mm diaphragm: Ensures exceptional impulse response and smooth, detailed audio\nUltra-light 150 ohm aluminum voice coil: Provides fast, resonant sound with minimal distortion\nSupple artificial leather earpads with internal venting: Offers all-day comfort for extended listening sessions\nSteel-reinforced chassis and headband slider: Guarantees long-term durability and reduced resonances",
+            "tech_specs": "Transducer: 42 mm dynamic driver with 38 mm diaphragm\nImpedance: 150 ohms\nFrequency Response: 6 Hz – 30,000 Hz\nTotal Harmonic Distortion (THD): 0.05% (1 kHz, 90 dB)\nSound Pressure Level: 105 dB (1 kHz, 1% VRMS)\nWeight (without cable): 326 g\nCable: 1.8 m with 3.5 mm plug and 3.5 mm to 6.35 mm adapter"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0781/7248/7963/files/Sennheiser_HD_620_S_Audiophile_Closed_Back_Headphones_Main_Image.jpg",
+              "alt_text": "Sennheiser HD 620 S Audiophile Closed Back Headphones Main Image"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/47999185715483",
+              "title": "HD 620 S",
+              "description": {
+                "plain": "The HD 620S, a closed-back addition to our audiophile lineup, caters to audio enthusiasts seeking distraction-free immersion without compromising on natural, expansive sound. The reference-grade 42 mm transducer with a 38 mm diaphragm and ultra-light 150-ohm aluminum voice coil deliver the exceptional impulse response and smooth sound for which the entire 600 series is renowned. Featuring an open baffle and angled transducers, the HD 620S replicates the spatial imaging of loudspeakers while keeping listening sessions secluded. With steel-reinforced components and supple, artificial leather earpads, the HD 620S guarantees long-term durability, reduced resonances, and all-day comfort. Impedance: 150 ohms Frequency response: 6-30,000 Hz THD: <0.05% (1 kHz, 90 dB) What's Included: Closed-back headphones HD 620S 1.8 m cable with 3.5 mm plug 3.5 to 6.3 mm adapter Keywords: Audiophile, Headphones"
+              },
+              "url": "https://us.sennheiser-hearing.com/products/hd-620-s?variant=47999185715483&_gsid=3BizNgESLvBQ",
+              "price": {
+                "amount": 29995,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0781/7248/7963/files/Sennheiser_HD_620_S_Audiophile_Closed_Back_Headphones_Main_Image.jpg",
+                  "alt_text": "Sennheiser HD 620 S Audiophile Closed Back Headphones Main Image"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/78172487963",
+                "name": "Sennheiser US - Sonova Consumer Hearing USA LLC",
+                "url": "https://us.sennheiser-hearing.com",
+                "domain": "sennheiser-hearing-usa.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009064219.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009096987.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009031451.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009129755.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://us.sennheiser-hearing.com/cart/47999185715483:1?_gsid=3BizNgESLvBQ",
+              "rating": {
+                "value": 4.9,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 8
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 29995,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 29995,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/5sYT3mxzgFa4MXoj1beB9F",
+          "title": "CMF Headphone Pro",
+          "description": {
+            "plain": "High-resolution wireless headphones with active noise cancellation and up to 100 hours of battery life."
+          },
+          "rating": {
+            "value": 4.7,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 898
+          },
+          "options": [
+            {
+              "name": "Colour",
+              "values": [
+                {
+                  "label": "Dark Grey"
+                },
+                {
+                  "label": "Light Green"
+                },
+                {
+                  "label": "Light Grey"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Combines high-fidelity audio, advanced noise cancellation, and customizable sound profiles in a compact, stylish design."
+            ],
+            "top_features": "Active noise cancellation for immersive listening in any environment\nHigh-resolution audio with LDAC support for superior sound quality\nPersonal sound profiles tailored to individual listening preferences\nUp to 100 hours of battery life for extended use\nCompact, stylish design for everyday carry and portability",
+            "tech_specs": "Audio Connectivity: Bluetooth\nConnectivity Technology: Wireless, Bluetooth\nHeadphone Style: Closed-back, Over-ear\nMicrophone Type: Built-in\nBattery Type: Rechargeable, Built-in battery\nColor Options: Blue, Green, Silver"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0579/8091/1768/files/CMF_Headphone1-Light-Green.png",
+              "alt_text": "CMF Headphone Pro"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/47246213677208",
+              "title": "CMF Headphone Pro",
+              "description": {
+                "plain": "High-resolution wireless headphones with active noise cancellation and up to 100 hours of battery life."
+              },
+              "url": "https://checkout-us.nothing.tech/products/cmf-headphone-pro?variant=47246213677208&_gsid=3BizNgESLvBQ",
+              "price": {
+                "amount": 7900,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Colour",
+                  "label": "Light Green"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0579/8091/1768/files/CMF_Headphone1-Light-Green.png",
+                  "alt_text": "CMF Headphone Pro"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/57980911768",
+                "name": "Nothing US",
+                "url": "https://checkout-us.nothing.tech",
+                "domain": "nothing-us.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/57980911768/policies/25033343128.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/57980911768/policies/25033375896.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/57980911768/policies/25033310360.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/57980911768/policies/25033408664.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://checkout-us.nothing.tech/cart/47246213677208:1?_gsid=3BizNgESLvBQ",
+              "rating": {
+                "value": 4.7,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 190
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 7900,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 7900,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/4RvFyq3hkEhkTCJIaMBiy0",
+          "title": "HD 620 S Refurbished",
+          "description": {
+            "plain": "Closed-back audiophile headphones delivering distraction-free, immersive sound with natural, expansive audio and premium comfort."
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Reference-grade 42 mm transducers with 38 mm diaphragms and ultra-light 150 ohm aluminum voice coils for exceptional impulse response and smooth sound in a closed-back design."
+            ],
+            "top_features": "Closed-back design provides distraction-free, immersive listening without sacrificing natural sound\nReference-grade 42 mm transducers with 38 mm diaphragms deliver expansive, detailed audio\nUltra-light 150 ohm aluminum voice coil ensures optimal impulse response and smooth sound\nSteel-reinforced chassis and supple artificial leather earpads offer long-term durability and all-day comfort\nOpen baffle and angled transducers replicate the spatial imaging of loudspeakers",
+            "tech_specs": "Impedance: 150 ohms\nFrequency Response: 6–30,000 Hz\nTHD: 0.05% at 1 kHz (90 dB)\nTransducer: 42 mm dynamic, 38 mm diaphragm\nVoice Coil: 150 ohm aluminum\nEarpads: Artificial leather with internal venting"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0781/7248/7963/files/eyJwYXRoIjoic29ub3ZhXC9maWxlXC83MURjWnY4ejZMVlM0Z1FzTDh0Vy5qcGcifQ_sonova_MEx0I9Res9DqQeJoxKb-ASmEalbi2NBF6eaHndgUD1s_455458a8-fad5-492a-97fc-9e756063e04c.jpg",
+              "alt_text": "HD 620 S Refurbished"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/48592857792795",
+              "title": "HD 620 S Refurbished",
+              "description": {
+                "plain": "Certified Refurbished Product has been tested, checked, and thoroughly inspected to meet the same high-quality standards as our new products. Learn More Distraction OFF, sound ON: Open, expansive listening with noise isolation that immerses you in closed-back acoustics without sacrificing natural, airy and intricate audio quality A panoramic soundstage: Angled, 42mm dynamic transducers with 38mm diaphragms mimic a speaker setup and deliver balanced bass for focused listening - unparalleled in closed-back headphone design Superior sonic precision: Ultra-low distortion at all frequencies, lifelike vocals and clear frequency bands, powered by an ultra-lightweight 150-ohm aluminum voice coil for optimal impulse response Enduring comfort, all day: A lightweight, sturdy chassis paired with soft, artificial leather earpads with internal venting and roomy ear cups for long, intimate listening sessions Style meets durability: A steel-reinforced headband slider and earcup covers blend sleek design with robust construction for aesthetic appeal and lasting quality"
+              },
+              "url": "https://us.sennheiser-hearing.com/products/hd-620-s-refurbished?variant=48592857792795&_gsid=3BizNgESLvBQ",
+              "price": {
+                "amount": 19995,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0781/7248/7963/files/eyJwYXRoIjoic29ub3ZhXC9maWxlXC83MURjWnY4ejZMVlM0Z1FzTDh0Vy5qcGcifQ_sonova_MEx0I9Res9DqQeJoxKb-ASmEalbi2NBF6eaHndgUD1s_455458a8-fad5-492a-97fc-9e756063e04c.jpg",
+                  "alt_text": "HD 620 S Refurbished"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/78172487963",
+                "name": "Sennheiser US - Sonova Consumer Hearing USA LLC",
+                "url": "https://us.sennheiser-hearing.com",
+                "domain": "sennheiser-hearing-usa.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009064219.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009096987.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009031451.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/78172487963/policies/37009129755.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://us.sennheiser-hearing.com/cart/48592857792795:1?_gsid=3BizNgESLvBQ",
+              "rating": {
+                "value": 5,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 1
+              },
+              "condition": [
+                "secondhand"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 19995,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 19995,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/3qdUiJW1lGgqVOvXzObeNs",
+          "title": "E7 Active Noise Cancelling Headphones Wireless 5.0 Bluetooth Headphones with Rich Bass",
+          "description": {
+            "plain": "Wireless over-ear headphones with advanced noise cancellation and immersive bass for all-day listening comfort."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 15
+          },
+          "options": [
+            {
+              "name": "Color",
+              "values": [
+                {
+                  "label": "Black"
+                },
+                {
+                  "label": "Green"
+                },
+                {
+                  "label": "Pink"
+                },
+                {
+                  "label": "Purple"
+                },
+                {
+                  "label": "Red"
+                },
+                {
+                  "label": "Yellow"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "unique_selling_points": [
+              "Advanced noise cancellation up to 32 dB and professional 45 mm acoustic drivers for superior sound quality."
+            ],
+            "top_features": "Advanced noise cancellation up to 32 dB for a quieter listening environment\nProfessional 45 mm acoustic drivers deliver rich, immersive bass and clear highs\nWireless Bluetooth connectivity for convenient, cable-free listening\nBuilt-in microphone enables clear calls and easy communication\nSuper soft memory foam ear cushions and adjustable headband for all-day comfort",
+            "tech_specs": "Driver Size: 45 mm\nNoise Cancellation Depth: Up to 32 dB\nBattery Life: Up to 30 hours per charge\nConnectivity: Bluetooth 5.0 wireless\nEarphone Type: Over-ear\nMicrophone: Built-in"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0022/8723/9219/files/e7-active-noise-cancelling-headphones-wireless-50-bluetooth-headphones-with-rich-bass-headphone-cowinaudio-black-346833.jpg",
+              "alt_text": "E7 Active Noise Cancelling Headphones Wireless 5.0 Bluetooth Headphones with Rich Bass Headphone cowinaudio Black "
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/46372554506459",
+              "title": "E7 Active Noise Cancelling Headphones Wireless 5.0 Bluetooth Headphones with Rich Bass",
+              "description": {
+                "plain": "CODE:18OFF ADVANCED NOISE CANCELLATION – E7 active noise cancelling headphones offer improved ANC that cancels up to 32dB deeper of the noise around you, keeping more focus on your listening. Frequently flights, subway, cubicles, open offices, home offices, and everywhere you are, you still have your own music world with our noise cancelling headphones. IMMERSIVE SOUND – With professional 45-millimeter acoustic drivers - that reproduce all frequencies of sound, E7 wireless headphones provide exceptional sound quality and music clarity, wherever you listen. You would be immersive in the amazing sound: super crisp highs, pretty mids, and clear bass through E7 Bluetooth headphones. QUALITY CONVERSATIONS – It is easy to make and take calls on the go with the Built-in microphone call technology, while confident that you’ll be heard clearly. E7 Bluetooth headphones with microphone make sure the stability of your connection. Plus, you get quality and convenience at the touch of a button when you get a call. ALL-DAY COMFORT – Lightweight, comfortable and adjustable, these E7 over-ear headphones are designed to fit perfectly into your life. Super soft memory foam ear cushions ensure outstanding comfort, adjustable headband and angled-swivel earcups to find your personal perfect fit, making them ideal for all-day comfort. UP TO 30 HOURS ENJOY – Get up to 30 hours of playtime from a single charge, E7 noise cancelling headphones minimise interruptions from your wireless ANC listening. Believe in the E7 wireless headphones, spend more time enjoy with great music and calls but less time waiting for charging."
+              },
+              "url": "https://www.cowinaudio.com/products/e7-md-active-noise-cancelling-headphones-wireless-bluetooth-headphones-with-rich-bass?variant=46372554506459&_gsid=3BizNgESLvBQ",
+              "price": {
+                "amount": 4999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "options": [
+                {
+                  "name": "Color",
+                  "label": "Black"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0022/8723/9219/files/e7-active-noise-cancelling-headphones-wireless-50-bluetooth-headphones-with-rich-bass-headphone-cowinaudio-black-346833.jpg",
+                  "alt_text": "E7 Active Noise Cancelling Headphones Wireless 5.0 Bluetooth Headphones with Rich Bass Headphone cowinaudio Black "
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/2287239219",
+                "name": "Cowinaudio",
+                "url": "https://www.cowinaudio.com",
+                "domain": "cowinaudio.myshopify.com",
+                "links": [
+                  {
+                    "type": "privacy_policy",
+                    "url": "https://checkout.shopify.com/2287239219/policies/2911698995.html"
+                  },
+                  {
+                    "type": "terms_of_service",
+                    "url": "https://checkout.shopify.com/2287239219/policies/2911731763.html"
+                  },
+                  {
+                    "type": "refund_policy",
+                    "url": "https://checkout.shopify.com/2287239219/policies/2911666227.html"
+                  },
+                  {
+                    "type": "shipping_policy",
+                    "url": "https://checkout.shopify.com/2287239219/policies/6474498099.html"
+                  }
+                ]
+              },
+              "checkout_url": "https://www.cowinaudio.com/cart/46372554506459:1?_gsid=3BizNgESLvBQ",
+              "rating": {
+                "value": 3,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 2
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 4999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 4999,
+              "currency": "USD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/p/2jH1G1bSch4rBP21t4dUYw",
+          "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+          "description": {
+            "plain": "Wireless over-ear headphones with advanced noise cancellation, rich bass, and up to 30 hours of playtime for immersive listening and clear calls."
+          },
+          "rating": {
+            "value": 4.9,
+            "scale_min": 1,
+            "scale_max": 5,
+            "count": 115
+          },
+          "metadata": {
+            "unique_selling_points": [
+              "Combines deep noise cancellation with professional 45 mm drivers and 30-hour battery life in a comfortable, wireless design."
+            ],
+            "top_features": "Advanced noise cancellation up to 32 dB for immersive isolation in any environment\nProfessional 45 mm acoustic drivers deliver rich, clear bass and full sound spectrum\nWireless Bluetooth 5.0 connectivity ensures stable, high-quality audio streaming\nBuilt-in microphone enables clear, hands-free calls and instant communication\nMemory foam ear cushions and adjustable headband provide all-day comfort",
+            "tech_specs": "Noise Cancellation: Up to 32 dB\nDriver Size: 45 mm\nConnectivity: Bluetooth 5.0, Wireless\nBattery Life: Up to 30 hours per charge\nMicrophone: Built-in\nHeadphone Style: Closed-back, Over-ear"
+          },
+          "media": [
+            {
+              "type": "image",
+              "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+              "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+            }
+          ],
+          "variants": [
+            {
+              "id": "gid://shopify/ProductVariant/48748652429588",
+              "title": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green",
+              "description": {
+                "plain": "ADVANCED NOISE CANCELLATION –E7 active noise cancelling headphones offer improved ANC that cancels up to 32dB deeper of the noise around you, keeping more focus on your listening. Frequently flights, subway, cubicles, open offices, home offices, and everywhere you are, you still have your own music world with our noise cancelling headphones. IMMERSIVE SOUND – With professional 45-millimeter acoustic drivers - that reproduce all frequencies of sound, E7 wireless headphones provide exceptional sound quality and music clarity, wherever you listen. You would be immersive in the amazing sound: super crisp highs, pretty mids, and clear bass through E7 Bluetooth headphones. QUALITY CONVERSATIONS – It is easy to make and take calls on the go with the Built-in microphone call technology, while confident that you’ll be heard clearly. E7 Bluetooth headphones with microphone make sure the stability of your connection. Plus, you get quality and convenience at the touch of a button when you get a call. ALL-DAY COMFORT – Lightweight, comfortable and adjustable, these E7 over-ear headphones are designed to fit perfectly into your life. Super soft memory foam ear cushions ensure outstanding comfort, adjustable headband and angled-swivel earcups to find your personal perfect fit, making them ideal for all-day comfort. UP TO 30 HOURS ENJOY – Get up to 30 hours of playtime from a single charge, E7 noise cancelling headphones minimise interruptions from your wireless ANC listening. Believe in the E7 wireless headphones, spend more time enjoy with great music and calls but less time waiting for charging."
+              },
+              "url": "https://www.kibhousdirect.com/products/e7-active-noise-cancelling-headphones-wireless-bluetooth-headphones-with-rich-bass-wireless-headphones-with-mic-clear-calls-bluetooth-5-0-30-hours-playtime-comfort-fit-green?variant=48748652429588&_gsid=3BizNgESLvBQ",
+              "price": {
+                "amount": 6999,
+                "currency": "USD"
+              },
+              "availability": {
+                "available": true
+              },
+              "media": [
+                {
+                  "type": "image",
+                  "url": "https://cdn.shopify.com/s/files/1/0771/1424/5396/files/61a7GWSx6fL._AC_SL1500.jpg",
+                  "alt_text": "E7 Active Noise Cancelling Headphones Wireless Bluetooth Headphones with Rich Bass, Wireless Headphones with Mic, Clear Calls, Bluetooth 5.0, 30 Hours Playtime, Comfort Fit, Green"
+                }
+              ],
+              "seller": {
+                "id": "gid://shopify/Shop/77114245396",
+                "name": "kibhousdirect",
+                "url": "https://www.kibhousdirect.com",
+                "domain": "795cb8.myshopify.com"
+              },
+              "checkout_url": "https://www.kibhousdirect.com/cart/48748652429588:1?_gsid=3BizNgESLvBQ",
+              "rating": {
+                "value": 4.8,
+                "scale_min": 1,
+                "scale_max": 5,
+                "count": 84
+              },
+              "condition": [
+                "new"
+              ],
+              "eligible": {
+                "native_checkout": false
+              }
+            }
+          ],
+          "price_range": {
+            "min": {
+              "amount": 6999,
+              "currency": "USD"
+            },
+            "max": {
+              "amount": 6999,
+              "currency": "USD"
+            }
+          }
+        }
+      ],
+      "messages": [],
+      "pagination": {
+        "has_next_page": true,
+        "total_count": 448,
+        "cursor": "eyJvZmZzZXQiOjUsInRvdGFsX2NvdW50Ijo0NDgsInJldHVybmVkIjo1fQ"
+      }
+    }
+  }
+}
