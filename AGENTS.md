@@ -99,7 +99,8 @@ catalog-kit/
 │   ├── getting-started.md · configuration.md · api-reference.md [now]
 │   ├── recipes.md · deployment.md · compliance.md [now]
 │   ├── agent-guide.md · architecture.md · troubleshooting.md [now]
-│   └── probe-findings.md              # live-verified API behavior [now]
+│   ├── probe-findings.md              # live-verified API behavior [now]
+│   └── upgrade-2026-08-25.md          # UCP 2026-08-25 upgrade inventory + flip checklist [now]
 ├── internal/                          # git-ignored working docs (plans, launch drafts) — never shipped
 └── scripts/
     ├── probe.mjs                      # live probes (--json) [now]
